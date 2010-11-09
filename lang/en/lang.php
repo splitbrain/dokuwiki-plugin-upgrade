@@ -1,6 +1,6 @@
 <?php
 /**
- * English language file for update plugin
+ * English language file for upgrade plugin
  *
  * @author Andreas Gohr <andi@splitbrain.org>
  */

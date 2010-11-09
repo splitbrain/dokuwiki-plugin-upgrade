@@ -1,20 +1,20 @@
-#plugin__update {
+#plugin__upgrade {
     margin: 0 auto;
     width: 90%;
     height: 20em;
     overflow: auto;
 }
 
-#plugin__update_form {
+#plugin__upgrade_form {
     display: block;
     margin: 0 auto 3em auto;
     width: 20em;
 }
 
-#plugin__update_form input.continue {
+#plugin__upgrade_form input.continue {
     float: right;
 }
 
-#plugin__update_form input.abort {
+#plugin__upgrade_form input.abort {
     float: left;
 }

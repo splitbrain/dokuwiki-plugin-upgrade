@@ -1,6 +1,6 @@
 <?php
 /**
- * DokuWiki Plugin update (Admin Component)
+ * DokuWiki Plugin upgrade (Admin Component)
  *
  * @license GPL 2 http://www.gnu.org/licenses/gpl-2.0.html
  * @author  Andreas Gohr <andi@splitbrain.org>
@@ -14,7 +14,7 @@ if (!defined('DOKU_TAB')) define('DOKU_TAB', "\t");
 if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN',DOKU_INC.'lib/plugins/');
 
 require_once DOKU_PLUGIN.'admin.php';
-require_once DOKU_PLUGIN.'update/VerboseTarLib.class.php';
+require_once DOKU_PLUGIN.'upgrade/VerboseTarLib.class.php';
 
 class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
     private $tgzurl;
@@ -27,8 +27,8 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         $branch = 'stable';
 
         $this->tgzurl  = 'http://github.com/splitbrain/dokuwiki/tarball/'.$branch;
-        $this->tgzfile = $conf['tmpdir'].'/dokuwiki-update.tgz';
-        $this->tgzdir  = $conf['tmpdir'].'/dokuwiki-update/';
+        $this->tgzfile = $conf['tmpdir'].'/dokuwiki-upgrade.tgz';
+        $this->tgzdir  = $conf['tmpdir'].'/dokuwiki-upgrade/';
     }
 
     public function getMenuSort() { return 555; }
@@ -45,14 +45,13 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         $next = false;
 
         echo '<h1>' . $this->getLang('menu') . '</h1>';
-#FIXME check and abort on safemode
 
-        $this->_say('<div id="plugin__update">');
+        $this->_say('<div id="plugin__upgrade">');
         // enable auto scroll
         ?>
         <script language="javascript" type="text/javascript">
-            var plugin_update = window.setInterval(function(){
-                var obj = $('plugin__update');
+            var plugin_upgrade = window.setInterval(function(){
+                var obj = $('plugin__upgrade');
                 if(obj) obj.scrollTop = obj.scrollHeight;
             },25);
         </script>
@@ -65,15 +64,15 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         ?>
         <script language="javascript" type="text/javascript">
             window.setTimeout(function(){
-                window.clearInterval(plugin_update);
+                window.clearInterval(plugin_upgrade);
             },50);
         </script>
         <?php
         $this->_say('</div>');
 
-        echo '<form action="" method="get" id="plugin__update_form">';
+        echo '<form action="" method="get" id="plugin__upgrade_form">';
         echo '<input type="hidden" name="do" value="admin" />';
-        echo '<input type="hidden" name="page" value="update" />';
+        echo '<input type="hidden" name="page" value="upgrade" />';
         echo '<input type="hidden" name="sectok" value="'.getSecurityToken().'" />';
         if($next) echo '<input type="submit" name="step['.$next.']" value="Continue" class="button continue" />';
         if($abrt) echo '<input type="submit" name="step[cancel]" value="Abort" class="button abort" />';
