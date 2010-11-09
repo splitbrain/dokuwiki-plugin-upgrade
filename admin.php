@@ -16,7 +16,7 @@ if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN',DOKU_INC.'lib/plugins/');
 require_once DOKU_PLUGIN.'admin.php';
 require_once DOKU_PLUGIN.'update/VerboseTarLib.class.php';
 
-class admin_plugin_update extends DokuWiki_Admin_Plugin {
+class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
     private $tgzurl;
     private $tgzfile;
     private $tgzdir;

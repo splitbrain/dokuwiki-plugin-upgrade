@@ -1,4 +1,4 @@
-base   update
+base   upgrade
 author Andreas Gohr
 email  andi@splitbrain.org
 date   2010-11-07
