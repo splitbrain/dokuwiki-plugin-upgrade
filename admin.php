@@ -210,8 +210,8 @@ class admin_plugin_update extends DokuWiki_Admin_Plugin {
                     $ok = false;
                 }
             }else{
-                $fmd5 = md5($from);
-                $tmd5 = md5($to);
+                $fmd5 = md5(@file_get_contents($from));
+                $tmd5 = md5(@file_get_contents($to));
                 if($fmd5 != $tmd5){
                     if($dryrun){
                         // just check for writability
