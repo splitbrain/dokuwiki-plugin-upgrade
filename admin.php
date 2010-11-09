@@ -171,7 +171,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
             return false;
         }
 
-        $this->_say($this->getLang('dl_done',filesize_h(strlen($data)));
+        $this->_say($this->getLang('dl_done'),filesize_h(strlen($data)));
 
         return true;
     }
@@ -245,7 +245,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
                     // just check for writability
                     if(!is_dir($to)){
                         if(is_dir(dirname($to)) && !is_writable(dirname($to))){
-                            $this->_say('<b>'.$this->getLang('tv_noperm').'</b>'),hsc("$dir/$file"));
+                            $this->_say('<b>'.$this->getLang('tv_noperm').'</b>',hsc("$dir/$file"));
                             $ok = false;
                         }
                     }
@@ -264,7 +264,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
                         if( (file_exists($to) && !is_writable($to)) ||
                             (!file_exists($to) && is_dir(dirname($to)) && !is_writable(dirname($to))) ){
 
-                            $this->_say('<b>'.$this->getLang('tv_noperm').'</b>'),hsc("$dir/$file"));
+                            $this->_say('<b>'.$this->getLang('tv_noperm').'</b>',hsc("$dir/$file"));
                             $ok = false;
                         }else{
                             $this->_say($this->getLang('tv_upd'),hsc("$dir/$file"));
