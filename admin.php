@@ -103,13 +103,22 @@ class admin_plugin_update extends DokuWiki_Admin_Plugin {
     /**
      * Recursive delete
      *
-     * @author zibi at nora dot pl
-     * @link http://de.php.net/manual/en/function.unlink.php#100092
+     * @author Jon Hassall
+     * @link http://de.php.net/manual/en/function.unlink.php#87045
      */
-    private function _rdel($path) {
-        return is_file($path)?
-               @unlink($path):
-               array_map(array($this,'_rdel'),glob($path.'/*'))==@rmdir($path);
+    private function _rdel($dir) {
+        if(!$dh = @opendir($dir)) {
+            return;
+        }
+        while (false !== ($obj = readdir($dh))) {
+            if($obj == '.' || $obj == '..') continue;
+
+            if (!@unlink($dir . '/' . $obj)) {
+                $this->_rdel($dir.'/'.$obj);
+            }
+        }
+        closedir($dh);
+        @rmdir($dir);
     }
 
     private function _step_download(){
