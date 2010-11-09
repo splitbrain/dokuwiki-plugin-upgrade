@@ -108,9 +108,9 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
             }elseif(!is_dir($this->tgzdir)){
                 if($this->_step_unpack()) $next = 'check';
             }elseif($step != 'upgrade'){
-                if($this->_step_copy(true)) $next = 'upgrade';
+                if($this->_step_check()) $next = 'upgrade';
             }elseif($step == 'upgrade'){
-                if($this->_step_copy(false)) $next = 'cancel';
+                if($this->_step_copy()) $next = 'cancel';
             }else{
                 echo 'uhm. what happened? where am I? This should not happen';
             }
@@ -151,7 +151,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
     }
 
     private function _step_download(){
-        $this->_say('Downloading from %s',$this->tgzurl);
+        $this->_say($this->getLang('dl_from'),$this->tgzurl);
 
         @set_time_limit(120);
         @ignore_user_abort();
@@ -162,23 +162,23 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
 
         if(!$data){
             $this->_say($http->error);
-            $this->_say("Download failed.");
+            $this->_say($this->getLang('dl_fail'));
             return false;
         }
-
-        $this->_say('Received %d bytes',strlen($data));
 
         if(!io_saveFile($this->tgzfile,$data)){
-            $this->_say("Failed to save download.");
+            $this->_say($this->getLang('dl_fail'));
             return false;
         }
+
+        $this->_say($this->getLang('dl_done',filesize_h(strlen($data)));
 
         return true;
     }
 
     private function _step_unpack(){
         global $conf;
-        $this->_say('<b>Extracting the archive...</b>');
+        $this->_say('<b>'.$this->getLang('pk_extract').'</b>');
 
         @set_time_limit(120);
         @ignore_user_abort();
@@ -186,41 +186,45 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         $tar = new VerboseTarLib($this->tgzfile);
         if($tar->_initerror < 0){
             $this->_say($tar->TarErrorStr($tar->_initerror));
-            $this->_say('Extraction failed on init');
+            $this->_say($this->getLang('pk_fail'));
             return false;
         }
 
         $ok = $tar->Extract(VerboseTarLib::FULL_ARCHIVE,$this->tgzdir,1,$conf['fmode'],'/^(_cs|_test|\.gitignore)/');
         if($ok < 1){
             $this->_say($tar->TarErrorStr($ok));
-            $this->_say('Extraction failed');
+            $this->_say($this->getLang('pk_fail'));
             return false;
         }
 
-        $this->_say('Extraction done.');
+        $this->_say($this->getLang('pk_done'));
 
-        $this->_say('Version <b>%s</b> ready to install. Your current version is <b>%s</b>.',
+        $this->_say($this->getLang('pk_version'),
                     hsc(file_get_contents($this->tgzdir.'/VERSION')),
                     getVersion());
         return true;
     }
 
-    private function _step_copy($dryrun=true){
-        $ok = $this->_traverse('',$dryrun);
-        if($dryrun){
-            if($ok){
-                $this->_say('<b>All files are writable, ready to upgrade</b>');
-            }else{
-                $this->_say('<b>Some files aren\'t writable. Uprade not possible.</b>');
-            }
+    private function _step_check(){
+        $this->_say($this->getLang('ck_start'));
+        $ok = $this->_traverse('',true);
+        #FIXME check unused files
+        if($ok){
+            $this->_say('<b>'.$this->getLang('ck_done').'</b>');
         }else{
-            if($ok){
-                $this->_say('<b>All files upgraded successfully</b>');
+            $this->_say('<b>'.$this->getLang('ck_fail').'</b>');
+        }
+        return $ok;
+    }
 
-                #FIXME delete unused files
-            }else{
-                $this->_say('<b>Some files couldn\'t be upgraded. Uh-oh. Better check manually.</b>');
-            }
+    private function _step_copy(){
+        $this->_say($this->getLang('cp_start'));
+        $ok = $this->_traverse('',false);
+        if($ok){
+            $this->_say('<b>'.$this->getLang('cp_done').'</b>');
+            #FIXME delete unused files
+        }else{
+            $this->_say('<b>'.$this->getLang('cp_fail').'</b>');
         }
         return $ok;
     }
@@ -241,7 +245,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
                     // just check for writability
                     if(!is_dir($to)){
                         if(is_dir(dirname($to)) && !is_writable(dirname($to))){
-                            $this->_say("<b>%s is not writable</b>",hsc("$dir/$file"));
+                            $this->_say('<b>'.$this->getLang('tv_noperm').'</b>'),hsc("$dir/$file"));
                             $ok = false;
                         }
                     }
@@ -260,23 +264,23 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
                         if( (file_exists($to) && !is_writable($to)) ||
                             (!file_exists($to) && is_dir(dirname($to)) && !is_writable(dirname($to))) ){
 
-                            $this->_say("<b>%s is not writable</b>",hsc("$dir/$file"));
+                            $this->_say('<b>'.$this->getLang('tv_noperm').'</b>'),hsc("$dir/$file"));
                             $ok = false;
                         }else{
-                            $this->_say("%s needs update",hsc("$dir/$file"));
+                            $this->_say($this->getLang('tv_upd'),hsc("$dir/$file"));
                         }
                     }else{
                         // check dir
                         if(io_mkdir_p(dirname($to))){
                             // copy
                             if(!copy($from,$to)){
-                                $this->_say("<b>%s couldn't be copied</b>",hsc("$dir/$file"));
+                                $this->_say('<b>'.$this->getLang('tv_nocopy').'</b>',hsc("$dir/$file"));
                                 $ok = false;
                             }else{
-                                $this->_say("%s updated",hsc("$dir/$file"));
+                                $this->_say($this->getLang('tv_done'),hsc("$dir/$file"));
                             }
                         }else{
-                            $this->_say("<b>failed to create %s</b>",hsc("$dir"));
+                            $this->_say('<b>'.$this->getLang('tv_nodir').'</b>',hsc("$dir"));
                             $ok = false;
                         }
                     }

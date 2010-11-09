@@ -1,9 +1,10 @@
-The following steps will be performed during the upgrade process:
+This plugin will automatically upgrade your wiki to the newest available DokuWiki version by performing the following steps:
 
   - Downloading the new DokuWiki package
   - Unpacking the package
   - Checking the needed permissions
-  - Updating changed files
-  - Deleting removed files
+  - Updating the wiki files
 
-This will not upgrade any installed plugins or templates. Creating a backup of your wiki is recommended befor starting the upgrade process.
+For automatic upgrading all files that need to be updated have to be writable by the PHP process. The plugin will check for the required file permissions before starting the upgrade process.
+
+This will not upgrade any installed plugins or templates. Creating a backup of your wiki is recommended before continuing is highly recommended.
