@@ -43,14 +43,36 @@ class admin_plugin_update extends DokuWiki_Admin_Plugin {
         echo '<h1>' . $this->getLang('menu') . '</h1>';
 #FIXME check and abort on safemode
 
+        $this->_say('<div id="plugin__update">');
+        // enable auto scroll
+        ?>
+        <script language="javascript" type="text/javascript">
+            var plugin_update = window.setInterval(function(){
+                var obj = $('plugin__update');
+                if(obj) obj.scrollTop = obj.scrollHeight;
+            },25);
+        </script>
+        <?php
+
+        // handle current step
         $this->_stepit(&$abrt, &$next);
 
+        // disable auto scroll
+        ?>
+        <script language="javascript" type="text/javascript">
+            window.setTimeout(function(){
+                window.clearInterval(plugin_update);
+            },50);
+        </script>
+        <?php
+        $this->_say('</div>');
+
 #FIXME add security check
-        echo '<form action="" method="get">';
+        echo '<form action="" method="get" id="plugin__update_form">';
         echo '<input type="hidden" name="do" value="admin" />';
         echo '<input type="hidden" name="page" value="update" />';
-        if($next) echo '<input type="submit" name="step['.$next.']" value="Continue" />';
-        if($abrt) echo '<input type="submit" name="step[cancel]" value="Abort" />';
+        if($next) echo '<input type="submit" name="step['.$next.']" value="Continue" class="button continue" />';
+        if($abrt) echo '<input type="submit" name="step[cancel]" value="Abort" class="button abort" />';
         echo '</form>';
     }
 
@@ -71,7 +93,6 @@ class admin_plugin_update extends DokuWiki_Admin_Plugin {
         if($step){
             $abrt = true;
             $next = false;
-            $this->_say('<div id="plugin__update">');
             if(!file_exists($this->tgzfile)){
                 if($this->_step_download()) $next = 'unpack';
             }elseif(!is_dir($this->tgzdir)){
@@ -81,10 +102,8 @@ class admin_plugin_update extends DokuWiki_Admin_Plugin {
             }elseif($step == 'upgrade'){
                 if($this->_step_copy(false)) $next = 'cancel';
             }else{
-                #continue
-                echo 'huh';
+                echo 'uhm. what happened? where am I? This should not happen';
             }
-            $this->_say('</div>');
         }else{
             # first time run, show intro
             echo $this->locale_xhtml('step0');
@@ -149,7 +168,7 @@ class admin_plugin_update extends DokuWiki_Admin_Plugin {
 
     private function _step_unpack(){
         global $conf;
-        $this->_say('Extracting the archive...');
+        $this->_say('<b>Extracting the archive...</b>');
 
         @set_time_limit(120);
         @ignore_user_abort();
