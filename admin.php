@@ -169,6 +169,10 @@ class admin_plugin_update extends DokuWiki_Admin_Plugin {
         }
 
         $this->_say('Extraction done.');
+
+        $this->_say('Version <b>%s</b> ready to install. Your current version is <b>%s</b>.',
+                    hsc(file_get_contents($this->tgzdir.'/VERSION')),
+                    getVersion());
         return true;
     }
 
