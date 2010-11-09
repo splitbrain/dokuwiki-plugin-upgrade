@@ -1,0 +1,7 @@
+base   update
+author Andreas Gohr
+email  andi@splitbrain.org
+date   2010-11-07
+name   update plugin
+desc   Update DokuWiki
+url    http://www.dokuwiki.org/plugin:update

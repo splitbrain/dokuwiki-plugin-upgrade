@@ -1,0 +1,9 @@
+The following steps will be performed during the upgrade process:
+
+  - Downloading the new DokuWiki package
+  - Unpacking the package
+  - Checking the needed permissions
+  - Updating changed files
+  - Deleting removed files
+
+This will not upgrade any installed plugins or templates. Creating a backup of your wiki is recommended befor starting the upgrade process.
