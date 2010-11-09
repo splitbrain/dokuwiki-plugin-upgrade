@@ -64,7 +64,7 @@ class admin_plugin_update extends DokuWiki_Admin_Plugin {
         if($step == 'cancel'){
             # cleanup
             @unlink($this->tgzfile);
-
+            $this->_rdel($this->tgzdir);
             $step = '';
         }
 
@@ -98,6 +98,18 @@ class admin_plugin_update extends DokuWiki_Admin_Plugin {
         echo vsprintf(array_shift($args)."<br />\n",$args);
         flush();
         ob_flush();
+    }
+
+    /**
+     * Recursive delete
+     *
+     * @author zibi at nora dot pl
+     * @link http://de.php.net/manual/en/function.unlink.php#100092
+     */
+    private function _rdel($path) {
+        return is_file($path)?
+               @unlink($path):
+               array_map(array($this,'_rdel'),glob($path.'/*'))==@rmdir($path);
     }
 
     private function _step_download(){
