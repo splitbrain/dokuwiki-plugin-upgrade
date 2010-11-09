@@ -80,6 +80,13 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
     }
 
     private function _stepit(&$abrt, &$next){
+        global $conf;
+        if($conf['safemodehack']){
+            $abrt = false;
+            $next = false;
+            echo $this->locale_xhtml('safemode');
+        }
+
         if(isset($_REQUEST['step']) && is_array($_REQUEST['step'])){
             $step = array_shift(array_keys($_REQUEST['step']));
         }else{
