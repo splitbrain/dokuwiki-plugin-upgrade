@@ -31,12 +31,16 @@ class admin_plugin_update extends DokuWiki_Admin_Plugin {
         $this->tgzdir  = $conf['tmpdir'].'/dokuwiki-update/';
     }
 
-    function getMenuSort() { return 555; }
+    public function getMenuSort() { return 555; }
 
-    function handle() {
+    public function handle() {
+        if($_REQUEST['step'] && !checkSecurityToken()){
+            unset($_REQUEST['step']);
+        }
     }
 
     public function html() {
+        global $ID;
         $abrt = false;
         $next = false;
 
@@ -67,10 +71,10 @@ class admin_plugin_update extends DokuWiki_Admin_Plugin {
         <?php
         $this->_say('</div>');
 
-#FIXME add security check
         echo '<form action="" method="get" id="plugin__update_form">';
         echo '<input type="hidden" name="do" value="admin" />';
         echo '<input type="hidden" name="page" value="update" />';
+        echo '<input type="hidden" name="sectok" value="'.getSecurityToken().'" />';
         if($next) echo '<input type="submit" name="step['.$next.']" value="Continue" class="button continue" />';
         if($abrt) echo '<input type="submit" name="step[cancel]" value="Abort" class="button abort" />';
         echo '</form>';
