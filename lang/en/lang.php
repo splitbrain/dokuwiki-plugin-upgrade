@@ -20,7 +20,7 @@ $lang['ck_start']   = 'Checking file permissions...';
 $lang['ck_done']    = 'All files are writable. Ready to upgrade.';
 $lang['ck_fail']    = 'Some files aren\'t writable. Automatic upgrade not possible.';
 $lang['cp_start']   = 'Updating files...';
-$lang['cp_done']    = 'Upgrade successful. Enjoy your new DokuWiki!';
+$lang['cp_done']    = 'All files updated.';
 $lang['cp_fail']    = 'Uh-Oh. Something went wrong. Better check manually.';
 $lang['tv_noperm']  = '<code>%s</code> is not writable!';
 $lang['tv_upd']     = '<code>%s</code> will be updated.';
@@ -29,6 +29,6 @@ $lang['tv_nodir']   = 'Could not create directory <code>%s</code>!';
 $lang['tv_done']    = 'updated <code>%s</code>';
 $lang['rm_done']    = 'Deprecated <code>%s</code> deleted.';
 $lang['rm_fail']    = 'Could not delete deprecated <code>%s</code>. <b>Please delete manually!</b>';
-
+$lang['finish']     = 'Upgrade completed. Enjoy your new DokuWiki';
 
 //Setup VIM: ex: et ts=4 enc=utf-8 :

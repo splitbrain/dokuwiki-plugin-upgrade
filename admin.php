@@ -147,7 +147,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
             }
         }
         closedir($dh);
-        @rmdir($dir);
+        return @rmdir($dir);
     }
 
     private function _step_download(){
@@ -222,6 +222,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         if($ok){
             $this->_say('<b>'.$this->getLang('cp_done').'</b>');
             $this->_rmold();
+            $this->_say('<b>'.$this->getLang('finish').'</b>');
         }else{
             $this->_say('<b>'.$this->getLang('cp_fail').'</b>');
         }
@@ -237,9 +238,9 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
             if(!file_exists($file)) continue;
             if( (is_dir($file) && $this->_rdel($file)) ||
                 @unlink($file)){
-                $this->_say($this->getLang('rm_done'),$file);
+                $this->_say($this->getLang('rm_done'),hsc($line));
             }else{
-                $this->_say($this->getLang('rm_fail'),$file);
+                $this->_say($this->getLang('rm_fail'),hsc($line));
             }
         }
     }
