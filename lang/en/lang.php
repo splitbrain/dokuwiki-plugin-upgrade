@@ -27,7 +27,8 @@ $lang['tv_upd']     = '<code>%s</code> will be updated.';
 $lang['tv_nocopy']  = 'Could not copy file <code>%s</code>!';
 $lang['tv_nodir']   = 'Could not create directory <code>%s</code>!';
 $lang['tv_done']    = 'updated <code>%s</code>';
-
+$lang['rm_done']    = 'Deprecated <code>%s</code> deleted.';
+$lang['rm_fail']    = 'Could not delete deprecated <code>%s</code>. <b>Please delete manually!</b>';
 
 
 //Setup VIM: ex: et ts=4 enc=utf-8 :

@@ -208,7 +208,6 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
     private function _step_check(){
         $this->_say($this->getLang('ck_start'));
         $ok = $this->_traverse('',true);
-        #FIXME check unused files
         if($ok){
             $this->_say('<b>'.$this->getLang('ck_done').'</b>');
         }else{
@@ -222,11 +221,27 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         $ok = $this->_traverse('',false);
         if($ok){
             $this->_say('<b>'.$this->getLang('cp_done').'</b>');
-            #FIXME delete unused files
+            $this->_rmold();
         }else{
             $this->_say('<b>'.$this->getLang('cp_fail').'</b>');
         }
         return $ok;
+    }
+
+    private function _rmold(){
+        $list = file($this->tgzdir.'data/deleted.files');
+        foreach($list as $line){
+            $line = trim(preg_replace('/#.*$/','',$line));
+            if(!$line) continue;
+            $file = DOKU_INC.$line;
+            if(!file_exists($file)) continue;
+            if( (is_dir($file) && $this->_rdel($file)) ||
+                @unlink($file)){
+                $this->_say($this->getLang('rm_done'),$file);
+            }else{
+                $this->_say($this->getLang('rm_fail'),$file);
+            }
+        }
     }
 
     private function _traverse($dir,$dryrun){
