@@ -1,0 +1,10 @@
+Dieses Plugin aktualisiert Ihr Wiki automatisch auf die neuste verfügbare DokuWiki-Version, indem folgende Schritte abgearbeitet werden:
+
+  - Neustes DokuWiki-Paket herunterladen
+  - Paket entpacken
+  - Überprüfen der benötigten Dateirechte
+  - Wiki-Dateien aktualisieren
+
+Für die automatische Aktualisierung müssen alle zu aktualisierende Dateien durch PHP beschreibbar sein. Das Plugin überprüft alle Dateirechte bevor die Aktualisierung gestartet wird.
+
+Installierte Plugins oder Templates werden nicht aktualisiert. Es wird dringend empfohlen, vor der Benutzung des Plugins eine Datensicherung durchzuführen!
