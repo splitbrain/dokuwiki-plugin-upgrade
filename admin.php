@@ -274,7 +274,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
             }else{
                 $fmd5 = md5(@file_get_contents($from));
                 $tmd5 = md5(@file_get_contents($to));
-                if($fmd5 != $tmd5){
+                if($fmd5 != $tmd5 || !file_exists($to)){
                     if($dryrun){
                         // just check for writability
                         if( (file_exists($to) && !is_writable($to)) ||
