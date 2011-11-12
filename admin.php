@@ -58,7 +58,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         <?php
 
         // handle current step
-        $this->_stepit(&$abrt, &$next);
+        $this->_stepit($abrt, $next);
 
         // disable auto scroll
         ?>
