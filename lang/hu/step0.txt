@@ -1,0 +1,10 @@
+A bővítmény automatikusan frissíti a wikinket a legújabb elérhető DokuWiki-verzióra az alábbi lépések végrehajtásával:
+
+- új DokuWiki-telepítőcsomag letöltése
+- telepítőcsomag kibontása
+- szükséges jogosultságok ellenőrzése
+- wikiállományok frissítése
+
+Az automatikus frissítéshez a PHP-folyamatnak minden frissíteni szükséges fájlt tudnia kell írni. A bővítmény ellenőrzi a szükséges fájljogosultságokat a frissítési folyamat megkezdése előtt.
+
+A bővítmény nem frissít semmilyen más telepített bővítményt vagy sablont. Nyomatékosan javasolt a wikinkről biztonsági mentést készíteni a folytatás előtt.
