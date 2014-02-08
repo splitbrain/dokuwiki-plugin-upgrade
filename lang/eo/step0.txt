@@ -1,0 +1,10 @@
+Tiu kromaĵo aŭtomate aktualigas vian vikion al la plej freŝe havebla DokuWiki-versio tra jenaj paŝoj:
+
+  - Elŝutado de la nova DokuWiki-pakaĵo
+  - Malpakado de la pakaĵo
+  - Kontrolo de la necesaj permesoj
+  - Aktualigo de la vikiaj dosieroj
+
+Por aŭtomata aktualigado ĉiuj aktualigendaj dosieroj devas esti skribeblaj de la PHP-procezo. La kromaĵo kontrolos la necesajn permesojn antaŭ komenci la aktualigan procezon.
+
+Ne ĉiuj ajn instalitaj kromaĵoj aŭ ŝablonoj aktualiĝos. Estas tre rekomendata krei sekureckopion de via vikio antaŭ daŭrigi.
