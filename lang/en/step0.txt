@@ -7,4 +7,6 @@ This plugin will automatically upgrade your wiki to the newest available DokuWik
 
 For automatic upgrading all files that need to be updated have to be writable by the PHP process. The plugin will check for the required file permissions before starting the upgrade process.
 
-This will not upgrade any installed plugins or templates. Creating a backup of your wiki is recommended before continuing is highly recommended.
+This will not upgrade any installed plugins or templates. Creating a backup of your wiki is recommended before continuing is highly recommended. Also deactivate as many as possible plugins (except used auth plugins and upgrade plugin itself).
+
+Following the upgrade of dokuwiki upgrade and activate all plugins step by step.
