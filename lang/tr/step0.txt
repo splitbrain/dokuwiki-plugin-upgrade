@@ -1,0 +1,10 @@
+Bu eklenti aşağıdaki adımları takip ederek wikinizi mevcut en yeni DokuWiki sürümüne yükseltir;
+
+-DokuWiki paketini indirmek
+-Paketi açmak
+-Gerekli izinleri kontrol etmek
+-Wiki dosyalarını güncellemek
+
+Otomatik güncelleme için, tüm dosyaların PHP süreçleri tarafından yazılabilir olması gereklidir. Eklenti, başlamadan önce gerekli dosya izinlerini kontrol edecek.
+
+Bu işlem kurulu hiç bir eklenti veya şablonu yükseltmeyecektir. Devam etmeden önce wikinizin bir yedeğini almanız önemle tavsiye edilir.
