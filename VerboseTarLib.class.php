@@ -1,406 +1,60 @@
 <?php
 /**
- * This is a copy of DokuWiki's tar library with some features
- * not available in older DokuWiki versions and extra verbosity
- * added.
+ * This is a copy of DokuWiki's core tar library
  *
- * @license GPL
- * @link    http://docs.maxg.info
- * @author  Bouchon <tarlib@bouchon.org> (Maxg)
- * @author  Christopher Smith <chris@jalakai.co.uk>
+ * A copy is used because old DokuWiki installs may have an old version. It has also been adjusted to
+ * print each extracted file
+ *
+ * @author Andreas Gohr <andi@splitbrain.org>
+ * @author Bouchon <tarlib@bouchon.org> (Maxg)
+ * @license GPL 2
  */
+class VerboseTar {
 
+    const COMPRESS_AUTO = 0;
+    const COMPRESS_NONE = 1;
+    const COMPRESS_GZIP = 2;
+    const COMPRESS_BZIP = 3;
 
-/**
- * Those constants represent the compression method to use.
- * COMPRESS_GZIP is used for the GZIP compression; COMPRESS_BZIP for
- * BZIP2 and COMPRESS_NONE for no compression.
- *
- * On the other hand, COMPRESS_AUTO is a bit harder. It will first check
- * if the zlib extensions are loaded.
- * If it is, GZIP will be used. Else it will check if the bz2 extensions
- * are loaded. If it is, BZIP2 will be used. Else no compression will be
- * performed.
- *
- * You can then use getCompression() to know the compression chosen.
- *
- * If you selected a compression which can't be used (i.e extension not
- * present), it will be just disabled, and won't produce any error !
- * As a consequence, getCompression() will return COMPRESS_NONE
- *
- * ARCHIVE_DYNAMIC can be passed as the first argument of the constructor, to
- * create an archive in memory instead of a file. See also: MaxgTar(),
- * getDynamicArchive() and writeArchive()
- *
- * ARCHIVE_RENAMECOMP is a flag that can be multiplied by the compression method
- * (i.e COMPRESS_AUTO * ARCHIVE_RENAMECOMP). This will add the correct extension
- * to the archive name, which is useful with COMPRESS_AUTO, ie .bz2 if you gave
- * COMPRESS_BZIP. See also getCompression(TRUE) which does exactly the
- * same
- *
- * COMPRESS_DETECT does exactly the opposite and try to detect the
- * compression to use to read the archive depending on its extension. (i.e if
- * the archive ends with .tar.gz TarLib will try to decompress it with
- * GZIP). See also setCompression()
- *
- * FULL_ARCHIVE is a -1 constant that means "the complete archive" when
- * extracting. This is explained in Extract()
- */
-#define('COMPRESS_GZIP',1);
-#define('COMPRESS_BZIP',2);
-#define('COMPRESS_AUTO',3);
-#define('COMPRESS_NONE',0);
-#define('TARLIB_VERSION','1.2');
-#define('FULL_ARCHIVE',-1);
-#define('ARCHIVE_DYNAMIC',0);
-#define('ARCHIVE_RENAMECOMP',5);
-#define('COMPRESS_DETECT',-1);
-
-class VerboseTarLib {
-    var $_comptype;
-    var $_compzlevel;
-    var $_fp;
-    var $_memdat;
-    var $_nomf;
-    var $_result;
-    var $_initerror;
-
-    const   COMPRESS_GZIP = 1;
-    const   COMPRESS_BZIP = 2;
-    const   COMPRESS_AUTO = 3;
-    const   COMPRESS_NONE = 0;
-    const   TARLIB_VERSION = '1.2';
-    const   FULL_ARCHIVE = -1;
-    const   ARCHIVE_DYNAMIC = 0;
-    const   ARCHIVE_RENAMECOMP = 5;
-    const   COMPRESS_DETECT = -1;
+    protected $file = '';
+    protected $comptype = Tar::COMPRESS_AUTO;
+    protected $fh;
+    protected $memory = '';
+    protected $closed = true;
+    protected $writeaccess = false;
 
     /**
-     * constructor, initialize the class
+     * Open an existing TAR file for reading
      *
-     * The constructor initialize the variables and prepare the class for the
-     * archive, and return the object created. Note that you can use multiple
-     * instances of the MaxgTar class, if you call this function another time and
-     * store the object in an other variable.
-     *
-     * In fact, MaxgTar accepts the following arguments (all are optional) :
-     *
-     * filename can be either a file name (absolute or relative). In this
-     * case, it can be used both for reading and writing. You can also open
-     * remote archive if you add a protocole name at the beginning of the file
-     * (ie https://host.dom/archive.tar.gz), but for reading only and if the
-     * directive allow_url_fopen is enabled in PHP.INI (this can be checked with
-     * TarInfo()). If you pass a file that doesn't exist, the script
-     * will try to create it. If the archive already exists and contains files,
-     * you can use Add() to append files.But by default this parameter
-     * is ARCHIVE_DYNAMIC (write only) so the archive is created in memory and
-     * can be sent to a file [writeArchive()] or to the client
-     * [sendClient()]
-     *
-     * compression_type should be a constant that represents a type of
-     * compression, or its integer value. The different values are described in
-     * the constants.
-     *
-     * compression_level is an integer between 1 and 9 (by default) an
-     * represent the GZIP or BZIP compression level.  1 produce fast compression,
-     * and 9 produce smaller files. See the RFC 1952 for more infos.
+     * @param string $file
+     * @param int    $comptype
+     * @throws VerboseTarIOException
      */
-    function VerboseTarLib($p_filen = VerboseTarLib::ARCHIVE_DYNAMIC , $p_comptype = VerboseTarLib::COMPRESS_AUTO, $p_complevel = 9) {
-        $this->_initerror = 0;
-        $this->_nomf = $p_filen;
-        $flag=0;
-        if($p_comptype && $p_comptype % 5 == 0){
-            $p_comptype /= VerboseTarLib::ARCHIVE_RENAMECOMP;
-            $flag=1;
-        }
+    public function open($file, $comptype = Tar::COMPRESS_AUTO) {
+        // determine compression
+        if($comptype == Tar::COMPRESS_AUTO) $comptype = $this->filetype($file);
+        $this->compressioncheck($comptype);
 
-        if($p_complevel > 0 && $p_complevel <= 9) $this->_compzlevel = $p_complevel;
-        else $p_complevel = 9;
+        $this->comptype = $comptype;
+        $this->file     = $file;
 
-        if($p_comptype == VerboseTarLib::COMPRESS_DETECT) {
-            if(strtolower(substr($p_filen,-3)) == '.gz') $p_comptype = VerboseTarLib::COMPRESS_GZIP;
-            elseif(strtolower(substr($p_filen,-4)) == '.bz2') $p_comptype = VerboseTarLib::COMPRESS_BZIP;
-            else $p_comptype = VerboseTarLib::COMPRESS_NONE;
-        }
-
-        switch($p_comptype) {
-        case VerboseTarLib::COMPRESS_GZIP:
-                if(!extension_loaded('zlib')) $this->_initerror = -1;
-                $this->_comptype = VerboseTarLib::COMPRESS_GZIP;
-                break;
-
-            case VerboseTarLib::COMPRESS_BZIP:
-                if(!extension_loaded('bz2')) $this->_initerror = -2;
-                $this->_comptype = VerboseTarLib::COMPRESS_BZIP;
-                break;
-
-            case VerboseTarLib::COMPRESS_AUTO:
-                if(extension_loaded('zlib'))
-                    $this->_comptype = VerboseTarLib::COMPRESS_GZIP;
-                elseif(extension_loaded('bz2'))
-                    $this->_comptype = VerboseTarLib::COMPRESS_BZIP;
-                else
-                    $this->_comptype = VerboseTarLib::COMPRESS_NONE;
-                break;
-
-            default:
-                $this->_comptype = VerboseTarLib::COMPRESS_NONE;
-        }
-
-        if($this->_initerror < 0) $this->_comptype = VerboseTarLib::COMPRESS_NONE;
-
-        if($flag) $this->_nomf.= '.'.$this->getCompression(1);
-        $this->_result = true;
-    }
-
-    /**
-     * Recycle a TAR object.
-     *
-     * This function does exactly the same as TarLib (constructor), except it
-     * returns a status code.
-     */
-    function setArchive($p_name='', $p_comp = VerboseTarLib::COMPRESS_AUTO, $p_level=9) {
-        $this->_CompTar();
-        $this->TarLib($p_name, $p_comp, $p_level);
-        return $this->_result;
-    }
-
-    /**
-     * Get the compression used to generate the archive
-     *
-     * This is a very useful function when you're using dynamical archives.
-     * Besides, if you let the script chose which compression to use, you'll have
-     * a problem when you'll want to send it to the client if you don't know
-     * which compression was used.
-     *
-     * There are two ways to call this function : if you call it without argument
-     * or with FALSE, it will return the compression constants, explained on the
-     * MaxgTar Constants.  If you call it with GetExtension on TRUE it will
-     * return the extension without starting dot (ie "tar" or "tar.bz2" or
-     * "tar.gz")
-     *
-     * NOTE: This can be done with the flag ARCHIVE_RENAMECOMP, see the
-     * MaxgTar Constants
-     */
-    function getCompression($ext = false) {
-        $exts = Array('tar','tar.gz','tar.bz2');
-        if($ext) return $exts[$this->_comptype];
-        return $this->_comptype;
-    }
-
-    /**
-     * Change the compression mode.
-     *
-     * This function will change the compression methode to read or write
-     * the archive. See the MaxgTar Constants to see which constants you can use.
-     * It may look strange, but it returns the GZIP compression level.
-     */
-    function setCompression($p_comp = VerboseTarLib::COMPRESS_AUTO) {
-        $this->setArchive($this->_nomf, $p_comp, $this->_compzlevel);
-        return $this->_compzlevel;
-    }
-
-    /**
-     * Returns the compressed dynamic archive.
-     *
-     * When you're working with dynamic archives, use this function to grab
-     * the final compressed archive in a string ready to be put in a SQL table or
-     * in a file.
-     */
-    function getDynamicArchive() {
-        return $this->_encode($this->_memdat);
-    }
-
-    /**
-     * Write a dynamical archive into a file
-     *
-     * This function attempts to write a dynamicaly-genrated archive into
-     * TargetFile on the webserver.  It returns a TarErrorStr() status
-     * code.
-     *
-     * To know the extension to add to the file if you're using AUTO_DETECT
-     * compression, you can use getCompression().
-     */
-    function writeArchive($p_archive) {
-        if(!$this->_memdat) return -7;
-        $fp = @fopen($p_archive, 'wb');
-        if(!$fp) return -6;
-
-        fwrite($fp, $this->_memdat);
-        fclose($fp);
-
-        return true;
-    }
-
-    /**
-     * Send a TAR archive to the client browser.
-     *
-     * This function will send an archive to the client, and return a status
-     * code, but can behave differently depending on the arguments you give. All
-     * arguments are optional.
-     *
-     * ClientName is used to specify the archive name to give to the browser. If
-     * you don't give one, it will send the constructor filename or return an
-     * error code in case of dynamical archive.
-     *
-     * FileName is optional and used to send a specific archive. Leave it blank
-     * to send dynamical archives or the current working archive.
-     *
-     * If SendHeaders is enabled (by default), the library will send the HTTP
-     * headers itself before it sends the contents. This headers are :
-     * Content-Type, Content-Disposition, Content-Length and Accept-Range.
-     *
-     * Please note that this function DOES NOT stops the script so don't forget
-     * to exit() to avoid your script sending other data and corrupt the archive.
-     * Another note : for AUTO_DETECT dynamical archives you can know the
-     * extension to add to the name with getCompression()
-     */
-    function sendClient($name = '', $archive = '', $headers = true) {
-        if(!$name && !$this->_nomf) return -9;
-        if(!$archive && !$this->_memdat) return -10;
-        if(!$name) $name = basename($this->_nomf);
-
-        if($archive){ if(!file_exists($archive)) return -11; }
-        else $decoded = $this->getDynamicArchive();
-
-        if($headers) {
-            header('Content-Type: application/x-gtar');
-            header('Content-Disposition: attachment; filename='.basename($name));
-            header('Accept-Ranges: bytes');
-            header('Content-Length: '.($archive ? filesize($archive) : strlen($decoded)));
-        }
-
-        if($archive) {
-            $fp = @fopen($archive,'rb');
-            if(!$fp) return -4;
-
-            while(!feof($fp)) echo fread($fp,2048);
+        if($this->comptype === Tar::COMPRESS_GZIP) {
+            $this->fh = @gzopen($this->file, 'rb');
+        } elseif($this->comptype === Tar::COMPRESS_BZIP) {
+            $this->fh = @bzopen($this->file, 'r');
         } else {
-            echo $decoded;
+            $this->fh = @fopen($this->file, 'rb');
         }
 
-        return true;
-    }
-
-    /**
-     * Extract part or totality of the archive.
-     *
-     * This function can extract files from an archive, and returns then a
-     * status codes that can be converted with TarErrorStr() into a
-     * human readable message.
-     *
-     * Only the first argument is required, What and it can be either the
-     * constant FULL_ARCHIVE or an indexed array containing each file you want to
-     * extract.
-     *
-     * To contains the target folder to extract the archive. It is optional and
-     * the default value is '.' which means the current folder. If the target
-     * folder doesn't exist, the script attempts to create it and give it
-     * permissions 0777 by default.
-     *
-     * RemovePath is very usefull when you want to extract files from a subfoler
-     * in the archive to a root folder. For instance, if you have a file in the
-     * archive called some/sub/folder/test.txt and you want to extract it to the
-     * script folder, you can call Extract with To = '.' and RemovePath =
-     * 'some/sub/folder/'. If you pass an integer instead of a path that many
-     * directories will be stripped from the beginning.
-     *
-     * FileMode is optional and its default value is 0755. It is in fact the UNIX
-     * permission in octal mode (prefixed with a 0) that will be given on each
-     * extracted file.
-     *
-     * skip can be an regular expression of files and directories to skip when
-     * extracting
-     */
-    function Extract($p_what = VerboseTarLib::FULL_ARCHIVE, $p_to = '.', $p_remdir='', $p_mode = 0755, $skip = '') {
-        if(!$this->_OpenRead()) return -4;
-        //  if(!@is_dir($p_to)) if(!@mkdir($p_to, 0777)) return -8;   --CS
-        if(!@is_dir($p_to)) if(!$this->_dirApp($p_to)) return -8;   //--CS (route through correct dir fn)
-
-        $ok = $this->_extractList($p_to, $p_what, $p_remdir, $p_mode, $skip);
-        $this->_CompTar();
-
-        return $ok;
-    }
-
-    /**
-     * Create a new package with the given files
-     *
-     * This function will attempt to create a new archive with global headers
-     * then add the given files into.  If the archive is a real file, the
-     * contents are written directly into the file, if it is a dynamic archive
-     * contents are only stored in memory. This function should not be used to
-     * add files to an existing archive, you should use Add() instead.
-     *
-     * The FileList actually supports three different modes :
-     *
-     * - You can pass a string containing filenames separated by pipes '|'.
-     *   In this case the file are read from the webserver filesystem and the
-     *   root folder is the folder where the script using the MaxgTar is called.
-     *
-     * - You can also give a unidimensional indexed array containing the
-     *   filenames. The behaviour for the content reading is the same that a
-     *   '|'ed string.
-     *
-     * - The more useful usage is to pass bidimensional arrays, where the
-     *   first element contains the filename and the second contains the file
-     *   contents. You can even add empty folders to the package if the filename
-     *   has a leading '/'. Once again, have a look at the exemples to understand
-     *   better.
-     *
-     * Note you can also give arrays with both dynamic contents and static files.
-     *
-     * The optional parameter RemovePath can be used to delete a part of the tree
-     * of the filename you're adding, for instance if you're adding in the root
-     * of a package a file that is stored somewhere in the server tree.
-     *
-     * On the contrary the parameter AddPath can be used to add a prefix folder
-     * to the file you store. Note also that the RemovePath is applied before the
-     * AddPath is added, so it HAS a sense to use both parameters together.
-     */
-    function Create($p_filelist,$p_add='',$p_rem='') {
-        if(!$fl = $this->_fetchFilelist($p_filelist)) return -5;
-        if(!$this->_OpenWrite()) return -6;
-
-        $ok = $this->_addFileList($fl,$p_add,$p_rem);
-
-        if($ok){
-            $this->_writeFooter();
-        }else{
-            $this->_CompTar();
-            @unlink($this->_nomf);
-        }
-
-        return $ok;
-    }
-
-    /**
-     * Add files to an existing package.
-     *
-     * This function does exactly the same than Create() exept it
-     * will append the given files at the end of the archive.  Please not the is
-     * safe to call Add() on a newly created archive whereas the
-     * contrary will fail !
-     *
-     * This function returns a status code, you can use TarErrorStr() on
-     * it to get the human-readable description of the error.
-     */
-    function Add($p_filelist, $p_add = '', $p_rem = '') {
-        if (($this->_nomf != VerboseTarLib::ARCHIVE_DYNAMIC && @is_file($this->_nomf)) ||
-            ($this->_nomf == VerboseTarLib::ARCHIVE_DYNAMIC && !$this->_memdat)){
-             return $this->Create($p_filelist, $p_add, $p_rem);
-        }
-
-        if(!$fl = $this->_fetchFilelist($p_filelist)) return -5;
-        return $this->_append($fl, $p_add, $p_rem);
+        if(!$this->fh) throw new VerboseTarIOException('Could not open file for reading: '.$this->file);
+        $this->closed = false;
     }
 
     /**
      * Read the contents of a TAR archive
      *
-     * This function attempts to get the list of the files stored in the
-     * archive, and return either an error code or an indexed array of
-     * associative array containing for each file the following informations :
+     * This function lists the files stored in the archive, and returns an indexed array of associative
+     * arrays containing for each file the following information:
      *
      * checksum    Tar Checksum of the file
      * filename    The full name of the stored file (up to 100 c.)
@@ -410,424 +64,536 @@ class VerboseTarLib {
      * size        Uncompressed filesize
      * mtime       Timestamp of last modification
      * typeflag    Empty for files, set for folders
-     * link        For the links, did you guess it ?
+     * link        Is it a symlink?
      * uname       Owner name
      * gname       Group name
+     *
+     * The archive is closed afer reading the contents, because rewinding is not possible in bzip2 streams.
+     * Reopen the file with open() again if you want to do additional operations
      */
-    function ListContents() {
-        if(!$this->_nomf) return -3;
-        if(!$this->_OpenRead()) return -4;
+    public function contents() {
+        if($this->closed || !$this->file) throw new VerboseTarIOException('Can not read from a closed archive');
 
-        $result = Array();
+        $result = array();
+        while($read = $this->readbytes(512)) {
+            $header = $this->parseHeader($read);
+            if(!is_array($header)) continue;
 
-        while ($dat = $this->_read(512)) {
-            $dat = $this->_readHeader($dat);
-            if(!is_array($dat)) continue;
-
-            $this->_seek(ceil($dat['size']/512)*512,1);
-            $result[] = $dat;
+            $this->skipbytes(ceil($header['size'] / 512) * 512);
+            $result[] = $header;
         }
 
-        return  $result;
+        $this->close();
+        return $result;
     }
 
     /**
-     * Convert a status code into a human readable message
+     * Extract an existing TAR archive
      *
-     * Some MaxgTar functions like Create(), Add() ... return numerical
-     * status code.  You can pass them to this function to grab their english
-     * equivalent.
+     * The $strip parameter allows you to strip a certain number of path components from the filenames
+     * found in the tar file, similar to the --strip-components feature of GNU tar. This is triggered when
+     * an integer is passed as $strip.
+     * Alternatively a fixed string prefix may be passed in $strip. If the filename matches this prefix,
+     * the prefix will be stripped. It is recommended to give prefixes with a trailing slash.
+     *
+     * By default this will extract all files found in the archive. You can restrict the output using the $include
+     * and $exclude parameter. Both expect a full regular expression (including delimiters and modifiers). If
+     * $include is set only files that match this expression will be extracted. Files that match the $exclude
+     * expression will never be extracted. Both parameters can be used in combination. Expressions are matched against
+     * stripped filenames as described above.
+     *
+     * The archive is closed afer reading the contents, because rewinding is not possible in bzip2 streams.
+     * Reopen the file with open() again if you want to do additional operations
+     *
+     * @param string     $outdir  the target directory for extracting
+     * @param int|string $strip   either the number of path components or a fixed prefix to strip
+     * @param string     $exclude a regular expression of files to exclude
+     * @param string     $include a regular expression of files to include
+     * @throws VerboseTarIOException
+     * @return array
      */
-    function TarErrorStr($i) {
-        $ecodes = Array(
-                1 => true,
-                0 => "Undocumented error",
-                -1 => "Can't use COMPRESS_GZIP compression : ZLIB extensions are not loaded!",
-                -2 => "Can't use COMPRESS_BZIP compression : BZ2 extensions are not loaded!",
-                -3 => "You must set a archive file to read the contents!",
-                -4 => "Can't open the archive file for read!",
-                -5 => "Invalide file list !",
-                -6 => "Can't open the archive in write mode!",
-                -7 => "There is no ARCHIVE_DYNAMIC to write!",
-                -8 => "Can't create the directory to extract files!",
-                -9 => "Please pass a archive name to send if you made created an ARCHIVE_DYNAMIC!",
-                -10 => "You didn't pass an archive filename and there is no stored ARCHIVE_DYNAMIC!",
-                -11 => "Given archive doesn't exist !"
-                );
+    function extract($outdir, $strip = '', $exclude = '', $include = '') {
+        if($this->closed || !$this->file) throw new VerboseTarIOException('Can not read from a closed archive');
 
-        return isset($ecodes[$i]) ? $ecodes[$i] : $ecodes[0];
+        $outdir = rtrim($outdir, '/');
+        io_mkdir_p($outdir);
+        $striplen = strlen($strip);
+
+        $extracted = array();
+
+        while($dat = $this->readbytes(512)) {
+            // read the file header
+            $header = $this->parseHeader($dat);
+            if(!is_array($header)) continue;
+            if(!$header['filename']) continue;
+
+            // strip prefix
+            $filename = $this->cleanPath($header['filename']);
+            if(is_int($strip)) {
+                // if $strip is an integer we strip this many path components
+                $parts = explode('/', $filename);
+                if(!$header['typeflag']) {
+                    $base = array_pop($parts); // keep filename itself
+                } else {
+                    $base = '';
+                }
+                $filename = join('/', array_slice($parts, $strip));
+                if($base) $filename .= "/$base";
+            } else {
+                // ifstrip is a string, we strip a prefix here
+                if(substr($filename, 0, $striplen) == $strip) $filename = substr($filename, $striplen);
+            }
+
+            // check if this should be extracted
+            $extract = true;
+            if(!$filename) {
+                $extract = false;
+            } else {
+                if($include) {
+                    if(preg_match($include, $filename)) {
+                        $extract = true;
+                    } else {
+                        $extract = false;
+                    }
+                }
+                if($exclude && preg_match($exclude, $filename)) {
+                    $extract = false;
+                }
+            }
+
+            // Now do the extraction (or not)
+            if($extract) {
+                $extracted[] = $header;
+
+                $output    = "$outdir/$filename";
+                $directory = ($header['typeflag']) ? $output : dirname($output);
+                io_mkdir_p($directory);
+
+                // print status
+                admin_plugin_upgrade::_say(hsc($filename));
+
+                // is this a file?
+                if(!$header['typeflag']) {
+                    $fp = fopen($output, "wb");
+                    if(!$fp) throw new VerboseTarIOException('Could not open file for writing: '.$output);
+
+                    $size = floor($header['size'] / 512);
+                    for($i = 0; $i < $size; $i++) {
+                        fwrite($fp, $this->readbytes(512), 512);
+                    }
+                    if(($header['size'] % 512) != 0) fwrite($fp, $this->readbytes(512), $header['size'] % 512);
+
+                    fclose($fp);
+                    touch($output, $header['mtime']);
+                    chmod($output, $header['perm']);
+                } else {
+                    $this->skipbytes(ceil($header['size'] / 512) * 512); // the size is usually 0 for directories
+                }
+            } else {
+                $this->skipbytes(ceil($header['size'] / 512) * 512);
+            }
+        }
+
+        $this->close();
+        return $extracted;
     }
 
-    function _seek($p_flen, $tell=0) {
-        if($this->_nomf === VerboseTarLib::ARCHIVE_DYNAMIC)
-            $this->_memdat=substr($this->_memdat,0,($tell ? strlen($this->_memdat) : 0) + $p_flen);
-        elseif($this->_comptype == VerboseTarLib::COMPRESS_GZIP)
-            @gzseek($this->_fp, ($tell ? @gztell($this->_fp) : 0)+$p_flen);
-        elseif($this->_comptype == VerboseTarLib::COMPRESS_BZIP)
-            @fseek($this->_fp, ($tell ? @ftell($this->_fp) : 0)+$p_flen);
-        else
-            @fseek($this->_fp, ($tell ? @ftell($this->_fp) : 0)+$p_flen);
+    /**
+     * Create a new TAR file
+     *
+     * If $file is empty, the tar file will be created in memory
+     *
+     * @param string $file
+     * @param int    $comptype
+     * @param int    $complevel
+     * @throws VerboseTarIOException
+     * @throws VerboseTarIllegalCompressionException
+     */
+    public function create($file = '', $comptype = Tar::COMPRESS_AUTO, $complevel = 9) {
+        // determine compression
+        if($comptype == Tar::COMPRESS_AUTO) $comptype = $this->filetype($file);
+        $this->compressioncheck($comptype);
+
+        $this->comptype = $comptype;
+        $this->file     = $file;
+        $this->memory   = '';
+        $this->fh       = 0;
+
+        if($this->file) {
+            if($this->comptype === Tar::COMPRESS_GZIP) {
+                $this->fh = @gzopen($this->file, 'wb'.$complevel);
+            } elseif($this->comptype === Tar::COMPRESS_BZIP) {
+                $this->fh = @bzopen($this->file, 'w');
+            } else {
+                $this->fh = @fopen($this->file, 'wb');
+            }
+
+            if(!$this->fh) throw new VerboseTarIOException('Could not open file for writing: '.$this->file);
+        }
+        $this->writeaccess = true;
+        $this->closed      = false;
     }
 
-    function _OpenRead() {
-        if($this->_comptype == VerboseTarLib::COMPRESS_GZIP)
-            $this->_fp = @gzopen($this->_nomf, 'rb');
-        elseif($this->_comptype == VerboseTarLib::COMPRESS_BZIP)
-            $this->_fp = @bzopen($this->_nomf, 'rb');
-        else
-            $this->_fp = @fopen($this->_nomf, 'rb');
+    /**
+     * Add a file to the current TAR archive using an existing file in the filesystem
+     *
+     * @todo handle directory adding
+     * @param string $file the original file
+     * @param string $name the name to use for the file in the archive
+     * @throws VerboseTarIOException
+     */
+    public function addFile($file, $name = '') {
+        if($this->closed) throw new VerboseTarIOException('Archive has been closed, files can no longer be added');
 
-        return ($this->_fp ? true : false);
+        if(!$name) $name = $file;
+        $name = $this->cleanPath($name);
+
+        $fp = fopen($file, 'rb');
+        if(!$fp) throw new VerboseTarIOException('Could not open file for reading: '.$file);
+
+        // create file header and copy all stat info from the original file
+        clearstatcache(false, $file);
+        $stat = stat($file);
+        $this->writeFileHeader(
+            $name,
+            $stat[4],
+            $stat[5],
+            fileperms($file),
+            filesize($file),
+            filemtime($file)
+        );
+
+        while(!feof($fp)) {
+            $data = fread($fp, 512);
+            if($data === false) break;
+            if($data === '') break;
+            $packed = pack("a512", $data);
+            $this->writebytes($packed);
+        }
+        fclose($fp);
     }
 
-    function _OpenWrite($add = 'w') {
-        if($this->_nomf === VerboseTarLib::ARCHIVE_DYNAMIC) return true;
+    /**
+     * Add a file to the current TAR archive using the given $data as content
+     *
+     * @param string $name
+     * @param string $data
+     * @param int    $uid
+     * @param int    $gid
+     * @param int    $perm
+     * @param int    $mtime
+     * @throws VerboseTarIOException
+     */
+    public function addData($name, $data, $uid = 0, $gid = 0, $perm = 0666, $mtime = 0) {
+        if($this->closed) throw new VerboseTarIOException('Archive has been closed, files can no longer be added');
 
-        if($this->_comptype == VerboseTarLib::COMPRESS_GZIP)
-            $this->_fp = @gzopen($this->_nomf, $add.'b'.$this->_compzlevel);
-        elseif($this->_comptype == VerboseTarLib::COMPRESS_BZIP)
-            $this->_fp = @bzopen($this->_nomf, $add.'b');
-        else
-            $this->_fp = @fopen($this->_nomf, $add.'b');
+        $name = $this->cleanPath($name);
+        $len  = strlen($data);
 
-        return ($this->_fp ? true : false);
+        $this->writeFileHeader(
+            $name,
+            $uid,
+            $gid,
+            $perm,
+            $len,
+            ($mtime) ? $mtime : time()
+        );
+
+        for($s = 0; $s < $len; $s += 512) {
+            $this->writebytes(pack("a512", substr($data, $s, 512)));
+        }
     }
 
-    function _CompTar() {
-        if($this->_nomf === VerboseTarLib::ARCHIVE_DYNAMIC || !$this->_fp) return;
+    /**
+     * Add the closing footer to the archive if in write mode, close all file handles
+     *
+     * After a call to this function no more data can be added to the archive, for
+     * read access no reading is allowed anymore
+     *
+     * "Physically, an archive consists of a series of file entries terminated by an end-of-archive entry, which
+     * consists of two 512 blocks of zero bytes"
+     *
+     * @link http://www.gnu.org/software/tar/manual/html_chapter/tar_8.html#SEC134
+     */
+    public function close() {
+        if($this->closed) return; // we did this already
 
-        if($this->_comptype == VerboseTarLib::COMPRESS_GZIP) @gzclose($this->_fp);
-        elseif($this->_comptype == VerboseTarLib::COMPRESS_BZIP) @bzclose($this->_fp);
-        else @fclose($this->_fp);
+        // write footer
+        if($this->writeaccess) {
+            $this->writebytes(pack("a512", ""));
+            $this->writebytes(pack("a512", ""));
+        }
+
+        // close file handles
+        if($this->file) {
+            if($this->comptype === Tar::COMPRESS_GZIP) {
+                gzclose($this->fh);
+            } elseif($this->comptype === Tar::COMPRESS_BZIP) {
+                bzclose($this->fh);
+            } else {
+                fclose($this->fh);
+            }
+
+            $this->file = '';
+            $this->fh   = 0;
+        }
+
+        $this->closed = true;
     }
 
-    function _read($p_len) {
-        if($this->_comptype == VerboseTarLib::COMPRESS_GZIP)
-            return @gzread($this->_fp,$p_len);
-        elseif($this->_comptype == VerboseTarLib::COMPRESS_BZIP)
-            return @bzread($this->_fp,$p_len);
-        else
-            return @fread($this->_fp,$p_len);
+    /**
+     * Returns the created in-memory archive data
+     *
+     * This implicitly calls close() on the Archive
+     */
+    public function getArchive($comptype = Tar::COMPRESS_AUTO, $complevel = 9) {
+        $this->close();
+
+        if($comptype === Tar::COMPRESS_AUTO) $comptype = $this->comptype;
+        $this->compressioncheck($comptype);
+
+        if($comptype === Tar::COMPRESS_GZIP) return gzcompress($this->memory, $complevel);
+        if($comptype === Tar::COMPRESS_BZIP) return bzcompress($this->memory);
+        return $this->memory;
     }
 
-    function _write($p_data) {
-        if($this->_nomf === VerboseTarLib::ARCHIVE_DYNAMIC) $this->_memdat .= $p_data;
-        elseif($this->_comptype == VerboseTarLib::COMPRESS_GZIP)
-            return @gzwrite($this->_fp,$p_data);
+    /**
+     * Save the created in-memory archive data
+     *
+     * Note: It more memory effective to specify the filename in the create() function and
+     * let the library work on the new file directly.
+     *
+     * @param     $file
+     * @param int $comptype
+     * @param int $complevel
+     * @throws VerboseTarIOException
+     */
+    public function save($file, $comptype = Tar::COMPRESS_AUTO, $complevel = 9) {
+        if($comptype === Tar::COMPRESS_AUTO) $comptype = $this->filetype($file);
 
-        elseif($this->_comptype == VerboseTarLib::COMPRESS_BZIP)
-            return @bzwrite($this->_fp,$p_data);
-
-        else
-            return @fwrite($this->_fp,$p_data);
+        if(!file_put_contents($file, $this->getArchive($comptype, $complevel))) {
+            throw new VerboseTarIOException('Could not write to file: '.$file);
+        }
     }
 
-    function _encode($p_dat) {
-        if($this->_comptype == VerboseTarLib::COMPRESS_GZIP)
-            return gzencode($p_dat, $this->_compzlevel);
-        elseif($this->_comptype == VerboseTarLib::COMPRESS_BZIP)
-            return bzcompress($p_dat, $this->_compzlevel);
-        else return $p_dat;
+    /**
+     * Read from the open file pointer
+     *
+     * @param int $length bytes to read
+     * @return string
+     */
+    protected function readbytes($length) {
+        if($this->comptype === Tar::COMPRESS_GZIP) {
+            return @gzread($this->fh, $length);
+        } elseif($this->comptype === Tar::COMPRESS_BZIP) {
+            return @bzread($this->fh, $length);
+        } else {
+            return @fread($this->fh, $length);
+        }
     }
 
-    function _readHeader($p_dat) {
-        if (!$p_dat || strlen($p_dat) != 512) return false;
+    /**
+     * Write to the open filepointer or memory
+     *
+     * @param string $data
+     * @throws VerboseTarIOException
+     * @return int number of bytes written
+     */
+    protected function writebytes($data) {
+        if(!$this->file) {
+            $this->memory .= $data;
+            $written = strlen($data);
+        } elseif($this->comptype === Tar::COMPRESS_GZIP) {
+            $written = @gzwrite($this->fh, $data);
+        } elseif($this->comptype === Tar::COMPRESS_BZIP) {
+            $written = @bzwrite($this->fh, $data);
+        } else {
+            $written = @fwrite($this->fh, $data);
+        }
+        if($written === false) throw new VerboseTarIOException('Failed to write to archive stream');
+        return $written;
+    }
 
-        for ($i=0, $chks=0; $i<148; $i++)
-            $chks += ord($p_dat[$i]);
+    /**
+     * Skip forward in the open file pointer
+     *
+     * This is basically a wrapper around seek() (and a workaround for bzip2)
+     *
+     * @param int  $bytes seek to this position
+     */
+    function skipbytes($bytes) {
+        if($this->comptype === Tar::COMPRESS_GZIP) {
+            @gzseek($this->fh, $bytes, SEEK_CUR);
+        } elseif($this->comptype === Tar::COMPRESS_BZIP) {
+            // there is no seek in bzip2, we simply read on
+            @bzread($this->fh, $bytes);
+        } else {
+            @fseek($this->fh, $bytes, SEEK_CUR);
+        }
+    }
 
-        for ($i=156,$chks+=256; $i<512; $i++)
-            $chks += ord($p_dat[$i]);
+    /**
+     * Write a file header
+     *
+     * @param string $name
+     * @param int    $uid
+     * @param int    $gid
+     * @param int    $perm
+     * @param int    $size
+     * @param int    $mtime
+     * @param string $typeflag Set to '5' for directories
+     */
+    protected function writeFileHeader($name, $uid, $gid, $perm, $size, $mtime, $typeflag = '') {
+        // handle filename length restrictions
+        $prefix  = '';
+        $namelen = strlen($name);
+        if($namelen > 100) {
+            $file = basename($name);
+            $dir  = dirname($name);
+            if(strlen($file) > 100 || strlen($dir) > 155) {
+                // we're still too large, let's use GNU longlink
+                $this->writeFileHeader('././@LongLink', 0, 0, 0, $namelen, 0, 'L');
+                for($s = 0; $s < $namelen; $s += 512) {
+                    $this->writebytes(pack("a512", substr($name, $s, 512)));
+                }
+                $name = substr($name, 0, 100); // cut off name
+            } else {
+                // we're fine when splitting, use POSIX ustar
+                $prefix = $dir;
+                $name   = $file;
+            }
+        }
 
-        $headers = @unpack("a100filename/a8mode/a8uid/a8gid/a12size/a12mtime/a8checksum/a1typeflag/a100link/a6magic/a2version/a32uname/a32gname/a8devmajor/a8devminor", $p_dat);
-        if(!$headers) return false;
+        // values are needed in octal
+        $uid   = sprintf("%6s ", decoct($uid));
+        $gid   = sprintf("%6s ", decoct($gid));
+        $perm  = sprintf("%6s ", decoct($perm));
+        $size  = sprintf("%11s ", decoct($size));
+        $mtime = sprintf("%11s", decoct($mtime));
 
-        $return['checksum'] = OctDec(trim($headers['checksum']));
-        if ($return['checksum'] != $chks) return false;
+        $data_first = pack("a100a8a8a8a12A12", $name, $perm, $uid, $gid, $size, $mtime);
+        $data_last  = pack("a1a100a6a2a32a32a8a8a155a12", $typeflag, '', 'ustar', '', '', '', '', '', $prefix, "");
 
-        $return['filename'] = trim($headers['filename']);
-        $return['mode'] = OctDec(trim($headers['mode']));
-        $return['uid'] = OctDec(trim($headers['uid']));
-        $return['gid'] = OctDec(trim($headers['gid']));
-        $return['size'] = OctDec(trim($headers['size']));
-        $return['mtime'] = OctDec(trim($headers['mtime']));
-        $return['typeflag'] = $headers['typeflag'];
-        $return['link'] = trim($headers['link']);
-        $return['uname'] = trim($headers['uname']);
-        $return['gname'] = trim($headers['gname']);
+        for($i = 0, $chks = 0; $i < 148; $i++)
+            $chks += ord($data_first[$i]);
+
+        for($i = 156, $chks += 256, $j = 0; $i < 512; $i++, $j++)
+            $chks += ord($data_last[$j]);
+
+        $this->writebytes($data_first);
+
+        $chks = pack("a8", sprintf("%6s ", decoct($chks)));
+        $this->writebytes($chks.$data_last);
+    }
+
+    /**
+     * Decode the given tar file header
+     *
+     * @param string $block a 512 byte block containign the header data
+     * @return array|bool
+     */
+    protected function parseHeader($block) {
+        if(!$block || strlen($block) != 512) return false;
+
+        for($i = 0, $chks = 0; $i < 148; $i++)
+            $chks += ord($block[$i]);
+
+        for($i = 156, $chks += 256; $i < 512; $i++)
+            $chks += ord($block[$i]);
+
+        $header = @unpack("a100filename/a8perm/a8uid/a8gid/a12size/a12mtime/a8checksum/a1typeflag/a100link/a6magic/a2version/a32uname/a32gname/a8devmajor/a8devminor/a155prefix", $block);
+        if(!$header) return false;
+
+        $return['checksum'] = OctDec(trim($header['checksum']));
+        if($return['checksum'] != $chks) return false;
+
+        $return['filename'] = trim($header['filename']);
+        $return['perm']     = OctDec(trim($header['perm']));
+        $return['uid']      = OctDec(trim($header['uid']));
+        $return['gid']      = OctDec(trim($header['gid']));
+        $return['size']     = OctDec(trim($header['size']));
+        $return['mtime']    = OctDec(trim($header['mtime']));
+        $return['typeflag'] = $header['typeflag'];
+        $return['link']     = trim($header['link']);
+        $return['uname']    = trim($header['uname']);
+        $return['gname']    = trim($header['gname']);
+
+        // Handle ustar Posix compliant path prefixes
+        if(trim($header['prefix'])) $return['filename'] = trim($header['prefix']).'/'.$return['filename'];
+
+        // Handle Long-Link entries from GNU Tar
+        if($return['typeflag'] == 'L') {
+            // following data block(s) is the filename
+            $filename = trim($this->readbytes(ceil($header['size'] / 512) * 512));
+            // next block is the real header
+            $block  = $this->readbytes(512);
+            $return = $this->parseHeader($block);
+            // overwrite the filename
+            $return['filename'] = $filename;
+        }
 
         return $return;
     }
 
-    function _fetchFilelist($p_filelist) {
-        if(!$p_filelist || (is_array($p_filelist) && !@count($p_filelist))) return false;
-
-        if(is_string($p_filelist)) {
-            $p_filelist = explode('|',$p_filelist);
-            if(!is_array($p_filelist)) $p_filelist = Array($p_filelist);
-        }
-
-        return $p_filelist;
-    }
-
-    function _addFileList($p_fl, $p_addir, $p_remdir) {
-        foreach($p_fl as $file) {
-            if(($file == $this->_nomf && $this->_nomf != VerboseTarLib::ARCHIVE_DYNAMIC) || !$file || (!file_exists($file) && !is_array($file)))
+    /**
+     * Cleans up a path and removes relative parts, also strips leading slashes
+     *
+     * @param string $p_dir
+     * @return string
+     */
+    public function cleanPath($path) {
+        $path=explode('/', $path);
+        $newpath=array();
+        foreach($path as $p) {
+            if ($p === '' || $p === '.') continue;
+            if ($p==='..') {
+                array_pop($newpath);
                 continue;
-
-            if (!$this->_addFile($file, $p_addir, $p_remdir))
-                continue;
-
-            if (@is_dir($file)) {
-                $d = @opendir($file);
-
-                if(!$d) continue;
-                readdir($d);
-                readdir($d);
-
-                while($f = readdir($d)) {
-                    if($file != ".") $tmplist[0] = "$file/$f";
-                    else $tmplist[0] = $d;
-
-                    $this->_addFileList($tmplist, $p_addir, $p_remdir);
-                }
-
-                closedir($d);
-                unset($tmplist,$f);
             }
+            array_push($newpath, $p);
         }
-        return true;
-    }
-
-    function _addFile($p_fn, $p_addir = '', $p_remdir = '') {
-        if(is_array($p_fn)) list($p_fn, $data) = $p_fn;
-        $sname = $p_fn;
-
-        if($p_remdir) {
-            if(substr($p_remdir,-1) != '/') $p_remdir .= "/";
-
-            if(substr($sname, 0, strlen($p_remdir)) == $p_remdir)
-                $sname = substr($sname, strlen($p_remdir));
-        }
-
-        if($p_addir) $sname = $p_addir.(substr($p_addir,-1) == '/' ? '' : "/").$sname;
-
-        if(strlen($sname) > 99) return;
-
-        if(@is_dir($p_fn)) {
-            if(!$this->_writeFileHeader($p_fn, $sname)) return false;
-        } else {
-            if(!$data) {
-                $fp = fopen($p_fn, 'rb');
-                if(!$fp) return false;
-            }
-
-            if(!$this->_writeFileHeader($p_fn, $sname, ($data ? strlen($data) : false))) return false;
-
-            if(!$data) {
-                while(!feof($fp)) {
-                    $packed = pack("a512", fread($fp,512));
-                    $this->_write($packed);
-                }
-                fclose($fp);
-            } else {
-                $len = strlen($data);
-                for($s = 0; $s < $len; $s += 512){
-                    $this->_write(pack("a512",substr($data,$s,512)));
-                }
-            }
-        }
-
-        return true;
-    }
-
-    function _writeFileHeader($p_file, $p_sname, $p_data=false) {
-        if(!$p_data) {
-            if (!$p_sname) $p_sname = $p_file;
-            $p_sname = $this->_pathTrans($p_sname);
-
-            $h_info = stat($p_file);
-            $h[0] = sprintf("%6s ", DecOct($h_info[4]));
-            $h[] = sprintf("%6s ", DecOct($h_info[5]));
-            $h[] = sprintf("%6s ", DecOct(fileperms($p_file)));
-            clearstatcache();
-            $h[] = sprintf("%11s ", DecOct(filesize($p_file)));
-            $h[] = sprintf("%11s", DecOct(filemtime($p_file)));
-
-            $dir = @is_dir($p_file) ? '5' : '';
-        } else {
-            $dir = '';
-            $p_data = sprintf("%11s ", DecOct($p_data));
-            $time = sprintf("%11s ", DecOct(time()));
-            $h = Array("     0 ","     0 "," 40777 ",$p_data,$time);
-        }
-
-        $data_first = pack("a100a8a8a8a12A12", $p_sname, $h[2], $h[0], $h[1], $h[3], $h[4]);
-        $data_last = pack("a1a100a6a2a32a32a8a8a155a12", $dir, '', '', '', '', '', '', '', '', "");
-
-        for ($i=0,$chks=0; $i<148; $i++)
-            $chks += ord($data_first[$i]);
-
-        for ($i=156, $chks+=256, $j=0; $i<512; $i++, $j++)
-            $chks += ord($data_last[$j]);
-
-        $this->_write($data_first);
-
-        $chks = pack("a8",sprintf("%6s ", DecOct($chks)));
-        $this->_write($chks.$data_last);
-
-        return true;
-    }
-
-    function _append($p_filelist, $p_addir="", $p_remdir="") {
-        if(!$this->_fp) if(!$this->_OpenWrite('a')) return -6;
-
-        if($this->_nomf == VerboseTarLib::ARCHIVE_DYNAMIC) {
-            $s = strlen($this->_memdat);
-            $this->_memdat = substr($this->_memdat,0,-512);
-        } else {
-            $s = filesize($this->_nomf);
-            $this->_seek($s-512);
-        }
-
-        $ok = $this->_addFileList($p_filelist, $p_addir, $p_remdir);
-        $this->_writeFooter();
-
-        return $ok;
-    }
-
-    function _pathTrans($p_dir) {
-        if ($p_dir) {
-            $subf = explode("/", $p_dir);
-            $r='';
-
-            for ($i=count($subf)-1; $i>=0; $i--) {
-                if ($subf[$i] == ".") {
-                    # do nothing
-                } elseif ($subf[$i] == "..") {
-                    $i--;
-                } elseif (!$subf[$i] && $i!=count($subf)-1 && $i) {
-                    # do nothing
-                } else {
-                    $r = $subf[$i].($i!=(count($subf)-1) ? "/".$r : "");
-                }
-            }
-        }
-        return $r;
-    }
-
-    function _writeFooter() {
-        $this->_write(pack("a512", ""));
+        return trim(implode('/', $newpath), '/');
     }
 
     /**
-     * Strip parts from the start of a given path
+     * Checks if the given compression type is available and throws an exception if not
      *
-     * If $strip is an integer, this number of directories is stripped.
-     * Careful, if the number is too large it may also strip file names.
-     * If $strip is a string it is assumed to be the starting path to
-     * strip.
-     *
-     * @author Andreas Gohr <andi@splitbrain.org>
-     * @param  $path string - the path to work on
-     * @param  $strip mixed - what to strip
-     * @return string - the stripped path
+     * @param $comptype
+     * @throws VerboseTarIllegalCompressionException
      */
-    function _stripdir($dir,$strip){
-        $parts = explode('/',$dir);
-
-        if(is_int($strip)){
-            array_splice($parts,0,$strip);
-        }else{
-            $strip = explode('/',$strip);
-            $c = count($strip);
-            $s = 0;
-            for($i=0; $i<$c; $i++){
-                if($parts[$i] == $strip[$i]) $s++;
-            }
-            if($c == $s) array_splice($parts,0,$c);
+    protected function compressioncheck($comptype) {
+        if($comptype === Tar::COMPRESS_GZIP && !function_exists('gzopen')) {
+            throw new VerboseTarIllegalCompressionException('No gzip support available');
         }
 
-        return join('/',$parts);
-    }
-
-    function _extractList($p_to, $p_files, $p_remdir, $p_mode = 0755, $skip='') {
-        if (!$p_to || ($p_to[0]!="/"&&substr($p_to,0,3)!="../"&&substr($p_to,1,3)!=":\\"&&substr($p_to,1,2)!=":/")) /*" // <- PHP Coder bug */
-            $p_to = "./$p_to";
-
-        while($dat = $this->_read(512)) {
-            $headers = $this->_readHeader($dat);
-            if(!$headers['filename']) continue;
-
-            if($p_files == -1 || $p_files[0] == -1){
-                $extract = true;
-            } else {
-                $extract = false;
-
-                foreach($p_files as $f) {
-                    if(substr($f,-1) == "/") {
-                        if((strlen($headers['filename']) > strlen($f)) && (substr($headers['filename'],0,strlen($f))==$f)) {
-                            $extract = true;
-                            break;
-                        }
-                    } elseif($f == $headers['filename']) {
-                        $extract = true;
-                        break;
-                    }
-                }
-            }
-
-            if ($extract) {
-                $det[] = $headers;
-
-                // strip dirs
-                $headers['filename'] = $this->_stripdir($headers['filename'],$p_remdir);
-                if($headers['filename'] === '' || $headers['filename'] == '/') continue;
-
-                // skip files
-                if($skip && preg_match($skip,$headers['filename'])) continue;
-
-                // print status
-                echo hsc($headers['filename'])."<br />\n";
-                flush();
-                ob_flush();
-
-                if ($p_to != "./" && $p_to != "/") {
-                    while($p_to{-1}=="/") $p_to = substr($p_to,0,-1);
-
-                    if($headers['filename']{0} == "/")
-                        $headers['filename'] = $p_to.$headers['filename'];
-                    else
-                        $headers['filename'] = $p_to."/".$headers['filename'];
-                }
-
-                $ok = $this->_dirApp($headers['typeflag']=="5" ? $headers['filename'] : dirname($headers['filename']));
-                if($ok < 0) return -8;
-
-                if (!$headers['typeflag']) {
-                    if (!$fp = @fopen($headers['filename'], "wb")) return -6;
-                    $n = floor($headers['size']/512);
-
-                    for ($i=0; $i<$n; $i++){
-                        fwrite($fp, $this->_read(512),512);
-                    }
-                    if (($headers['size'] % 512) != 0) fwrite($fp, $this->_read(512), $headers['size'] % 512);
-
-                    fclose($fp);
-                    touch($headers['filename'], $headers['mtime']);
-                    chmod($headers['filename'], $p_mode);
-                } else {
-                    $this->_seek(ceil($headers['size']/512)*512,1);
-                }
-            }else $this->_seek(ceil($headers['size']/512)*512,1);
+        if($comptype === Tar::COMPRESS_BZIP && !function_exists('bzopen')) {
+            throw new VerboseTarIllegalCompressionException('No bzip2 support available');
         }
-        return 1;
     }
 
-    function _dirApp($d) {
-        //  map to dokuwiki function (its more robust)
-        return io_mkdir_p(rtrim($d,'/'));
+    /**
+     * Guesses the wanted compression from the given filename extension
+     *
+     * You don't need to call this yourself. It's used when you pass Tar::COMPRESS_AUTO somewhere
+     *
+     * @param string $file
+     * @return int
+     */
+    public function filetype($file) {
+        $file = strtolower($file);
+        if(substr($file, -3) == '.gz' || substr($file, -4) == '.tgz') {
+            $comptype = Tar::COMPRESS_GZIP;
+        } elseif(substr($file, -4) == '.bz2' || substr($file, -4) == '.tbz') {
+            $comptype = Tar::COMPRESS_BZIP;
+        } else {
+            $comptype = Tar::COMPRESS_NONE;
+        }
+        return $comptype;
     }
-
 }
 
+class VerboseTarIOException extends Exception {
+}
+
+class VerboseTarIllegalCompressionException extends Exception {
+}

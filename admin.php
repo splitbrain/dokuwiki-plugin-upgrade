@@ -165,7 +165,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
     /**
      * Output the given arguments using vsprintf and flush buffers
      */
-    private function _say() {
+    public static function _say() {
         $args = func_get_args();
         echo '<img src="'.DOKU_BASE.'lib/images/blank.gif" width="16" height="16" alt="" /> ';
         echo vsprintf(array_shift($args)."<br />\n", $args);
@@ -176,7 +176,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
     /**
      * Print a warning using the given arguments with vsprintf and flush buffers
      */
-    private function _warn() {
+    public static function _warn() {
         $args = func_get_args();
         echo '<img src="'.DOKU_BASE.'lib/images/error.png" width="16" height="16" alt="!" /> ';
         echo vsprintf(array_shift($args)."<br />\n", $args);
@@ -309,22 +309,18 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
      * @return bool
      */
     private function _step_unpack() {
-        global $conf;
         $this->_say('<b>'.$this->getLang('pk_extract').'</b>');
 
         @set_time_limit(120);
         @ignore_user_abort();
 
-        $tar = new VerboseTarLib($this->tgzfile);
-        if($tar->_initerror < 0) {
-            $this->_say($tar->TarErrorStr($tar->_initerror));
-            $this->_say($this->getLang('pk_fail'));
-            return false;
-        }
-
-        $ok = $tar->Extract(VerboseTarLib::FULL_ARCHIVE, $this->tgzdir, 1, $conf['fmode'], '/^(_cs|_test|\.gitignore)/');
-        if($ok < 1) {
-            $this->_warn($tar->TarErrorStr($ok));
+        try {
+            $tar = new VerboseTar();
+            $tar->open($this->tgzfile);
+            $tar->extract($this->tgzdir, 1);
+            $tar->close();
+        } catch (Exception $e) {
+            $this->_warn($e->getMessage());
             $this->_warn($this->getLang('pk_fail'));
             return false;
         }
