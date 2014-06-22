@@ -6,24 +6,23 @@
 
 #plugin__upgrade_form {
     display: block;
-    margin: 0 auto 3em auto;
-    width: 20em;
+    overflow: auto;
+    margin: 1em;
+    font-size: 120%;
 }
 
-#plugin__upgrade_form input.continue {
+#plugin__upgrade_form input {
     float: right;
+    margin-left: 0.5em;
 }
 
-#plugin__upgrade_form input.abort {
-    float: left;
-}
 
 /* based on http://cssdeck.com/labs/progress-bar */
 
 #plugin__upgrade_meter {
     height: 20px;
     position: relative;
-    margin: 1em;
+    margin: 3em 1em 1em 1em;
 }
 
 #plugin__upgrade_meter ol {
@@ -31,7 +30,6 @@
     padding: 0;
     display: block;
     height: 100%;
-    width: 99%;
     border-radius: 10px;
     background-color: #ddd;
     position: relative;

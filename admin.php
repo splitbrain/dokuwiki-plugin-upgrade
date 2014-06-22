@@ -75,8 +75,8 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         echo '<input type="hidden" name="do" value="admin" />';
         echo '<input type="hidden" name="page" value="upgrade" />';
         echo '<input type="hidden" name="sectok" value="'.getSecurityToken().'" />';
-        if($next) echo '<input type="submit" name="step['.$next.']" value="Continue" class="button continue" />';
-        if($abrt) echo '<input type="submit" name="step[cancel]" value="Abort" class="button abort" />';
+        if($next) echo '<input type="submit" name="step['.$next.']" value="'.$this->getLang('btn_continue').' ➡" class="button continue" />';
+        if($abrt) echo '<input type="submit" name="step[cancel]" value="✖ '.$this->getLang('btn_abort').'" class="button abort" />';
         echo '</form>';
 
         $this->_progress($next);
@@ -167,6 +167,18 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
      */
     private function _say() {
         $args = func_get_args();
+        echo '<img src="'.DOKU_BASE.'lib/images/blank.gif" width="16" height="16" alt="" /> ';
+        echo vsprintf(array_shift($args)."<br />\n", $args);
+        flush();
+        ob_flush();
+    }
+
+    /**
+     * Print a warning using the given arguments with vsprintf and flush buffers
+     */
+    private function _warn() {
+        $args = func_get_args();
+        echo '<img src="'.DOKU_BASE.'lib/images/error.png" width="16" height="16" alt="!" /> ';
         echo vsprintf(array_shift($args)."<br />\n", $args);
         flush();
         ob_flush();
@@ -203,7 +215,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
 
         // check if PHP is up to date
         if(version_compare(phpversion(), '5.2.0', '<')) {
-            $this->_say('<div class="error">'.$this->getLang('vs_php').'</div>');
+            $this->_warn($this->getLang('vs_php'));
             $ok = false;
         }
 
@@ -211,11 +223,11 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         $http       = new DokuHTTPClient();
         $tgzversion = $http->get($this->tgzversion);
         if(!$tgzversion) {
-            $this->_say('<div class="error">'.$this->getLang('vs_tgzno').' '.hsc($http->error).'</div>');
+            $this->_warn($this->getLang('vs_tgzno').' '.hsc($http->error));
             $ok = false;
         }
         if(!preg_match('/(^| )(\d\d\d\d-\d\d-\d\d[a-z]*)( |$)/i', $tgzversion, $m)) {
-            $this->_say('<div class="error">'.$this->getLang('vs_tgzno').'</div>');
+            $this->_warn($this->getLang('vs_tgzno'));
             $ok            = false;
             $tgzversionnum = 0;
         } else {
@@ -234,14 +246,14 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
 
         // compare versions
         if(!$versionnum) {
-            $this->_say('<div class="error">'.$this->getLang('vs_localno').'</div>');
+            $this->_warn($this->getLang('vs_localno'));
             $ok = false;
         } else if($tgzversionnum) {
             if($tgzversionnum < $versionnum) {
-                $this->_say('<div class="error">'.$this->getLang('vs_newer').'</div>');
+                $this->_warn($this->getLang('vs_newer'));
                 $ok = false;
             } elseif($tgzversionnum == $versionnum) {
-                $this->_say('<div class="error">'.$this->getLang('vs_same').'</div>');
+                $this->_warn($this->getLang('vs_same'));
                 $ok = false;
             }
         }
@@ -252,7 +264,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
             $plugininfo = linesToHash(explode("\n", $pluginversion));
             $myinfo     = $this->getInfo();
             if($plugininfo['date'] > $myinfo['date']) {
-                $this->_say('<div class="error">'.$this->getLang('vs_plugin').'</div>');
+                $this->_warn($this->getLang('vs_plugin'));
                 $ok = false;
             }
         }
@@ -276,13 +288,13 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         $data          = $http->get($this->tgzurl);
 
         if(!$data) {
-            $this->_say($http->error);
-            $this->_say($this->getLang('dl_fail'));
+            $this->_warn($http->error);
+            $this->_warn($this->getLang('dl_fail'));
             return false;
         }
 
         if(!io_saveFile($this->tgzfile, $data)) {
-            $this->_say($this->getLang('dl_fail'));
+            $this->_warn($this->getLang('dl_fail'));
             return false;
         }
 
@@ -312,8 +324,8 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
 
         $ok = $tar->Extract(VerboseTarLib::FULL_ARCHIVE, $this->tgzdir, 1, $conf['fmode'], '/^(_cs|_test|\.gitignore)/');
         if($ok < 1) {
-            $this->_say($tar->TarErrorStr($ok));
-            $this->_say($this->getLang('pk_fail'));
+            $this->_warn($tar->TarErrorStr($ok));
+            $this->_warn($this->getLang('pk_fail'));
             return false;
         }
 
@@ -338,7 +350,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         if($ok) {
             $this->_say('<b>'.$this->getLang('ck_done').'</b>');
         } else {
-            $this->_say('<b>'.$this->getLang('ck_fail').'</b>');
+            $this->_warn('<b>'.$this->getLang('ck_fail').'</b>');
         }
         return $ok;
     }
@@ -356,7 +368,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
             $this->_rmold();
             $this->_say('<b>'.$this->getLang('finish').'</b>');
         } else {
-            $this->_say('<b>'.$this->getLang('cp_fail').'</b>');
+            $this->_warn('<b>'.$this->getLang('cp_fail').'</b>');
         }
         return $ok;
     }
@@ -376,7 +388,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
             ) {
                 $this->_say($this->getLang('rm_done'), hsc($line));
             } else {
-                $this->_say($this->getLang('rm_fail'), hsc($line));
+                $this->_warn($this->getLang('rm_fail'), hsc($line));
             }
         }
     }
@@ -406,7 +418,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
                     // just check for writability
                     if(!is_dir($to)) {
                         if(is_dir(dirname($to)) && !is_writable(dirname($to))) {
-                            $this->_say('<b>'.$this->getLang('tv_noperm').'</b>', hsc("$dir/$file"));
+                            $this->_warn('<b>'.$this->getLang('tv_noperm').'</b>', hsc("$dir/$file"));
                             $ok = false;
                         }
                     }
@@ -426,7 +438,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
                             (!file_exists($to) && is_dir(dirname($to)) && !is_writable(dirname($to)))
                         ) {
 
-                            $this->_say('<b>'.$this->getLang('tv_noperm').'</b>', hsc("$dir/$file"));
+                            $this->_warn('<b>'.$this->getLang('tv_noperm').'</b>', hsc("$dir/$file"));
                             $ok = false;
                         } else {
                             $this->_say($this->getLang('tv_upd'), hsc("$dir/$file"));
@@ -436,13 +448,13 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
                         if(io_mkdir_p(dirname($to))) {
                             // copy
                             if(!copy($from, $to)) {
-                                $this->_say('<b>'.$this->getLang('tv_nocopy').'</b>', hsc("$dir/$file"));
+                                $this->_warn('<b>'.$this->getLang('tv_nocopy').'</b>', hsc("$dir/$file"));
                                 $ok = false;
                             } else {
                                 $this->_say($this->getLang('tv_done'), hsc("$dir/$file"));
                             }
                         } else {
-                            $this->_say('<b>'.$this->getLang('tv_nodir').'</b>', hsc("$dir"));
+                            $this->_warn('<b>'.$this->getLang('tv_nodir').'</b>', hsc("$dir"));
                             $ok = false;
                         }
                     }
