@@ -40,4 +40,10 @@ $lang['rm_done']    = 'Deprecated <code>%s</code> deleted.';
 $lang['rm_fail']    = 'Could not delete deprecated <code>%s</code>. <b>Please delete manually!</b>';
 $lang['finish']     = 'Upgrade completed. Enjoy your new DokuWiki';
 
+$lang['step_version']  = 'Check';
+$lang['step_download'] = 'Download';
+$lang['step_unpack']   = 'Unpack';
+$lang['step_check']    = 'Verify';
+$lang['step_upgrade']  = 'Install';
+
 //Setup VIM: ex: et ts=4 enc=utf-8 :

@@ -24,10 +24,10 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
 
         $branch = 'stable';
 
-        $this->tgzurl  = "https://github.com/splitbrain/dokuwiki/archive/$branch.tar.gz";
-        $this->tgzfile = $conf['tmpdir'].'/dokuwiki-upgrade.tgz';
-        $this->tgzdir  = $conf['tmpdir'].'/dokuwiki-upgrade/';
-        $this->tgzversion = "https://raw.githubusercontent.com/splitbrain/dokuwiki/$branch/VERSION";
+        $this->tgzurl        = "https://github.com/splitbrain/dokuwiki/archive/$branch.tar.gz";
+        $this->tgzfile       = $conf['tmpdir'].'/dokuwiki-upgrade.tgz';
+        $this->tgzdir        = $conf['tmpdir'].'/dokuwiki-upgrade/';
+        $this->tgzversion    = "https://raw.githubusercontent.com/splitbrain/dokuwiki/$branch/VERSION";
         $this->pluginversion = "https://raw.githubusercontent.com/splitbrain/dokuwiki-plugin-upgrade/master/plugin.info.txt";
     }
 
@@ -78,6 +78,36 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         if($next) echo '<input type="submit" name="step['.$next.']" value="Continue" class="button continue" />';
         if($abrt) echo '<input type="submit" name="step[cancel]" value="Abort" class="button abort" />';
         echo '</form>';
+
+        $this->_progress($next);
+    }
+
+    /**
+     * Display a progress bar of all steps
+     *
+     * @param string $next the next step
+     */
+    private function _progress($next) {
+        $steps  = array('version', 'download', 'unpack', 'check', 'upgrade');
+        $active = true;
+        $count = 0;
+
+        echo '<div id="plugin__upgrade_meter"><ol>';
+        foreach($steps as $step) {
+            $count++;
+            if($step == $next) $active = false;
+            if($active) {
+                echo '<li class="active">';
+                echo '<span class="step">✔</span>';
+            } else {
+                echo '<li>';
+                echo '<span class="step">'.$count.'</span>';
+            }
+
+            echo '<span class="stage">'.$this->getLang('step_'.$step).'</span>';
+            echo '</li>';
+        }
+        echo '</ol></div>';
     }
 
     /**
@@ -172,21 +202,21 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         $ok = true;
 
         // check if PHP is up to date
-        if(version_compare(phpversion(),'5.2.0','<')){
+        if(version_compare(phpversion(), '5.2.0', '<')) {
             $this->_say('<div class="error">'.$this->getLang('vs_php').'</div>');
             $ok = false;
         }
 
         // get the available version
-        $http          = new DokuHTTPClient();
+        $http       = new DokuHTTPClient();
         $tgzversion = $http->get($this->tgzversion);
         if(!$tgzversion) {
             $this->_say('<div class="error">'.$this->getLang('vs_tgzno').' '.hsc($http->error).'</div>');
             $ok = false;
         }
-        if(!preg_match('/(^| )(\d\d\d\d-\d\d-\d\d[a-z]*)( |$)/i', $tgzversion, $m)){
+        if(!preg_match('/(^| )(\d\d\d\d-\d\d-\d\d[a-z]*)( |$)/i', $tgzversion, $m)) {
             $this->_say('<div class="error">'.$this->getLang('vs_tgzno').'</div>');
-            $ok = false;
+            $ok            = false;
             $tgzversionnum = 0;
         } else {
             $tgzversionnum = $m[2];
@@ -195,7 +225,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
 
         // get the current version
         $version = getVersion();
-        if(!preg_match('/(^| )(\d\d\d\d-\d\d-\d\d[a-z]*)( |$)/i', $version, $m)){
+        if(!preg_match('/(^| )(\d\d\d\d-\d\d-\d\d[a-z]*)( |$)/i', $version, $m)) {
             $versionnum = 0;
         } else {
             $versionnum = $m[2];
@@ -210,7 +240,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
             if($tgzversionnum < $versionnum) {
                 $this->_say('<div class="error">'.$this->getLang('vs_newer').'</div>');
                 $ok = false;
-            } elseif ($tgzversionnum == $versionnum) {
+            } elseif($tgzversionnum == $versionnum) {
                 $this->_say('<div class="error">'.$this->getLang('vs_same').'</div>');
                 $ok = false;
             }
@@ -220,17 +250,15 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         $pluginversion = $http->get($this->pluginversion);
         if($pluginversion) {
             $plugininfo = linesToHash(explode("\n", $pluginversion));
-            $myinfo = $this->getInfo();
+            $myinfo     = $this->getInfo();
             if($plugininfo['date'] > $myinfo['date']) {
                 $this->_say('<div class="error">'.$this->getLang('vs_plugin').'</div>');
                 $ok = false;
             }
         }
 
-
         return $ok;
     }
-
 
     /**
      * Download the tarball
@@ -359,7 +387,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
      * Checks what files need an update, tests for writability and copies
      *
      * @param string $dir
-     * @param bool $dryrun do not copy but only check permissions
+     * @param bool   $dryrun do not copy but only check permissions
      * @return bool
      */
     private function _traverse($dir, $dryrun) {
