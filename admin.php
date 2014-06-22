@@ -16,6 +16,8 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
     private $tgzurl;
     private $tgzfile;
     private $tgzdir;
+    private $tgzversion;
+    private $pluginversion;
 
     public function __construct() {
         global $conf;
@@ -25,6 +27,8 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         $this->tgzurl  = "https://github.com/splitbrain/dokuwiki/archive/$branch.tar.gz";
         $this->tgzfile = $conf['tmpdir'].'/dokuwiki-upgrade.tgz';
         $this->tgzdir  = $conf['tmpdir'].'/dokuwiki-upgrade/';
+        $this->tgzversion = "https://raw.githubusercontent.com/splitbrain/dokuwiki/$branch/VERSION";
+        $this->pluginversion = "https://raw.githubusercontent.com/splitbrain/dokuwiki-plugin-upgrade/master/plugin.info.txt";
     }
 
     public function getMenuSort() {
@@ -106,7 +110,10 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         if($step) {
             $abrt = true;
             $next = false;
-            if(!file_exists($this->tgzfile)) {
+            if($step == 'version') {
+                $this->_step_version();
+                $next = 'download';
+            } elseif(!file_exists($this->tgzfile)) {
                 if($this->_step_download()) $next = 'unpack';
             } elseif(!is_dir($this->tgzdir)) {
                 if($this->_step_unpack()) $next = 'check';
@@ -121,7 +128,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
             # first time run, show intro
             echo $this->locale_xhtml('step0');
             $abrt = false;
-            $next = 'download';
+            $next = 'version';
         }
     }
 
@@ -155,6 +162,75 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         closedir($dh);
         return @rmdir($dir);
     }
+
+    /**
+     * Check various versions
+     *
+     * @return bool
+     */
+    private function _step_version() {
+        $ok = true;
+
+        // check if PHP is up to date
+        if(version_compare(phpversion(),'5.2.0','<')){
+            $this->_say('<div class="error">'.$this->getLang('vs_php').'</div>');
+            $ok = false;
+        }
+
+        // get the available version
+        $http          = new DokuHTTPClient();
+        $tgzversion = $http->get($this->tgzversion);
+        if(!$tgzversion) {
+            $this->_say('<div class="error">'.$this->getLang('vs_tgzno').' '.hsc($http->error).'</div>');
+            $ok = false;
+        }
+        if(!preg_match('/(^| )(\d\d\d\d-\d\d-\d\d[a-z]*)( |$)/i', $tgzversion, $m)){
+            $this->_say('<div class="error">'.$this->getLang('vs_tgzno').'</div>');
+            $ok = false;
+            $tgzversionnum = 0;
+        } else {
+            $tgzversionnum = $m[2];
+            $this->_say($this->getLang('vs_tgz'), $tgzversion);
+        }
+
+        // get the current version
+        $version = getVersion();
+        if(!preg_match('/(^| )(\d\d\d\d-\d\d-\d\d[a-z]*)( |$)/i', $version, $m)){
+            $versionnum = 0;
+        } else {
+            $versionnum = $m[2];
+        }
+        $this->_say($this->getLang('vs_local'), $version);
+
+        // compare versions
+        if(!$versionnum) {
+            $this->_say('<div class="error">'.$this->getLang('vs_localno').'</div>');
+            $ok = false;
+        } else if($tgzversionnum) {
+            if($tgzversionnum < $versionnum) {
+                $this->_say('<div class="error">'.$this->getLang('vs_newer').'</div>');
+                $ok = false;
+            } elseif ($tgzversionnum == $versionnum) {
+                $this->_say('<div class="error">'.$this->getLang('vs_same').'</div>');
+                $ok = false;
+            }
+        }
+
+        // check plugin version
+        $pluginversion = $http->get($this->pluginversion);
+        if($pluginversion) {
+            $plugininfo = linesToHash(explode("\n", $pluginversion));
+            $myinfo = $this->getInfo();
+            if($plugininfo['date'] > $myinfo['date']) {
+                $this->_say('<div class="error">'.$this->getLang('vs_plugin').'</div>');
+                $ok = false;
+            }
+        }
+
+
+        return $ok;
+    }
+
 
     /**
      * Download the tarball
