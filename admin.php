@@ -51,7 +51,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         ?>
         <script language="javascript" type="text/javascript">
             var plugin_upgrade = window.setInterval(function(){
-                var obj = $('plugin__upgrade');
+                var obj = document.getElementById('plugin__upgrade');
                 if(obj) obj.scrollTop = obj.scrollHeight;
             },25);
         </script>
