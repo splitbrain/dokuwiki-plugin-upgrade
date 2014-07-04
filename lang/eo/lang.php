@@ -6,6 +6,14 @@
  * @author Robert Bogenschneider <bogi@uea.org>
  */
 $lang['menu']                  = 'Viki-Aktualigo';
+$lang['vs_php']                = 'Novaj DokuWiki-eldonoj bezonas minumime PHP-version %s, sed vi uzas %s. Vi devus aktualigi vian PHP-version antaŭ ol aktualigi la vikion!';
+$lang['vs_tgzno']              = 'Ne eblis ekkoni la plej novan DokuWiki-version.';
+$lang['vs_tgz']                = 'DokuWiki <b>%s</b> haveblas por elŝuto.';
+$lang['vs_local']              = 'Momente vi uzas DokuWiki <b>%s</b>.';
+$lang['vs_localno']            = 'Ne estas klare, kiom malnova via momenta versio estas, permana aktualigo estas rekomendata.';
+$lang['vs_newer']              = 'Aspektas, ke via momenta DokuWiki-versio estas eĉ pli nova ol la plej freŝa stabila eldono. Aktualigo estas malrekomendata.';
+$lang['vs_same']               = 'Via momenta DokuWiki estas jam ĝisdata. Neniu bezono aktualigi.';
+$lang['vs_plugin']             = 'Ekzistas pli nova kromaĵo (%s), vi devus aktualigi la kromaĵon antaŭ ol daŭrigi.';
 $lang['dl_from']               = 'Elŝutanta arkivon de %s...';
 $lang['dl_fail']               = 'La elŝuto ne funkciis.';
 $lang['dl_done']               = 'Elŝuto kompleta (%s).';
@@ -27,3 +35,10 @@ $lang['tv_done']               = 'aktualiĝis <code>%s</code>';
 $lang['rm_done']               = 'Malaktuala <code>%s</code> forigita.';
 $lang['rm_fail']               = 'Ne eblis forigi la malaktualan <code>%s</code>. <b>Bonvolu forigi ĝin permane!</b>';
 $lang['finish']                = 'Aktualigo kompleta. Ĝuu vian novan DokuWiki.';
+$lang['btn_continue']          = 'Daŭrigi';
+$lang['btn_abort']             = 'Ĉesi';
+$lang['step_version']          = 'Kontroli';
+$lang['step_download']         = 'Elŝuti';
+$lang['step_unpack']           = 'Malpaki';
+$lang['step_check']            = 'Certigi';
+$lang['step_upgrade']          = 'Instali';
