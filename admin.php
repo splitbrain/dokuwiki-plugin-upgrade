@@ -221,6 +221,12 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
             $ok = false;
         }
 
+        // we need SSL - only newer HTTPClients check that themselves
+        if(!in_array('ssl', stream_get_transports())) {
+            $this->_warn($this->getLang('vs_ssl'));
+            $ok = false;
+        }
+
         // get the available version
         $http       = new DokuHTTPClient();
         $tgzversion = $http->get($this->tgzversion);

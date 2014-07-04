@@ -17,6 +17,7 @@ $lang['vs_localno'] = 'It\'s not clear how old your currently running version is
 $lang['vs_newer']   = 'It seems your current DokuWiki is even newer than the latest stable release. Upgrade not recommended.';
 $lang['vs_same']    = 'Your current DokuWiki is already up to date. No need for upgrading.';
 $lang['vs_plugin']  = 'There is a newer upgrade plugin available (%s) you should update the plugin before continuing.';
+$lang['vs_ssl']     = 'Your PHP seems not to support SSL streams, downloading the needed data will most likely fail. Upgrade manually instead.';
 
 $lang['dl_from']    = 'Downloading archive from %s...';
 $lang['dl_fail']    = 'Download failed.';
