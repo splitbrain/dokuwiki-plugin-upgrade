@@ -5,16 +5,18 @@
  * 
  * @author Guillaume Turri <guillaume.turri@gmail.com>
  * @author Nicolas Friedli <nicolas@theologique.ch>
+ * @author Schplurtz le Déboulonné <schplurtz@laposte.net>
  */
 $lang['menu']                  = 'Mise a jour du wiki';
-$lang['vs_php']                = 'Les nouvelles version de DokuWiki requièrent au moins la version %s de PHP, mais votre serveur proposer %s. Il faut mettre PHP à jour avant DokuWiki.';
-$lang['vs_tgzno']              = 'Incapable de déterminer quelle est la dernière version de DokuWiki';
+$lang['vs_php']                = 'Les nouvelles version de DokuWiki requièrent au moins la version %s de PHP, mais votre serveur propose %s. Il faut mettre PHP à jour avant DokuWiki.';
+$lang['vs_tgzno']              = 'Ne peut déterminer quelle est la plus récente version de DokuWiki.';
 $lang['vs_tgz']                = 'DokuWiki <b>%s</b> est disponible au téléchargement.';
 $lang['vs_local']              = 'Vous utilisez actuellement DokuWiki <b>%s</b>.';
 $lang['vs_localno']            = 'La version que vous utilisez actuellement ne peut pas être déterminée. Une mise à jour manuelle est recommandée.';
-$lang['vs_newer']              = 'Il semble que votre version actuelle de DokuWiki soit plus récente de que version stable actuelle. La mise à jour n\'est pas recommandée.';
+$lang['vs_newer']              = 'Il semble que votre version actuelle de DokuWiki soit plus récente que l\'actuelle version stable. La mise à jour n\'est pas recommandée.';
 $lang['vs_same']               = 'Votre DokuWiki est le dernier en date. Pas besoin de mise à jour.';
-$lang['vs_plugin']             = 'Il y a une nouvelle version de l\'extension disponible (%s) que vous devriez mettre à jour avant de continuer.';
+$lang['vs_plugin']             = 'Une nouvelle version de l\'extension de mise à jour est disponible (%s). Vous devriez la mettre à jour avant de continuer.';
+$lang['vs_ssl']                = 'Votre PHP semble ne pas prendre en charge les flux SSL; le téléchargement des données nécessaires va très probablement échouer. Faites la mise à jour manuellement.';
 $lang['dl_from']               = 'Téléchargement de l\'archive depuis %s...';
 $lang['dl_fail']               = 'Échec du téléchargement.';
 $lang['dl_done']               = 'Téléchargement achevé (%s).';

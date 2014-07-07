@@ -4,4 +4,4 @@ Pour rendre la mise à jour automatique possible, PHP doit avoir les droits en �
 
 Cette extension ne met pas à jour les extensions et les thèmes.
 
-Une sauvegarde est toujours conseillée avant une mise à jour!
+Nous vous recommandons d'effectuer une sauvegarde de votre wiki avant de poursuivre !
