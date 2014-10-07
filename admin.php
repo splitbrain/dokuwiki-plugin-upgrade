@@ -395,6 +395,8 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
                 $this->_warn($this->getLang('rm_fail'), hsc($line));
             }
         }
+        // delete install
+        @unlink(DOKU_INC.'install.php');
     }
 
     /**
