@@ -17,7 +17,7 @@ class VerboseTar {
     const COMPRESS_BZIP = 3;
 
     protected $file = '';
-    protected $comptype = Tar::COMPRESS_AUTO;
+    protected $comptype = self::COMPRESS_AUTO;
     protected $fh;
     protected $memory = '';
     protected $closed = true;
@@ -30,17 +30,17 @@ class VerboseTar {
      * @param int    $comptype
      * @throws VerboseTarIOException
      */
-    public function open($file, $comptype = Tar::COMPRESS_AUTO) {
+    public function open($file, $comptype = self::COMPRESS_AUTO) {
         // determine compression
-        if($comptype == Tar::COMPRESS_AUTO) $comptype = $this->filetype($file);
+        if($comptype == self::COMPRESS_AUTO) $comptype = $this->filetype($file);
         $this->compressioncheck($comptype);
 
         $this->comptype = $comptype;
         $this->file     = $file;
 
-        if($this->comptype === Tar::COMPRESS_GZIP) {
+        if($this->comptype === self::COMPRESS_GZIP) {
             $this->fh = @gzopen($this->file, 'rb');
-        } elseif($this->comptype === Tar::COMPRESS_BZIP) {
+        } elseif($this->comptype === self::COMPRESS_BZIP) {
             $this->fh = @bzopen($this->file, 'r');
         } else {
             $this->fh = @fopen($this->file, 'rb');
@@ -209,9 +209,9 @@ class VerboseTar {
      * @throws VerboseTarIOException
      * @throws VerboseTarIllegalCompressionException
      */
-    public function create($file = '', $comptype = Tar::COMPRESS_AUTO, $complevel = 9) {
+    public function create($file = '', $comptype = self::COMPRESS_AUTO, $complevel = 9) {
         // determine compression
-        if($comptype == Tar::COMPRESS_AUTO) $comptype = $this->filetype($file);
+        if($comptype == self::COMPRESS_AUTO) $comptype = $this->filetype($file);
         $this->compressioncheck($comptype);
 
         $this->comptype = $comptype;
@@ -220,9 +220,9 @@ class VerboseTar {
         $this->fh       = 0;
 
         if($this->file) {
-            if($this->comptype === Tar::COMPRESS_GZIP) {
+            if($this->comptype === self::COMPRESS_GZIP) {
                 $this->fh = @gzopen($this->file, 'wb'.$complevel);
-            } elseif($this->comptype === Tar::COMPRESS_BZIP) {
+            } elseif($this->comptype === self::COMPRESS_BZIP) {
                 $this->fh = @bzopen($this->file, 'w');
             } else {
                 $this->fh = @fopen($this->file, 'wb');
@@ -326,9 +326,9 @@ class VerboseTar {
 
         // close file handles
         if($this->file) {
-            if($this->comptype === Tar::COMPRESS_GZIP) {
+            if($this->comptype === self::COMPRESS_GZIP) {
                 gzclose($this->fh);
-            } elseif($this->comptype === Tar::COMPRESS_BZIP) {
+            } elseif($this->comptype === self::COMPRESS_BZIP) {
                 bzclose($this->fh);
             } else {
                 fclose($this->fh);
@@ -346,14 +346,14 @@ class VerboseTar {
      *
      * This implicitly calls close() on the Archive
      */
-    public function getArchive($comptype = Tar::COMPRESS_AUTO, $complevel = 9) {
+    public function getArchive($comptype = self::COMPRESS_AUTO, $complevel = 9) {
         $this->close();
 
-        if($comptype === Tar::COMPRESS_AUTO) $comptype = $this->comptype;
+        if($comptype === self::COMPRESS_AUTO) $comptype = $this->comptype;
         $this->compressioncheck($comptype);
 
-        if($comptype === Tar::COMPRESS_GZIP) return gzcompress($this->memory, $complevel);
-        if($comptype === Tar::COMPRESS_BZIP) return bzcompress($this->memory);
+        if($comptype === self::COMPRESS_GZIP) return gzcompress($this->memory, $complevel);
+        if($comptype === self::COMPRESS_BZIP) return bzcompress($this->memory);
         return $this->memory;
     }
 
@@ -368,8 +368,8 @@ class VerboseTar {
      * @param int $complevel
      * @throws VerboseTarIOException
      */
-    public function save($file, $comptype = Tar::COMPRESS_AUTO, $complevel = 9) {
-        if($comptype === Tar::COMPRESS_AUTO) $comptype = $this->filetype($file);
+    public function save($file, $comptype = self::COMPRESS_AUTO, $complevel = 9) {
+        if($comptype === self::COMPRESS_AUTO) $comptype = $this->filetype($file);
 
         if(!file_put_contents($file, $this->getArchive($comptype, $complevel))) {
             throw new VerboseTarIOException('Could not write to file: '.$file);
@@ -383,9 +383,9 @@ class VerboseTar {
      * @return string
      */
     protected function readbytes($length) {
-        if($this->comptype === Tar::COMPRESS_GZIP) {
+        if($this->comptype === self::COMPRESS_GZIP) {
             return @gzread($this->fh, $length);
-        } elseif($this->comptype === Tar::COMPRESS_BZIP) {
+        } elseif($this->comptype === self::COMPRESS_BZIP) {
             return @bzread($this->fh, $length);
         } else {
             return @fread($this->fh, $length);
@@ -403,9 +403,9 @@ class VerboseTar {
         if(!$this->file) {
             $this->memory .= $data;
             $written = strlen($data);
-        } elseif($this->comptype === Tar::COMPRESS_GZIP) {
+        } elseif($this->comptype === self::COMPRESS_GZIP) {
             $written = @gzwrite($this->fh, $data);
-        } elseif($this->comptype === Tar::COMPRESS_BZIP) {
+        } elseif($this->comptype === self::COMPRESS_BZIP) {
             $written = @bzwrite($this->fh, $data);
         } else {
             $written = @fwrite($this->fh, $data);
@@ -422,9 +422,9 @@ class VerboseTar {
      * @param int  $bytes seek to this position
      */
     function skipbytes($bytes) {
-        if($this->comptype === Tar::COMPRESS_GZIP) {
+        if($this->comptype === self::COMPRESS_GZIP) {
             @gzseek($this->fh, $bytes, SEEK_CUR);
-        } elseif($this->comptype === Tar::COMPRESS_BZIP) {
+        } elseif($this->comptype === self::COMPRESS_BZIP) {
             // there is no seek in bzip2, we simply read on
             @bzread($this->fh, $bytes);
         } else {
@@ -562,11 +562,11 @@ class VerboseTar {
      * @throws VerboseTarIllegalCompressionException
      */
     protected function compressioncheck($comptype) {
-        if($comptype === Tar::COMPRESS_GZIP && !function_exists('gzopen')) {
+        if($comptype === self::COMPRESS_GZIP && !function_exists('gzopen')) {
             throw new VerboseTarIllegalCompressionException('No gzip support available');
         }
 
-        if($comptype === Tar::COMPRESS_BZIP && !function_exists('bzopen')) {
+        if($comptype === self::COMPRESS_BZIP && !function_exists('bzopen')) {
             throw new VerboseTarIllegalCompressionException('No bzip2 support available');
         }
     }
@@ -574,7 +574,7 @@ class VerboseTar {
     /**
      * Guesses the wanted compression from the given filename extension
      *
-     * You don't need to call this yourself. It's used when you pass Tar::COMPRESS_AUTO somewhere
+     * You don't need to call this yourself. It's used when you pass self::COMPRESS_AUTO somewhere
      *
      * @param string $file
      * @return int
@@ -582,11 +582,11 @@ class VerboseTar {
     public function filetype($file) {
         $file = strtolower($file);
         if(substr($file, -3) == '.gz' || substr($file, -4) == '.tgz') {
-            $comptype = Tar::COMPRESS_GZIP;
+            $comptype = self::COMPRESS_GZIP;
         } elseif(substr($file, -4) == '.bz2' || substr($file, -4) == '.tbz') {
-            $comptype = Tar::COMPRESS_BZIP;
+            $comptype = self::COMPRESS_BZIP;
         } else {
-            $comptype = Tar::COMPRESS_NONE;
+            $comptype = self::COMPRESS_NONE;
         }
         return $comptype;
     }
