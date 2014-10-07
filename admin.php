@@ -397,6 +397,9 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         }
         // delete install
         @unlink(DOKU_INC.'install.php');
+
+        // make sure update message will be gone
+        @touch(DOKU_INC.'doku.php');
     }
 
     /**
