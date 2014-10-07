@@ -272,7 +272,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
             $plugininfo = linesToHash(explode("\n", $pluginversion));
             $myinfo     = $this->getInfo();
             if($plugininfo['date'] > $myinfo['date']) {
-                $this->_warn($this->getLang('vs_plugin'));
+                $this->_warn($this->getLang('vs_plugin'), $plugininfo['date']);
                 $ok = false;
             }
         }
