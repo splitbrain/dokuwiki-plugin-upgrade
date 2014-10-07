@@ -9,6 +9,8 @@
  * @author Bouchon <tarlib@bouchon.org> (Maxg)
  * @license GPL 2
  */
+use \TarLib as Tar;
+
 class VerboseTar {
 
     const COMPRESS_AUTO = 0;
