@@ -132,11 +132,11 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
             $step = '';
         }
 
-        if($step == 'cancel') {
+        if($step == 'cancel' || $step == 'done') {
             # cleanup
             @unlink($this->tgzfile);
             $this->_rdel($this->tgzdir);
-            $step = '';
+            if($step == 'cancel') $step = '';
         }
 
         if($step) {
@@ -145,6 +145,10 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
             if($step == 'version') {
                 $this->_step_version();
                 $next = 'download';
+            } elseif ($step == 'done') {
+                $this->_step_done();
+                $next = '';
+                $abrt = '';
             } elseif(!file_exists($this->tgzfile)) {
                 if($this->_step_download()) $next = 'unpack';
             } elseif(!is_dir($this->tgzdir)) {
@@ -152,7 +156,10 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
             } elseif($step != 'upgrade') {
                 if($this->_step_check()) $next = 'upgrade';
             } elseif($step == 'upgrade') {
-                if($this->_step_copy()) $next = 'cancel';
+                if($this->_step_copy()) {
+                    $next = 'done';
+                    $abrt = '';
+                }
             } else {
                 echo 'uhm. what happened? where am I? This should not happen';
             }
@@ -285,6 +292,14 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         }
 
         return $ok;
+    }
+
+    /**
+     * Redirect to the start page
+     */
+    private function _step_done() {
+        echo $this->getLang('finish');
+        echo "<script>location.href='".DOKU_URL."';</script>";
     }
 
     /**
