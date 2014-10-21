@@ -7,7 +7,7 @@
  * @author Nicolas Friedli <nicolas@theologique.ch>
  * @author Schplurtz le Déboulonné <schplurtz@laposte.net>
  */
-$lang['menu']                  = 'Mise a jour du wiki';
+$lang['menu']                  = 'Mise à jour du wiki';
 $lang['vs_php']                = 'Les nouvelles version de DokuWiki requièrent au moins la version %s de PHP, mais votre serveur propose %s. Il faut mettre PHP à jour avant DokuWiki.';
 $lang['vs_tgzno']              = 'Ne peut déterminer quelle est la plus récente version de DokuWiki.';
 $lang['vs_tgz']                = 'DokuWiki <b>%s</b> est disponible au téléchargement.';
