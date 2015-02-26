@@ -310,11 +310,11 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
     private function _step_download() {
         $this->_say($this->getLang('dl_from'), $this->tgzurl);
 
-        @set_time_limit(120);
+        @set_time_limit(300);
         @ignore_user_abort();
 
         $http          = new DokuHTTPClient();
-        $http->timeout = 120;
+        $http->timeout = 300;
         $data          = $http->get($this->tgzurl);
 
         if(!$data) {
@@ -341,7 +341,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
     private function _step_unpack() {
         $this->_say('<b>'.$this->getLang('pk_extract').'</b>');
 
-        @set_time_limit(120);
+        @set_time_limit(300);
         @ignore_user_abort();
 
         try {
