@@ -403,6 +403,8 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
      * Delete outdated files
      */
     private function _rmold() {
+        global $conf;
+
         $list = file($this->tgzdir.'data/deleted.files');
         foreach($list as $line) {
             $line = trim(preg_replace('/#.*$/', '', $line));
@@ -422,6 +424,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
 
         // make sure update message will be gone
         @touch(DOKU_INC.'doku.php');
+        @unlink($conf['cachedir'].'/messages.txt');
     }
 
     /**
