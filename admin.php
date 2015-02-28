@@ -18,6 +18,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
     private $tgzdir;
     private $tgzversion;
     private $pluginversion;
+    private $messagesTxt;
 
     public function __construct() {
         global $conf;
@@ -29,6 +30,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         $this->tgzdir        = $conf['tmpdir'].'/dokuwiki-upgrade/';
         $this->tgzversion    = "https://raw.githubusercontent.com/splitbrain/dokuwiki/$branch/VERSION";
         $this->pluginversion = "https://raw.githubusercontent.com/splitbrain/dokuwiki-plugin-upgrade/master/plugin.info.txt";
+        $this->messagesTxt   = DOKU_INC.'data/cache/messages.txt';
     }
 
     public function getMenuSort() {
@@ -137,6 +139,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
             @unlink($this->tgzfile);
             $this->_rdel($this->tgzdir);
             if($step == 'cancel') $step = '';
+            @unlink($this->messagesTxt);
         }
 
         if($step) {
