@@ -4,6 +4,7 @@
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * 
  * @author Robert Bogenschneider <bogi@uea.org>
+ * @author Robert Bogenschneider <robog@gmx.de>
  */
 $lang['menu']                  = 'Viki-Aktualigo';
 $lang['vs_php']                = 'Novaj DokuWiki-eldonoj bezonas minumime PHP-version %s, sed vi uzas %s. Vi devus aktualigi vian PHP-version antaŭ ol aktualigi la vikion!';
@@ -14,6 +15,7 @@ $lang['vs_localno']            = 'Ne estas klare, kiom malnova via momenta versi
 $lang['vs_newer']              = 'Aspektas, ke via momenta DokuWiki-versio estas eĉ pli nova ol la plej freŝa stabila eldono. Aktualigo estas malrekomendata.';
 $lang['vs_same']               = 'Via momenta DokuWiki estas jam ĝisdata. Neniu bezono aktualigi.';
 $lang['vs_plugin']             = 'Ekzistas pli nova kromaĵo (%s), vi devus aktualigi la kromaĵon antaŭ ol daŭrigi.';
+$lang['vs_ssl']                = 'Ŝajne via PHP ne subtenas SSL-fluojn, elŝuti la necesajn datumojn verŝajne malsukcesos. Aktualigu anstataŭe permane.';
 $lang['dl_from']               = 'Elŝutanta arkivon de %s...';
 $lang['dl_fail']               = 'La elŝuto ne funkciis.';
 $lang['dl_done']               = 'Elŝuto kompleta (%s).';
