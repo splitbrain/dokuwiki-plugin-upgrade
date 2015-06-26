@@ -1,0 +1,7 @@
+Denne plugin-en vil automatisk oppgradere wikien til den nyeste stabile versjonen av DokuWiki. Før du fortsetter bør du lese [[doku>changes|Changelog]] for å sjekke om det er noen tilleggstiltak som du må gjøre etter oppdateringen.
+
+For å tilltate automatisk oppgradering krever PHP-prosessen skrivetillatelse for DokuWiki-filer. Plugin-en vil sjekker om de nødvendige filtillatelsene er på plass før oppgraderingen starter.
+
+Plugin-en vil ikke oppgradere installerte plugin-er eller maler.
+
+Vi anbefaler at du tar en sikkerhetskopi av wikien før du fortsetter.
