@@ -4,6 +4,7 @@
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * 
  * @author carlos <carloscyb@gmail.com>
+ * @author Domingo Redal <docxml@gmail.com>
  */
 $lang['menu']                  = 'Actualización de Wiki';
 $lang['vs_php']                = 'Las nuevas versiones de DokuWiki necesitan al menos PHP %s, pero tú estás ejecutando %s. ¡Deberías subir la versión de PHP antes de actualizar!';
@@ -14,6 +15,7 @@ $lang['vs_localno']            = 'No está clara la antigüedad de la versión q
 $lang['vs_newer']              = 'Parece que tu DokuWiki actual es incluso más nueva que la última versión estable. No se recomienda actualizarla.';
 $lang['vs_same']               = 'Tú DokuWiki actual ya está al día. No se necesita actualización.';
 $lang['vs_plugin']             = 'Hay disponible una nueva actualización del //plugin// (%s), deberías actualizar el //plugin// antes de continuar.';
+$lang['vs_ssl']                = 'Tu PHP parece no soportar canales SSL, la descarga de los datos necesarios lo más probable es que falle. Actualizalo manualmente en su lugar.';
 $lang['dl_from']               = 'Descargando el archivo desde %s...';
 $lang['dl_fail']               = 'Fallo en la descarga.';
 $lang['dl_done']               = 'Descarga completada (%s).';
