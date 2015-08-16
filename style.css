@@ -11,7 +11,7 @@
     font-size: 120%;
 }
 
-#plugin__upgrade_form input {
+#plugin__upgrade_form button {
     float: right;
     margin-left: 0.5em;
 }

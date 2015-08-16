@@ -79,12 +79,13 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         <?php
         $this->_say('</div>');
 
-        echo '<form action="" method="get" id="plugin__upgrade_form">';
+        $action = script();
+        echo '<form action="' . $action . '" method="post" id="plugin__upgrade_form">';
         echo '<input type="hidden" name="do" value="admin" />';
         echo '<input type="hidden" name="page" value="upgrade" />';
-        echo '<input type="hidden" name="sectok" value="'.getSecurityToken().'" />';
-        if($next) echo '<input type="submit" name="step['.$next.']" value="'.$this->getLang('btn_continue').' ➡" class="button continue" />';
-        if($abrt) echo '<input type="submit" name="step[cancel]" value="✖ '.$this->getLang('btn_abort').'" class="button abort" />';
+        echo '<input type="hidden" name="sectok" value="' . getSecurityToken() . '" />';
+        if($next) echo '<button type="submit" name="step[' . $next . ']" value="1" class="button continue">' . $this->getLang('btn_continue') . ' ➡</button>';
+        if($abrt) echo '<button type="submit" name="step[cancel]" value="1" class="button abort">✖ ' . $this->getLang('btn_abort') . '</button>';
         echo '</form>';
 
         $this->_progress($next);
