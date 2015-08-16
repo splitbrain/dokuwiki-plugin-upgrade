@@ -293,7 +293,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
      */
     private function _step_done() {
         echo $this->getLang('finish');
-        echo "<script>location.href='".DOKU_URL."';</script>";
+        echo "<script type='text/javascript'>location.href='".DOKU_URL."';</script>";
     }
 
     /**
