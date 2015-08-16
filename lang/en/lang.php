@@ -50,4 +50,6 @@ $lang['step_unpack']   = 'Unpack';
 $lang['step_check']    = 'Verify';
 $lang['step_upgrade']  = 'Install';
 
+$lang['careful'] = 'Errors above! You should <b>not</b> continue!';
+
 //Setup VIM: ex: et ts=4 enc=utf-8 :

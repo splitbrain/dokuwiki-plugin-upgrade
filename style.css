@@ -11,11 +11,25 @@
     font-size: 120%;
 }
 
+#plugin__upgrade_careful {
+    float: right;
+    text-align: right;
+    margin-right: 1em;
+    color: red;
+}
+
+#plugin__upgrade_form {
+    clear: right;
+}
+
 #plugin__upgrade_form button {
     float: right;
     margin-left: 0.5em;
 }
 
+#plugin__upgrade_form button.careful {
+    opacity: 0.5;
+}
 
 /* based on http://cssdeck.com/labs/progress-bar */
 

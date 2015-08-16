@@ -19,6 +19,8 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
     private $tgzversion;
     private $pluginversion;
 
+    protected $haderrors = false;
+
     public function __construct() {
         global $conf;
 
@@ -79,12 +81,18 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         <?php
         $this->_say('</div>');
 
+        $careful = '';
+        if($this->haderrors) {
+            echo '<div id="plugin__upgrade_careful">'.$this->getLang('careful').'</div>';
+            $careful = 'careful';
+        }
+
         $action = script();
         echo '<form action="' . $action . '" method="post" id="plugin__upgrade_form">';
         echo '<input type="hidden" name="do" value="admin" />';
         echo '<input type="hidden" name="page" value="upgrade" />';
         echo '<input type="hidden" name="sectok" value="' . getSecurityToken() . '" />';
-        if($next) echo '<button type="submit" name="step[' . $next . ']" value="1" class="button continue">' . $this->getLang('btn_continue') . ' ➡</button>';
+        if($next) echo '<button type="submit" name="step[' . $next . ']" value="1" class="button continue careful">' . $this->getLang('btn_continue') . ' ➡</button>';
         if($abrt) echo '<button type="submit" name="step[cancel]" value="1" class="button abort">✖ ' . $this->getLang('btn_abort') . '</button>';
         echo '</form>';
 
@@ -175,7 +183,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
     /**
      * Output the given arguments using vsprintf and flush buffers
      */
-    public static function _say() {
+    public function _say() {
         $args = func_get_args();
         echo '<img src="'.DOKU_BASE.'lib/images/blank.gif" width="16" height="16" alt="" /> ';
         echo vsprintf(array_shift($args)."<br />\n", $args);
@@ -186,7 +194,9 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
     /**
      * Print a warning using the given arguments with vsprintf and flush buffers
      */
-    public static function _warn() {
+    public function _warn() {
+        $this->haderrors = true;
+
         $args = func_get_args();
         echo '<img src="'.DOKU_BASE.'lib/images/error.png" width="16" height="16" alt="!" /> ';
         echo vsprintf(array_shift($args)."<br />\n", $args);
