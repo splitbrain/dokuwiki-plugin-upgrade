@@ -6,7 +6,7 @@
  * @author Hideaki SAWADA <chuno@live.jp>
  */
 $lang['menu']                  = 'Wiki のアップグレード';
-$lang['vs_php']                = '新しい DokuWiki には PHP %s 以上が必要だが %s が稼働中です。DokuWiki のアップグレード前に PHP のアップグレードが必要です！';
+$lang['vs_php']                = '新しい DokuWiki には PHP %s 以上が必要ですが %s が稼働中です。DokuWiki のアップグレード前に PHP のアップグレードが必要です！';
 $lang['vs_tgzno']              = 'DokuWiki の最新バージョンが確認できませんでした。';
 $lang['vs_tgz']                = 'DokuWiki <b>%s</b> がダウンロード可能です。';
 $lang['vs_local']              = 'DokuWiki <b>%s</b> が稼働中です。';
@@ -43,3 +43,4 @@ $lang['step_download']         = 'ダウンロード';
 $lang['step_unpack']           = '解凍';
 $lang['step_check']            = '検証';
 $lang['step_upgrade']          = 'インストール';
+$lang['careful']               = '上記のエラー！続行すべきでは**ありません**！';
