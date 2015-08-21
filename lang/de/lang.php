@@ -6,6 +6,7 @@
  * @author Christoph Ziehr <info@einsatzleiterwiki.de>
  * @author Alex Timmermann <alex@modprobe.io>
  * @author Patrick Kastner <patrick.kastner@gmail.com>
+ * @author Padhie <develop@padhie.de>
  */
 $lang['menu']                  = 'Wiki aktualisieren';
 $lang['vs_php']                = 'Neue DokuWiki-Versionen benötigen mindestens PHP-Version %s. Ihre Version ist %d. Bitte aktualisieren Sie PHP bevor Sie DokuWiki aktualisieren.';
@@ -45,3 +46,4 @@ $lang['step_download']         = 'Herunterladen';
 $lang['step_unpack']           = 'Entpacken';
 $lang['step_check']            = 'Verifizieren';
 $lang['step_upgrade']          = 'Installieren';
+$lang['careful']               = 'Siehe Fehler! Sie sollten <b>nicht</b> fortfahren!';
