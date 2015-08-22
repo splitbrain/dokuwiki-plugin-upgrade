@@ -5,12 +5,13 @@
  * 
  * @author Edmondo Di Tucci <snarchio@gmail.com>
  * @author Fabio <fabioslurp@yahoo.it>
+ * @author Torpedo <dgtorpedo@gmail.com>
  */
 $lang['menu']                  = 'Aggiornamento della Wiki';
 $lang['vs_php']                = 'La nuova versione DokuWiki necessita almeno di PHP %s, ma stai utilizzando %s. E\' necessario aggiornare PHP prima di aggiornare DokuWiki.';
 $lang['vs_tgzno']              = 'Impossibile determinare la nuova versione di DokuWiki.';
-$lang['vs_tgz']                = 'Dokuwiki <b>%s</b> è disponibile per il download.';
-$lang['vs_local']              = 'Attualmente stai utilizzando Dokuwiki <b>%s</b>.';
+$lang['vs_tgz']                = 'DokuWiki <b>%s</b> è disponibile per il download.';
+$lang['vs_local']              = 'Attualmente stai utilizzando DokuWiki <b>%s</b>.';
 $lang['vs_localno']            = 'Non è stato possibile determinare l\'età della versione DokuWiki in uso; si raccomanda di eseguire un aggiornamento manuale.';
 $lang['vs_newer']              = 'Sembra che la versione corrente di DokuWiki sia più recente dell\'ultima release stabile. L\'aggiornamento è sconsigliato.';
 $lang['vs_same']               = 'La versione DokuWiki che si sta usando è già aggiornata. Non è necessario alcun aggiornamento.';
@@ -44,3 +45,4 @@ $lang['step_download']         = 'Download';
 $lang['step_unpack']           = 'Scompattamento';
 $lang['step_check']            = 'Verifica';
 $lang['step_upgrade']          = 'Installazione';
+$lang['careful']               = 'Ci sono degli errori qua sopra! <b>Non</b> dovresti continuare!';
