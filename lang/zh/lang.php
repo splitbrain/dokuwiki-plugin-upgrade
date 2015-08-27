@@ -4,6 +4,7 @@
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * 
  * @author Yuwei Sun <yuwei@hrz.tu-chemnitz.de>
+ * @author Mike Gao <1524747399@qq.com>
  */
 $lang['menu']                  = '升级Wiki';
 $lang['vs_php']                = '新的DokuWiki发行版要求PHP版本至少为 %s，但是您的PHP版本为 %s。升级本发行版之前您应当先升级PHP版本！';
@@ -43,3 +44,4 @@ $lang['step_download']         = '下载';
 $lang['step_unpack']           = '解压';
 $lang['step_check']            = '检验';
 $lang['step_upgrade']          = '安装';
+$lang['careful']               = '产生了错误！你<b>不应该</b>继续！';
