@@ -6,6 +6,7 @@
  * @author Guillaume Turri <guillaume.turri@gmail.com>
  * @author Nicolas Friedli <nicolas@theologique.ch>
  * @author Schplurtz le Déboulonné <schplurtz@laposte.net>
+ * @author Thomas Ballarin <totoche33@gmail.com>
  */
 $lang['menu']                  = 'Mise à jour du wiki';
 $lang['vs_php']                = 'Les nouvelles version de DokuWiki requièrent au moins la version %s de PHP, mais votre serveur propose %s. Il faut mettre PHP à jour avant DokuWiki.';
@@ -45,3 +46,4 @@ $lang['step_download']         = 'Télécharger';
 $lang['step_unpack']           = 'Décompresser';
 $lang['step_check']            = 'Vérifier';
 $lang['step_upgrade']          = 'Installer';
+$lang['careful']               = 'Il y as des erreurs! Vous ne devriez < b > pas < / b > continuer !';
