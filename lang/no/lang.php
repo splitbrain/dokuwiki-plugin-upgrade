@@ -44,3 +44,4 @@ $lang['step_download']         = 'Last ned';
 $lang['step_unpack']           = 'Pakk ut';
 $lang['step_check']            = 'Verifisér';
 $lang['step_upgrade']          = 'Installér';
+$lang['careful']               = 'Feil over! Du bør <b>ikke</b> fortsette!';
