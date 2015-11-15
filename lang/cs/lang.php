@@ -43,3 +43,4 @@ $lang['step_download']         = 'Stáhnout';
 $lang['step_unpack']           = 'Rozbalit';
 $lang['step_check']            = 'Ověřit';
 $lang['step_upgrade']          = 'Instalovat';
+$lang['careful']               = 'Došlo k chybám výše! <b>Nepokračujte</b>!';
