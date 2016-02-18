@@ -5,6 +5,7 @@
  * 
  * @author Gerrit Uitslag <klapinklapin@gmail.com>
  * @author Peter van Diest <peter.van.diest@xs4all.nl>
+ * @author Toon <toon@ongeveerhetzelfde.nl>
  */
 $lang['menu']                  = 'Wiki Upgrade';
 $lang['vs_php']                = 'New Dokuwiki releases hebben minstens PHP %s nodig, maar je gebruikt  %s. Je moet eerst je PHP-versie vernieuwen voor je Dokuwiki vernieuwt.';
@@ -14,7 +15,7 @@ $lang['vs_local']              = 'Je gebruikt nu DokuWiki <b>%s</b>.';
 $lang['vs_localno']            = 'Het is niet duidelijk hoe oud de versie is die je nu gebruikt, handmatige upgrade is aan te raden.';
 $lang['vs_newer']              = 'Het lijkt erop dat je huidige Dokuwiki nog nieuwer is dan de laatste stabiele release. Een upgrade is niet aan te raden.';
 $lang['vs_same']               = 'Je huidige Dokuwiki is al up-to-date. Een upgrade is niet nodig.';
-$lang['vs_plugin']             = 'Er is een nieuwere upgrade plugin beschikbaar (%s), je kunt de plugin beter vernieuwen voor je verder gaat.';
+$lang['vs_plugin']             = 'Er is een nieuwere upgrade-plugin beschikbaar (%s), je kunt de plugin beter vernieuwen voor je verder gaat.';
 $lang['vs_ssl']                = 'Je PHP lijkt SSL-streams niet te ondersteunen, het downloaden van de benodigde data zal waarschijnlijk misgaan. Voer  een handmatige upgrade uit.';
 $lang['dl_from']               = 'Archief wordt van %s gedownload...';
 $lang['dl_fail']               = 'Download is mislukt.';
@@ -44,3 +45,4 @@ $lang['step_download']         = 'Download';
 $lang['step_unpack']           = 'Pak uit';
 $lang['step_check']            = 'Verifiëer';
 $lang['step_upgrade']          = 'Installleer';
+$lang['careful']               = 'Fouten in het bovenstaande! Ga <b>niet</b> door!';
