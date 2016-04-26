@@ -7,6 +7,7 @@
  * @author Aleksandr Selivanov <alexgearbox@yandex.ru>
  * @author Vladimir Rozhkov <v.s.rozhkov@outlook.com>
  * @author Vitaly Filatenko <kot@hacktest.net>
+ * @author TyanNN <sashavini2000@gmail.com>
  */
 $lang['menu']                  = 'Обновление вики';
 $lang['vs_php']                = 'Новые версии «Докувики» требуют PHP версии не менее %s, но у вас установлена %s. Вы должны обновить PHP до новой версии перед обновлением.';
@@ -46,3 +47,4 @@ $lang['step_download']         = 'Загрузить';
 $lang['step_unpack']           = 'Распаковать';
 $lang['step_check']            = 'Проверить';
 $lang['step_upgrade']          = 'Установить';
+$lang['careful']               = 'Ошибки выше! Продолжать <b>не</b> стоит!';
