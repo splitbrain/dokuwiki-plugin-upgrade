@@ -2,9 +2,10 @@
 
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
- * 
+ *
  * @author soer9648 <soer9648@eucl.dk>
  * @author Søren Birk <soer9648@eucl.dk>
+ * @author Jacob Palm <mail@jacobpalm.dk>
  */
 $lang['menu']                  = 'Wiki Opgradering';
 $lang['vs_php']                = 'Nye DokuWiki udgivelser kræver som minimum PHP %s, men du benytter i øjeblikket %s. Du bør opdatere din PHP-version, før du opgraderer!';
@@ -44,3 +45,4 @@ $lang['step_download']         = 'Download';
 $lang['step_unpack']           = 'Pak Ud';
 $lang['step_check']            = 'Verificér';
 $lang['step_upgrade']          = 'Installér';
+$lang['careful']               = 'Fejl i ovenstående! Du bør <b>ikke</b> fortsætte!';
