@@ -2,19 +2,20 @@
 
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
- * 
+ *
  * @author Christopher Schive <chschive@frisurf.no>
+ * @author Arne Hanssen <arne.hanssen@getmail.no>
  */
 $lang['menu']                  = 'Wiki-oppgradering';
-$lang['vs_php']                = 'Nye DokuWiki-utgaver trenger minst PHP %s, men du kjører %s.
-Du bør oppgradere PHP-versjonen din før du oppgraderer!';
+$lang['vs_php']                = 'Den nye DokuWiki-utgaven trenger minst PHP %s, men du kjører %s.
+Du bør oppgradere PHP-versjonen din før du oppgraderer wikien!';
 $lang['vs_tgzno']              = 'Kan ikke fastslå den nyeste versjonen av DokuWiki.';
 $lang['vs_tgz']                = 'DokuWiki <b>%s</b> er tilgjengelig for nedlastning.';
 $lang['vs_local']              = 'Du kjører for øyeblikket DokuWiki <b>%s</b>.';
 $lang['vs_localno']            = 'Det er ikke mulig å fastslå hvor gammel din nåværende versjon er. Manuell oppgradering anbefales.';
 $lang['vs_newer']              = 'Det ser ut til at nåværende Dokuwiki er nyere enn siste stabile utgave. Oppdatering anbefales ikke.';
 $lang['vs_same']               = 'Din nåværende DokuWiki er allerede nyeste utgave. Ingen behov for oppgradering.';
-$lang['vs_plugin']             = 'Det fins en nyere oppgraderings-plugin (%s). Du bør oppdatere plugin-en før du fortsetter.';
+$lang['vs_plugin']             = 'Det fins en nyere oppgraderingsutvidelse (%s). Du bør oppdatere denne utvidelsen før du fortsetter.';
 $lang['vs_ssl']                = 'Din PHP synes å ikke støtte SSL-strømming. Nedlastingen vil derfor trolig feile. Oppgrader manuelt i stedet.';
 $lang['dl_from']               = 'Laster ned filarkiv fra %s...';
 $lang['dl_fail']               = 'Nedlastningen mislyktes.';
@@ -44,4 +45,4 @@ $lang['step_download']         = 'Last ned';
 $lang['step_unpack']           = 'Pakk ut';
 $lang['step_check']            = 'Verifisér';
 $lang['step_upgrade']          = 'Installér';
-$lang['careful']               = 'Feil over! Du bør <b>ikke</b> fortsette!';
+$lang['careful']               = 'Se feil over! Du bør <b>ikke</b> fortsette!';
