@@ -2,7 +2,7 @@
 
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
- * 
+ *
  * @author İlker R. Kapaç <irifat@gmail.com>
  */
 $lang['menu']                  = 'Wiki Yükseltme';
@@ -43,3 +43,4 @@ $lang['step_download']         = 'İndir';
 $lang['step_unpack']           = 'Doayaları çıkar';
 $lang['step_check']            = 'Doğrula';
 $lang['step_upgrade']          = 'Kur';
+$lang['careful']               = 'Yukarıdaki hataları inceleyin. Devam <b>etmemeniz</b> önerilir!';
