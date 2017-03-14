@@ -1,0 +1,7 @@
+Dieses Plugin führt ein Upgrade deines DokuWiki auf die aktuellste verfügbare Version aus. Bevor du fortfährst, solltest du das [[doku>changes|Changelog]] prüfen, ob du irgendwelche vorbereitenden Schritte vor dem Upgrade durchführen musst.
+
+Um ein automatisches Upgrade durchführen zu können, benötigt PHP Schreibberechtigungen auf die Dateien deines DokuWiki. Das Plugin überprüft diese Berechtigungen bevor das Upgrade ausgeführt wird.
+
+Diese Plugin führt kein Upgrade von installierten Plugins oder Templates durch.
+
+Es wird empfohlen, ein Backup deines Wikis zu erstellen, bevor du mit dem Upgrade-Prozess beginnst.
