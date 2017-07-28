@@ -1,0 +1,1 @@
+Denna wiki är konfigurerad att använda säkert läge. Tyvärr kan vi, under dessa förhållande, inte säkert uppgradera wikin. Var god [[doku>install:upgrade|uppgradera din wiki manuellt]].
