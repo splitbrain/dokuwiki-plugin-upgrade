@@ -2,7 +2,7 @@
 
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
- * 
+ *
  * @author carlos <carloscyb@gmail.com>
  * @author Domingo Redal <docxml@gmail.com>
  */
@@ -44,3 +44,4 @@ $lang['step_download']         = 'Descargar';
 $lang['step_unpack']           = 'Desempaquetar';
 $lang['step_check']            = 'Verificar';
 $lang['step_upgrade']          = 'Instalar';
+$lang['careful']               = '¡Errores arriba! Deberías <b>no</ b> continuar!';
