@@ -3,12 +3,12 @@
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  *
- * @author Christopher Schive <chschive@frisurf.no>
  * @author Arne Hanssen <arne.hanssen@getmail.no>
+ * @author Christopher Schive <chschive@frisurf.no>
  */
 $lang['menu']                  = 'Wiki-oppgradering';
 $lang['vs_php']                = 'Den nye DokuWiki-utgaven trenger minst PHP %s, men du kjører %s.
-Du bør oppgradere PHP-versjonen din før du oppgraderer wikien!';
+Du må oppdatere PHP før du kan oppgraderer wikien!';
 $lang['vs_tgzno']              = 'Kan ikke fastslå den nyeste versjonen av DokuWiki.';
 $lang['vs_tgz']                = 'DokuWiki <b>%s</b> er tilgjengelig for nedlastning.';
 $lang['vs_local']              = 'Du kjører for øyeblikket DokuWiki <b>%s</b>.';
@@ -34,9 +34,9 @@ $lang['tv_noperm']             = ' Mangler skrivetillatelse til: <code>%s</code>
 $lang['tv_upd']                = 'Kan oppdatere: <code>%s</code>';
 $lang['tv_nocopy']             = 'Kunne ikke kopiere filen <code>%s</code>!';
 $lang['tv_nodir']              = 'Kunne ikke opprette katalogen <code>%s</code>!';
-$lang['tv_done']               = 'oppdatert <code>%s</code>';
-$lang['rm_done']               = 'Utgått <code>%s</code> slettet.';
-$lang['rm_fail']               = 'Kunne ikke slette utgått <code>%s</code>. <b>Vennligst slett manuelt!</b>';
+$lang['tv_done']               = 'Oppdaterer <code>%s</code>';
+$lang['rm_done']               = 'Utdatert fil <code>%s</code> slettet.';
+$lang['rm_fail']               = 'Kunne ikke slette utdatert fil <code>%s</code>. <b>Vennligst slett filen manuelt!</b>';
 $lang['finish']                = 'Oppgraderingen er fullført. Nyt din nye DokuWiki';
 $lang['btn_continue']          = 'Fortsett';
 $lang['btn_abort']             = 'Avbryt';
@@ -45,4 +45,4 @@ $lang['step_download']         = 'Last ned';
 $lang['step_unpack']           = 'Pakk ut';
 $lang['step_check']            = 'Verifisér';
 $lang['step_upgrade']          = 'Installér';
-$lang['careful']               = 'Se feil i listen over! Du bør <b>ikke</b> fortsette!';
+$lang['careful']               = 'Se feil i listen over! Du kan <b>ikke</b> fortsette!';
