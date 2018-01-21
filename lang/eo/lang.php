@@ -2,9 +2,9 @@
 
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
- * 
+ *
+ * @author Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>
  * @author Robert Bogenschneider <bogi@uea.org>
- * @author Robert Bogenschneider <robog@gmx.de>
  */
 $lang['menu']                  = 'Viki-Aktualigo';
 $lang['vs_php']                = 'Novaj DokuWiki-eldonoj bezonas minumime PHP-version %s, sed vi uzas %s. Vi devus aktualigi vian PHP-version antaŭ ol aktualigi la vikion!';
@@ -44,3 +44,4 @@ $lang['step_download']         = 'Elŝuti';
 $lang['step_unpack']           = 'Malpaki';
 $lang['step_check']            = 'Certigi';
 $lang['step_upgrade']          = 'Instali';
+$lang['careful']               = 'Eraroj aperis! <b>Ne</b> daŭrigi!';
