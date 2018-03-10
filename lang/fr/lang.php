@@ -2,7 +2,7 @@
 
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
- * 
+ *
  * @author Guillaume Turri <guillaume.turri@gmail.com>
  * @author Nicolas Friedli <nicolas@theologique.ch>
  * @author Schplurtz le Déboulonné <schplurtz@laposte.net>
