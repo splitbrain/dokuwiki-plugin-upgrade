@@ -290,7 +290,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         }
 
         // check if PHP is up to date
-        $minphp = '5.3.3';
+        $minphp = '5.6';
         if(version_compare(phpversion(), $minphp, '<')) {
             $this->_warn($this->getLang('vs_php'), $minphp, phpversion());
             $ok = false;
