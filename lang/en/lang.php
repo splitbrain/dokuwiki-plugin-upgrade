@@ -35,10 +35,12 @@ $lang['cp_fail']    = 'Uh-Oh. Something went wrong. Better check manually.';
 $lang['tv_noperm']  = '<code>%s</code> is not writable!';
 $lang['tv_upd']     = '<code>%s</code> will be updated.';
 $lang['tv_nocopy']  = 'Could not copy file <code>%s</code>!';
+$lang['tv_nocopy']  = 'Could not remove existing file <code>%s</code> before overwriting!';
 $lang['tv_nodir']   = 'Could not create directory <code>%s</code>!';
 $lang['tv_done']    = 'updated <code>%s</code>';
 $lang['rm_done']    = 'Deprecated <code>%s</code> deleted.';
 $lang['rm_fail']    = 'Could not delete deprecated <code>%s</code>. <b>Please delete manually!</b>';
+$lang['rm_mismatch']= 'Case mismatch for deprecated file <code>%s</code>. Please check manually if file should really be deleted.';
 $lang['finish']     = 'Upgrade completed. Enjoy your new DokuWiki';
 
 $lang['btn_continue'] = 'Continue';

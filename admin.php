@@ -416,6 +416,12 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
             if(!$line) continue;
             $file = DOKU_INC.$line;
             if(!file_exists($file)) continue;
+
+            // check that the given file is an case sensitive match
+            if(basename(realpath($file)) != basename($file)) {
+                $this->_warn($this->getLang('rm_mismatch'), hsc($line));
+            }
+
             if((is_dir($file) && $this->_rdel($file)) ||
                 @unlink($file)
             ) {
@@ -485,6 +491,11 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
                     } else {
                         // check dir
                         if(io_mkdir_p(dirname($to))) {
+                            // remove existing (avoid case sensitivity problems)
+                            if(file_exists($to) && !@unlink($to)) {
+                                $this->_warn('<b>'.$this->getLang('tv_nodel').'</b>', hsc("$dir/$file"));
+                                $ok = false;
+                            }
                             // copy
                             if(!copy($from, $to)) {
                                 $this->_warn('<b>'.$this->getLang('tv_nocopy').'</b>', hsc("$dir/$file"));
