@@ -6,13 +6,14 @@
  * @author     Andreas Goetz <cpuidle@gmx.de>
  */
 
+namespace dokuwiki\plugin\upgrade;
 
-define('HTTP_NL',"\r\n");
+if(!defined('HTTP_NL')) define('HTTP_NL',"\r\n");
 
 /**
  * Class HTTPClientException
  */
-class HTTPClientException extends Exception { }
+class HTTPClientException extends \Exception { }
 
 /**
  * This class implements a basic HTTP client
@@ -927,7 +928,7 @@ class DokuHTTPClient extends HTTPClient {
         $httpdata = array('url'    => $url,
                           'data'   => $data,
                           'method' => $method);
-        $evt = new Doku_Event('HTTPCLIENT_REQUEST_SEND',$httpdata);
+        $evt = new \Doku_Event('HTTPCLIENT_REQUEST_SEND',$httpdata);
         if($evt->advise_before()){
             $url    = $httpdata['url'];
             $data   = $httpdata['data'];

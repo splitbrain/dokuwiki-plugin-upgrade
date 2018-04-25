@@ -13,6 +13,8 @@ require_once DOKU_PLUGIN.'admin.php';
 require_once DOKU_PLUGIN.'upgrade/VerboseTarLib.class.php';
 require_once DOKU_PLUGIN.'upgrade/HTTPClient.php';
 
+use dokuwiki\plugin\upgrade\DokuHTTPClient;
+
 class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
     private $tgzurl;
     private $tgzfile;
