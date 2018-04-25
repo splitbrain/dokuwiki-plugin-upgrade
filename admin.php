@@ -422,7 +422,8 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
 
             // check that the given file is an case sensitive match
             if(basename(realpath($file)) != basename($file)) {
-                $this->_warn($this->getLang('rm_mismatch'), hsc($line));
+                $this->_say($this->getLang('rm_mismatch'), hsc($line));
+                continue;
             }
 
             if((is_dir($file) && $this->_rdel($file)) ||
