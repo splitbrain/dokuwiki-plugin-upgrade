@@ -3,8 +3,8 @@
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  *
- * @author carlos <carloscyb@gmail.com>
  * @author Domingo Redal <docxml@gmail.com>
+ * @author carlos <carloscyb@gmail.com>
  */
 $lang['menu']                  = 'Actualización de Wiki';
 $lang['vs_php']                = 'Las nuevas versiones de DokuWiki necesitan al menos PHP %s, pero tú estás ejecutando %s. ¡Deberías subir la versión de PHP antes de actualizar!';
@@ -36,6 +36,7 @@ $lang['tv_nodir']              = '¡No se puede crear el directorio <code>%s</co
 $lang['tv_done']               = '<code>%s</code> actualizado';
 $lang['rm_done']               = '<code>%s</code> obsoleto borrado.';
 $lang['rm_fail']               = 'No se puede borrar <code>%s</code> obsoleto. <b>¡Por favor, bórralo manualmente!</b>';
+$lang['rm_mismatch']           = 'No coinciden las mayúsculas/minúsculas del fichero obsoleto <code>%s</code>. Por favor verifique manualmente si el fichero debe ser realmente eliminado.';
 $lang['finish']                = 'Actualización completada. Disfruta de tu nueva DokuWiki';
 $lang['btn_continue']          = 'Continuar';
 $lang['btn_abort']             = 'Abortar';
