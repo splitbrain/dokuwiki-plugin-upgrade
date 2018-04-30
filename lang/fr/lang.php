@@ -3,6 +3,7 @@
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  *
+ * @author trebmuh <trebmuh@tuxfamily.org>
  * @author Guillaume Turri <guillaume.turri@gmail.com>
  * @author Nicolas Friedli <nicolas@theologique.ch>
  * @author Schplurtz le Déboulonné <schplurtz@laposte.net>
@@ -39,6 +40,7 @@ $lang['tv_nodir']              = 'Impossible de créer le répertoire <code>%s</
 $lang['tv_done']               = 'Mis à jour : <code>%s</code>';
 $lang['rm_done']               = 'Suppression du fichier obsolète <code>%s</code>.';
 $lang['rm_fail']               = 'Impossible de supprimer le fichier obsolète <code>%s</code>. <strong>Veuillez le supprimer à la main.</strong>';
+$lang['rm_mismatch']           = 'Cas incompatible pour le fichier déprécié <code>%s</code>. Veuillez vérifier manuellement si le fichier doit vraiment être effacé.';
 $lang['finish']                = 'Mise à jour accomplie. Profitez de votre nouveau DokuWiki !';
 $lang['btn_continue']          = 'Continuer';
 $lang['btn_abort']             = 'Arrêter';
