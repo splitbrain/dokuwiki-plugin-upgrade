@@ -2,7 +2,8 @@
 
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
- * 
+ *
+ * @author HokkaidoPerson <dosankomali@yahoo.co.jp>
  * @author Hideaki SAWADA <chuno@live.jp>
  */
 $lang['menu']                  = 'Wiki のアップグレード';
@@ -35,6 +36,7 @@ $lang['tv_nodir']              = '<code>%s</code> ディレクトリが作成で
 $lang['tv_done']               = '<code>%s</code> の更新完了。';
 $lang['rm_done']               = '廃止予定の <code>%s</code> の削除完了。';
 $lang['rm_fail']               = '廃止予定の <code>%s</code> が削除できませんでした。<b>手動で削除して下さい！</b>';
+$lang['rm_mismatch']           = '使われなくなったファイル <code>%s</code> に対して、ケースの不一致が発生しました。ファイルを実際に削除する必要があるかどうか、手動で確認して下さい。';
 $lang['finish']                = 'アップグレードが完了しました。新しい DokuWiki をお楽しみ下さい。';
 $lang['btn_continue']          = '続行';
 $lang['btn_abort']             = '中止';
