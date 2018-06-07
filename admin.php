@@ -298,6 +298,9 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
      * Redirect to the start page
      */
     private function _step_done() {
+        if (function_exists('opcache_reset')) {
+            opcache_reset();
+        }
         echo $this->getLang('finish');
         echo "<script type='text/javascript'>location.href='".DOKU_URL."';</script>";
     }
