@@ -52,14 +52,6 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
 
         echo '<h1>'.$this->getLang('menu').'</h1>';
 
-        global $conf;
-        if($conf['safemodehack']) {
-            $abrt = false;
-            $next = false;
-            echo $this->locale_xhtml('safemode');
-            return;
-        }
-
         $this->_say('<div id="plugin__upgrade">');
         // enable auto scroll
         ?>
