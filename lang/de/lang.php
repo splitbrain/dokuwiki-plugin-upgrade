@@ -2,7 +2,8 @@
 
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
- * 
+ *
+ * @author Gunnar Lindenblatt <gunnar.lindenblatt@gmail.com>
  * @author Christoph Ziehr <info@einsatzleiterwiki.de>
  * @author Alex Timmermann <alex@modprobe.io>
  * @author Patrick Kastner <patrick.kastner@gmail.com>
@@ -38,6 +39,7 @@ $lang['tv_nodir']              = 'Konnte Verzeichnis <code>%s</code> nicht erste
 $lang['tv_done']               = '<code>%s</code> wurde aktualisiert.';
 $lang['rm_done']               = 'Veraltete <code>%s</code> wurde gel&ouml;scht.';
 $lang['rm_fail']               = 'Konnte veraltete Datei <code>%s</code> nicht l&ouml;schen. <b>Bitte l&ouml;schen Sie von Hand!</b>';
+$lang['rm_mismatch']           = 'Die Groß-/Kleinschreibung der veralteten Datei <code>%s</code> stimmt nicht (Case mismatch). Bitte prüfen Sie manuell, ob die Datei wirklich gelöscht werden soll.';
 $lang['finish']                = 'Aktualisierung abgeschlossen. Genie&szlig;en Sie Ihr neues DokuWiki!';
 $lang['btn_continue']          = 'Fortfahren';
 $lang['btn_abort']             = 'Abbrechen';
