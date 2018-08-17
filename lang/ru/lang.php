@@ -2,7 +2,7 @@
 
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
- * 
+ *
  * @author Grigory Gubin <gv.gubin@gmail.com>
  * @author Aleksandr Selivanov <alexgearbox@yandex.ru>
  * @author Vladimir Rozhkov <v.s.rozhkov@outlook.com>
