@@ -3,6 +3,7 @@
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  *
+ * @author Vyacheslav Strenadko <vyacheslav.strenadko@gmail.com>
  * @author Grigory Gubin <gv.gubin@gmail.com>
  * @author Aleksandr Selivanov <alexgearbox@yandex.ru>
  * @author Vladimir Rozhkov <v.s.rozhkov@outlook.com>
@@ -39,6 +40,7 @@ $lang['tv_nodir']              = 'Невозможно создать папку
 $lang['tv_done']               = 'обновление <code>%s</code>';
 $lang['rm_done']               = 'Устаревший <code>%s</code> удалён.';
 $lang['rm_fail']               = 'Невозможно удалить устаревший <code>%s</code>. <b>Пожалуйста, удалите вручную!</b>';
+$lang['rm_mismatch']           = 'Несоответствие для устаревшего файла <code>%s</code>. Если файл действительно нужно удалить, проверьте вручную.';
 $lang['finish']                = 'Обновление завершено. Наслаждайтесь своей новой «Докувики»';
 $lang['btn_continue']          = 'Продолжить';
 $lang['btn_abort']             = 'Отменить';
