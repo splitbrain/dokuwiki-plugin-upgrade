@@ -1,0 +1,7 @@
+Acest plugin va actualiza automat wiki-ul dvs. la cea mai recentă versiune DokuWiki disponibilă.Înainte de a continua, ar trebui să citiți [[doku>changes|Changelog]]  pentru a verifica dacă există pași suplimentari pe care să îi efectuați înainte sau după actualizare.
+
+Pentru a permite actualizarea automată, procesul PHP necesită permisiuni de scriere pentru fișierele Dokuwiki.Pluginul va verifica permisiunile necesare pentru fișier înainte de a începe procesul de actualizare.
+
+Acest plugin nu va actualiza pluginurile sau șabloanele instalate.
+
+Vă recomandăm să creați o copie de rezervă a wiki-ului înainte de a continua.
