@@ -35,6 +35,7 @@ $lang['tv_nodir']              = 'Ne mogu kreirati mapu <code>%s</code>!';
 $lang['tv_done']               = 'nadograđen <code>%s</code>';
 $lang['rm_done']               = 'Suvišno <code>%s</code> obrisano.';
 $lang['rm_fail']               = 'Ne mogu obrisati suvišno <code>%s</code>. <b>Molim da to obrišete ručno!</b>';
+$lang['rm_mismatch']           = 'Vrsta slova se ne podudara za nepotrebnu datoteku <code>%s</code>. Molimo ručno provjerite da li navedena datoteka treba zaista biti obrisana.';
 $lang['finish']                = 'Nadogradnja završena. Uživajte u novoj inačici DokuWiki-a';
 $lang['btn_continue']          = 'Nastavi';
 $lang['btn_abort']             = 'Prekini';
