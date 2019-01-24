@@ -2,7 +2,7 @@
 
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
- * 
+ *
  * @author Gerrit Uitslag <klapinklapin@gmail.com>
  * @author Peter van Diest <peter.van.diest@xs4all.nl>
  * @author Toon <toon@ongeveerhetzelfde.nl>
@@ -38,6 +38,7 @@ $lang['tv_nodir']              = 'De map <code>%s</code> kan niet aangemaakt wor
 $lang['tv_done']               = '<code>%s</code> is geüpdatet.';
 $lang['rm_done']               = 'Verouderde <code>%s</code> verwijderd.';
 $lang['rm_fail']               = 'Verouderde <code>%s</code> kan niet worden verwijderd. <b>Verwijder alsjeblieft handmatig!</b>';
+$lang['rm_mismatch']           = 'Een verschil gevonden tussen hoofdletter(s) en kleine letter(s) voor het verouderde bestand <code>%s</code>. Controleer alsjeblieft of dit bestand echt verwijderd moet worden.';
 $lang['finish']                = 'Upgrade compleet. Geniet van je nieuwe DokuWiki';
 $lang['btn_continue']          = 'Doorgaan';
 $lang['btn_abort']             = 'Afbreken';
