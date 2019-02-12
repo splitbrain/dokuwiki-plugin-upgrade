@@ -49,4 +49,4 @@ $lang['step_download']         = 'Télécharger';
 $lang['step_unpack']           = 'Décompresser';
 $lang['step_check']            = 'Vérifier';
 $lang['step_upgrade']          = 'Installer';
-$lang['careful']               = 'Il y as des erreurs! Vous ne devriez <strong>pas</strong> continuer !';
+$lang['careful']               = 'Il y a des erreurs! Vous ne devriez <strong>pas</strong> continuer !';
