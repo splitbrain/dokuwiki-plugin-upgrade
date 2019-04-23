@@ -2,7 +2,7 @@
 
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
- * 
+ *
  * @author Yuwei Sun <yuwei@hrz.tu-chemnitz.de>
  * @author Mike Gao <1524747399@qq.com>
  */
