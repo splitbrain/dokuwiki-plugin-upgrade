@@ -2,7 +2,8 @@
 
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
- * 
+ *
+ * @author Liu Guang <l.g110@163.com>
  * @author Yuwei Sun <yuwei@hrz.tu-chemnitz.de>
  * @author Mike Gao <1524747399@qq.com>
  */
@@ -36,6 +37,7 @@ $lang['tv_nodir']              = '无法创建文件夹<code>%s</code>！';
 $lang['tv_done']               = '更新<code>%s</code>';
 $lang['rm_done']               = '旧版<code>%s</code>已删除。';
 $lang['rm_fail']               = '无法删除旧版<code>%s</code>。<b>请手动删除！</b>';
+$lang['rm_mismatch']           = '已弃用文件<code>％s </ code>的大小写不匹配。 请手动检查是否应该删除文件。';
 $lang['finish']                = '升级完成。请享受新版DokuWiki！';
 $lang['btn_continue']          = '继续';
 $lang['btn_abort']             = '中止';
