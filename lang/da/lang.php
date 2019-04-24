@@ -3,9 +3,8 @@
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  *
- * @author soer9648 <soer9648@eucl.dk>
- * @author Søren Birk <soer9648@eucl.dk>
  * @author Jacob Palm <mail@jacobpalm.dk>
+ * @author soer9648 <soer9648@eucl.dk>
  */
 $lang['menu']                  = 'Wiki Opgradering';
 $lang['vs_php']                = 'Nye DokuWiki udgivelser kræver som minimum PHP %s, men du benytter i øjeblikket %s. Du bør opdatere din PHP-version, før du opgraderer!';
@@ -37,6 +36,7 @@ $lang['tv_nodir']              = 'Kunne ikke oprette mappen <code>%s</code>!';
 $lang['tv_done']               = 'Opdaterede <code>%s</code>';
 $lang['rm_done']               = 'Forældet <code>%s</code> slettet.';
 $lang['rm_fail']               = 'Kunne ikke slette forældet <code>%s</code>. <b>Slet venligst manuelt!</b>';
+$lang['rm_mismatch']           = 'Filen <code>%s</code> stemmer ikke overens med store og små bogstaver i navnet. Kontroller venligst manuelt om filen virkelig skal slettes.';
 $lang['finish']                = 'Opgradering færdig. Nyd din nye DokuWiki';
 $lang['btn_continue']          = 'Fortsæt';
 $lang['btn_abort']             = 'Afbryd';
