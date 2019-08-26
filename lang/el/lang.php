@@ -5,14 +5,6 @@
  *
  * @author Katerina Katapodi <extragold1234@hotmail.com>
  */
-$lang['btn_continue']          = 'Συνέχεια';
-$lang['btn_abort']             = 'Εξαγωγή';
-$lang['step_version']          = 'Έλεγχος ';
-$lang['step_download']         = 'Κατέβασμα';
-$lang['step_unpack']           = 'Λήψη';
-$lang['step_check']            = 'Επαλήθευση';
-$lang['step_upgrade']          = 'Εγκατάσταση';
-$lang['careful']               = 'Υπάρχουν λάθη πιο πάνω! Δεν πρέπει <b> </b> να συνεχίσετε!';
 $lang['menu']                  = 'Αναβάθμιση Wiki';
 $lang['vs_php']                = 'Οι νέες εκδοχές του Dokuwiki χρειάζονται τουλάχιστον PHP %s, αλλά τώρα λειτουργεί το %s. Πρέπει να αναβαθμίσετε την εκδοχή ΡΗΡ πριν την αναβάθμιση!';
 $lang['vs_tgzno']              = 'Δεν μπόρεσε να προσδιορίσει την νεότερη εκδοχή Dokuwiki.';
@@ -45,4 +37,11 @@ $lang['rm_done']               = 'Ο υποβαθμισμένος <code>%s</code
 $lang['rm_fail']               = 'Δεν μπόρεσε να σβήσει τον υποβαθμισμένο κώδικα <code>%s</code>. <b> Παρακαλώ διαγράψετε χειροκίνητα!</b>	';
 $lang['rm_mismatch']           = 'Μη αντιστοίχιση του ελλιπούς φακέλλου  <code>%s</code>. Παρακαλώ ελέγξετε χειροκίνητα για να δείτε αν πρέπει να διαγραφεί ο φάκελλος.';
 $lang['finish']                = 'Η αναβάθμιση ολοκληρώθηκε Απολαύστε το νέο σας Dokuwiki';
-
+$lang['btn_continue']          = 'Συνέχεια';
+$lang['btn_abort']             = 'Εξαγωγή';
+$lang['step_version']          = 'Έλεγχος ';
+$lang['step_download']         = 'Κατέβασμα';
+$lang['step_unpack']           = 'Λήψη';
+$lang['step_check']            = 'Επαλήθευση';
+$lang['step_upgrade']          = 'Εγκατάσταση';
+$lang['careful']               = 'Υπάρχουν λάθη πιο πάνω! Δεν πρέπει <b> </b> να συνεχίσετε!';
