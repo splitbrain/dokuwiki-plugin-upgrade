@@ -3,6 +3,7 @@
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  *
+ * @author Schopf <pschopf@gmail.com>
  * @author Frederico Gonçalves Guimarães <frederico@teia.bio.br>
  */
 $lang['menu']                  = 'Atualização do wiki';
@@ -27,10 +28,10 @@ $lang['ck_done']               = 'Todos os arquivos têm permissão de escrita. 
 $lang['ck_fail']               = 'Alguns arquivos não tem permissão de escrita. Não é possível efetuar a atualização automática.';
 $lang['cp_start']              = 'Atualizando arquivos...';
 $lang['cp_done']               = 'Todos os arquivos foram atualizados.';
-$lang['cp_fail']               = 'Hummm... Alguma coisa deu errado. Melhor chegar manualmente.';
+$lang['cp_fail']               = 'Hummm... Alguma coisa deu errado. Melhor checar manualmente.';
 $lang['tv_noperm']             = '<code>%s</code> não tem permissão de escrita!';
 $lang['tv_upd']                = '<code>%s</code> será atualizado.';
-$lang['tv_nocopy']             = 'Não foi possível remover o arquivo <code>%s</code> existente antes de ser sobrescrito!';
+$lang['tv_nocopy']             = 'Não foi possível remover o arquivo <code>%s</code> existente antes de sobrescever!';
 $lang['tv_nodir']              = 'Não foi possível criar o diretório <code>%s</code>!';
 $lang['tv_done']               = '<code>%s</code> atualizado';
 $lang['rm_done']               = '<code>%s</code> obsoleto foi excluído.';
@@ -44,4 +45,4 @@ $lang['step_download']         = 'Baixar';
 $lang['step_unpack']           = 'Desempacotar';
 $lang['step_check']            = 'Verificar';
 $lang['step_upgrade']          = 'Instalar';
-$lang['careful']               = 'Erros acima! Você <b>não</b> deveria continuar!';
+$lang['careful']               = 'Erros acima! <b>Não</b> continue!';
