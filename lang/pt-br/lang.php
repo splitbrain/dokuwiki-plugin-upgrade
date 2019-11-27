@@ -3,6 +3,7 @@
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  *
+ * @author Schopf <pschopf@gmail.com>
  * @author Frederico Gonçalves Guimarães <frederico@teia.bio.br>
  */
 $lang['menu']                  = 'Atualização do wiki';
@@ -44,4 +45,4 @@ $lang['step_download']         = 'Baixar';
 $lang['step_unpack']           = 'Desempacotar';
 $lang['step_check']            = 'Verificar';
 $lang['step_upgrade']          = 'Instalar';
-$lang['careful']               = 'Erros acima! Você <b>não</b> deveria continuar!';
+$lang['careful']               = 'Erros acima! <b>Não</b> continue!';
