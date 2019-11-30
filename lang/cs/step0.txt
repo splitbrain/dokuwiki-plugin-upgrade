@@ -4,4 +4,4 @@ Pro povolení automatické aktualizace je třeba zajistit PHP procesu zapisovac�
 
 Tento modul nebude aktualizovat nainstalované šablony ani ostatní zásuvné moduly.
 
-Před spuštěním se doporučuje vytvoření zálohy vaší wiki.
+Před spuštěním doporučujeme, abyste si vytvořili zálohu dat vaší wiki.
