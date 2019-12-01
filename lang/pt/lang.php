@@ -3,7 +3,7 @@
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  *
- * @author Paulo Ricardo Schopf <pschopf@gmail.com>
+ * @author Schopf <pschopf@gmail.com>
  * @author José Vieira <jmsv63@gmail.com>
  * @author Oze Projetos <oze@oze.net.br>
  */
@@ -30,7 +30,7 @@ $lang['ck_done']               = 'Todos os arquivos são graváveis. Pronto para
 $lang['ck_fail']               = 'Alguns arquivos não são graváveis. Não é possível a atualização automática.';
 $lang['cp_start']              = 'Atualizando arquivos...';
 $lang['cp_done']               = 'Todos os arquivos atualizados.';
-$lang['cp_fail']               = 'Uh-Oh. Algo deu errado. Melhor verificar manualmente.';
+$lang['cp_fail']               = 'Algo deu errado. Melhor verificar manualmente.';
 $lang['tv_noperm']             = '<code>%s</code> não é gravável!';
 $lang['tv_upd']                = '<code>%s</code> será atualizado.';
 $lang['tv_nocopy']             = 'Não foi possível copiar o arquivo <code>%s</code> antes de sobrescrever!';
