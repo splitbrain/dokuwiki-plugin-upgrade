@@ -1,0 +1,7 @@
+Plugin này sẽ tự động nâng cấp wiki của bạn lên phiên bản DokuWiki mới nhất hiện có. Trước khi tiếp tục, bạn nên đọc [[doku>changes|Nhật trình thay đổi]] để kiểm tra xem có bất kỳ bước bổ sung nào để bạn thực hiện trước hoặc sau khi nâng cấp không.
+
+Để cho phép nâng cấp tự động, quy trình PHP yêu cầu quyền ghi cho các tập tin Dokuwiki. Plugin sẽ kiểm tra các quyền tập tin cần thiết trước khi bắt đầu quá trình nâng cấp.
+
+Plugin này sẽ không nâng cấp bất kỳ plugin hoặc chủ đề đã cài đặt nào.
+
+Chúng tôi khuyên bạn nên tạo bản sao lưu wiki của mình trước khi tiếp tục.
