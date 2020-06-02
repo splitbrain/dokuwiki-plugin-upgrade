@@ -241,7 +241,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
             $this->_warn($this->getLang('vs_tgzno').' '.hsc($http->error));
             $ok = false;
         }
-        if(!preg_match('/(^| )(?:rc)(\d\d\d\d-\d\d-\d\d[a-z]*)( |$)/i', $tgzversion, $m)) {
+        if(!preg_match('/(^| )(?:rc)?(\d\d\d\d-\d\d-\d\d[a-z]*)( |$)/i', $tgzversion, $m)) {
             $this->_warn($this->getLang('vs_tgzno'));
             $ok            = false;
             $tgzversionnum = 0;
@@ -252,7 +252,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
 
         // get the current version
         $version = getVersion();
-        if(!preg_match('/(^| )(?:rc)(\d\d\d\d-\d\d-\d\d[a-z]*)( |$)/i', $version, $m)) {
+        if(!preg_match('/(^| )(?:rc)?(\d\d\d\d-\d\d-\d\d[a-z]*)( |$)/i', $version, $m)) {
             $versionnum = 0;
         } else {
             $versionnum = $m[2];
