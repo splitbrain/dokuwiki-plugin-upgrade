@@ -262,7 +262,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
             if($tgzversionnum < $versionnum) {
                 $this->_warn($this->getLang('vs_newer'));
                 $ok = false;
-            } elseif($tgzversionnum == $versionnum) {
+            } elseif($tgzversionnum == $versionnum && $tgzversion == $version) {
                 $this->_warn($this->getLang('vs_same'));
                 $ok = false;
             }
