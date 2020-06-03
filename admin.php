@@ -241,22 +241,17 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
             $this->_warn($this->getLang('vs_tgzno').' '.hsc($http->error));
             $ok = false;
         }
-        if(!preg_match('/(^| )(?:rc)?(\d\d\d\d-\d\d-\d\d[a-z]*)( |$)/i', $tgzversion, $m)) {
+        $tgzversionnum = $this->dateFromVersion($tgzversion);
+        if($tgzversionnum === 0) {
             $this->_warn($this->getLang('vs_tgzno'));
             $ok            = false;
-            $tgzversionnum = 0;
         } else {
-            $tgzversionnum = $m[2];
             self::_say($this->getLang('vs_tgz'), $tgzversion);
         }
 
         // get the current version
         $version = getVersion();
-        if(!preg_match('/(^| )(?:rc)?(\d\d\d\d-\d\d-\d\d[a-z]*)( |$)/i', $version, $m)) {
-            $versionnum = 0;
-        } else {
-            $versionnum = $m[2];
-        }
+        $versionnum = $this->dateFromVersion($version);
         self::_say($this->getLang('vs_local'), $version);
 
         // compare versions
@@ -512,6 +507,19 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         }
         closedir($dh);
         return $ok;
+    }
+
+    /**
+     * Figure out the release date from the version string
+     *
+     * @param $version
+     * @return int|string returns 0 if the version can't be read
+     */
+    public function dateFromVersion($version) {
+        if(preg_match('/(^|[^\d])(\d\d\d\d-\d\d-\d\d)([^\d]|$)/i', $version, $m)) {
+            return $m[2];
+        }
+        return 0;
     }
 }
 
