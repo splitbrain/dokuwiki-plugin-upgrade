@@ -3,7 +3,7 @@
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  *
- * @author Thien Hau <thienhausoftware@gmail.com>
+ * @author Thien Hau <thienhau.9a14@gmail.com>
  */
 $lang['menu']                  = 'Năng cấp Wiki';
 $lang['vs_php']                = 'Bản phát hành DokuWiki mới cần ít nhất PHP %s, nhưng bạn đang chạy %s.  Bạn nên nâng cấp phiên bản PHP của mình trước khi nâng cấp!';
@@ -17,7 +17,7 @@ $lang['vs_plugin']             = 'Có một plugin có sẵn nâng cấp mới h
 $lang['vs_ssl']                = 'PHP của bạn dường như không hỗ trợ các luồng SSL, việc tải xuống dữ liệu cần thiết rất có thể sẽ thất bại. Thay vào đó hãy nâng cấp thủ công.';
 $lang['dl_from']               = 'Đang tải xuống lưu trữ từ %s...';
 $lang['dl_fail']               = 'Tải về thất bại.';
-$lang['dl_done']               = 'Hoàn tất tải xuống  (%s).';
+$lang['dl_done']               = 'Hoàn tất tải xuống (%s).';
 $lang['pk_extract']            = 'Giải nén lưu trữ...';
 $lang['pk_fail']               = 'Giải nén thất bại.';
 $lang['pk_done']               = 'Giải nén xong.';
@@ -33,12 +33,12 @@ $lang['tv_upd']                = '<code>%s</code> sẽ được năng cấp.';
 $lang['tv_nocopy']             = 'Không thể xóa tập tin hiện có <code>%s</code> trước khi ghi đè!';
 $lang['tv_nodir']              = 'Khoing thể tạo đường dẫn <code>%s</code>!';
 $lang['tv_done']               = 'đã cập nhật <code>%s</code>';
-$lang['rm_done']               = 'Đã xóa <code>%s</code> lỗi thời.';
+$lang['rm_done']               = 'đã xóa <code>%s</code> lỗi thời.';
 $lang['rm_fail']               = 'Không thể xóa <code>%s</code> lỗi thời. <b>Vui lòng xóa thủ công!</b>';
 $lang['rm_mismatch']           = 'Trường hợp không phù hợp cho tập tin <code>%s</code> lỗi thời. Vui lòng kiểm tra thủ công nếu tập tin thực sự nên bị xóa.';
 $lang['finish']                = 'Nâng cấp hoàn thành. Thưởng thức DokuWiki mới của bạn';
 $lang['btn_continue']          = 'Tiếp tục';
-$lang['btn_abort']             = ' Hủy bỏ';
+$lang['btn_abort']             = 'Hủy bỏ';
 $lang['step_version']          = 'Kiểm tra';
 $lang['step_download']         = 'Tải về';
 $lang['step_unpack']           = 'Giải nén';
