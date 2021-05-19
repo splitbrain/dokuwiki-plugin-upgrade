@@ -236,7 +236,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
 
         // get the available version
         $http       = new DokuHTTPClient();
-        $tgzversion = $http->get($this->tgzversion);
+        $tgzversion = trim($http->get($this->tgzversion));
         if(!$tgzversion) {
             $this->_warn($this->getLang('vs_tgzno').' '.hsc($http->error));
             $ok = false;
@@ -250,7 +250,8 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         }
 
         // get the current version
-        $version = getVersion();
+        $versiondata = getVersionData();
+        $version = trim($versiondata['date']);
         $versionnum = $this->dateFromVersion($version);
         self::_say($this->getLang('vs_local'), $version);
 
