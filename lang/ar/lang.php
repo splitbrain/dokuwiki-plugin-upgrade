@@ -3,6 +3,7 @@
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  *
+ * @author Vairssara <warisara1675@gmail.com>
  * @author Khalid <khalid.aljahil@gmail.com>
  */
 $lang['menu']                  = 'ترقية ويكي';
