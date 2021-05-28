@@ -3,6 +3,7 @@
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  *
+ * @author DrMaXX <drmaxxis@gmail.com>
  * @author Thomas Templin <templin@gnuwhv.de>
  * @author rnck <dokuwiki@rnck.de>
  * @author Felix <j.felix@mueller-donath.de>
@@ -37,6 +38,7 @@ $lang['tv_nodir']              = 'Konnte Verzeichnis <code>%s</code> nicht erste
 $lang['tv_done']               = '<code>%s</code> wurde aktualisiert.';
 $lang['rm_done']               = 'Veraltete <code>%s</code> wurde gel&ouml;scht.';
 $lang['rm_fail']               = 'Konnte veraltete Datei <code>%s</code> nicht l&ouml;schen. <b>Bitte l&ouml;schen Sie von Hand!</b>';
+$lang['rm_mismatch']           = 'Falsche Groß-/Kleinschreibung für veraltete Datei <code>%s</code>. Bitte prüfe manuell, ob die Datei wirklich gelöscht werden soll.';
 $lang['finish']                = 'Aktualisierung abgeschlossen. Genie&szlig;en Sie Ihr neues DokuWiki!';
 $lang['btn_continue']          = 'Fortsetzen';
 $lang['btn_abort']             = 'Abbrechen';
