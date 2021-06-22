@@ -3,6 +3,7 @@
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  *
+ * @author Nima Hamidian <nima.hamidian@gmail.com>
  * @author Sam01 <m.sajad079@gmail.com>
  */
 $lang['menu']                  = 'ارتقا ویکی';
@@ -35,12 +36,13 @@ $lang['tv_nodir']              = 'نمی‌توان دایرکتوی <code>%s</c
 $lang['tv_done']               = '<code>%s</code> بروزرسانی شد';
 $lang['rm_done']               = '<code>%s</code> منسوخ حذف شد.';
 $lang['rm_fail']               = 'توانایی حذف <code>%s</code> منسوخی نیست. <b>لطفا دستی حذف کنید!</b>';
+$lang['rm_mismatch']           = 'عدم مطابقت برای فایل منسوخ‌شده  <code>%s</code>. لطفا بطور دستی امتحان کنید اگر واقعاً فایل باید حذف شود.';
 $lang['finish']                = 'ارتقا پایان یافت. از دوکوویکی جدید لذت ببر.';
 $lang['btn_continue']          = 'ادامه';
-$lang['btn_abort']             = 'سقط';
+$lang['btn_abort']             = 'لغو';
 $lang['step_version']          = 'بررسی';
 $lang['step_download']         = 'دانلود';
 $lang['step_unpack']           = 'بازکردن بسته';
-$lang['step_check']            = 'بازبینی';
+$lang['step_check']            = 'تایید';
 $lang['step_upgrade']          = 'نصب';
-$lang['careful']               = 'خطاهای بالا! شما باید <b>نباید</b> ادامه بدهید!';
+$lang['careful']               = 'خطاهای بالا! شما <b>نباید</b> ادامه دهید!';
