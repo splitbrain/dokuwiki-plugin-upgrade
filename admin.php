@@ -131,7 +131,8 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
     private function _stepit(&$abrt, &$next) {
 
         if(isset($_REQUEST['step']) && is_array($_REQUEST['step'])) {
-            $step = array_shift(array_keys($_REQUEST['step']));
+            $keys = array_keys($_REQUEST['step']);
+            $step = array_shift($keys);
         } else {
             $step = '';
         }
@@ -281,7 +282,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
         }
 
         // check if PHP is up to date
-        $minphp = '5.6';
+        $minphp = '7.2';
         if(version_compare(phpversion(), $minphp, '<')) {
             $this->_warn($this->getLang('vs_php'), $minphp, phpversion());
             $ok = false;
