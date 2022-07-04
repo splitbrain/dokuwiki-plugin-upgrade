@@ -35,6 +35,7 @@ $lang['tv_nodir']              = 'Kunde inte skapa katalogen <code>%s</code>!';
 $lang['tv_done']               = 'Uppdaterade <code>%s</code>';
 $lang['rm_done']               = 'Föråldrad <code>%s</code> borttagen.';
 $lang['rm_fail']               = 'Kunde inte ta bort föråldrad <code>%s</code>. <b>Var god ta bort manuellt!!</b>';
+$lang['rm_mismatch']           = 'Sammanblandning mellan gemen/versal för föråldrade filen <code>%s</code>. Var god kontrollera om filen verkligen ska tas bort.';
 $lang['finish']                = 'Uppgradering klar. Njut av din nya DokuWiki';
 $lang['btn_continue']          = 'Fortsätt';
 $lang['btn_abort']             = 'Avbryt';
