@@ -41,7 +41,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin {
     }
 
     public function handle() {
-        if($_REQUEST['step'] && !checkSecurityToken()) {
+        if(!empty($_REQUEST['step']) && !checkSecurityToken()) {
             unset($_REQUEST['step']);
         }
     }
