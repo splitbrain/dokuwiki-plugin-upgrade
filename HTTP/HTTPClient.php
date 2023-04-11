@@ -2,7 +2,7 @@
 
 namespace dokuwiki\plugin\upgrade\HTTP;
 
-define('HTTP_NL',"\r\n");
+if(!defined('HTTP_NL')) define('HTTP_NL',"\r\n");
 
 
 /**

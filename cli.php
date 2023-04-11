@@ -1,5 +1,6 @@
 <?php
 
+use splitbrain\phpcli\CLI;
 use splitbrain\phpcli\Options;
 
 require_once __DIR__ . '/vendor/autoload.php';
@@ -10,9 +11,30 @@ require_once __DIR__ . '/vendor/autoload.php';
  * @license GPL 2 http://www.gnu.org/licenses/gpl-2.0.html
  * @author  Andreas Gohr <andi@splitbrain.org>
  */
-class cli_plugin_upgrade extends \dokuwiki\Extension\CLIPlugin
+class cli_plugin_upgrade extends CLI
 {
     protected $logdefault = 'notice';
+    protected $helper;
+
+    /**
+     * initialize
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->helper = new helper_plugin_upgrade();
+        $this->helper->setLogger($this);
+    }
+
+    /**
+     * This class is not really a plugin so we have to implement the plugin trait ourselves
+     *
+     * @return string[]
+     */
+    public function getInfo()
+    {
+        return $this->helper->getInfo();
+    }
 
     /** @inheritDoc */
     protected function setup(Options $options)
@@ -34,22 +56,17 @@ class cli_plugin_upgrade extends \dokuwiki\Extension\CLIPlugin
             $this->fatal('Unknown command');
         }
 
-
-        $helper = plugin_load('helper', 'upgrade');
-        /** @var helper_plugin_upgrade $helper */
-        $helper->setLogger($this);
-
-        if(!$helper->checkVersions() && !$options->getOpt('ignoreversions')) {
+        if (!$this->helper->checkVersions() && !$options->getOpt('ignoreversions')) {
             $this->fatal('Upgrade failed');
         }
-        $helper->downloadTarball() || $this->fatal('Upgrade failed');
-        $helper->extractTarball() || $this->fatal('Upgrade failed');
-        $helper->checkPermissions() || $this->fatal('Upgrade failed');
+        $this->helper->downloadTarball() || $this->fatal('Upgrade failed');
+        $this->helper->extractTarball() || $this->fatal('Upgrade failed');
+        $this->helper->checkPermissions() || $this->fatal('Upgrade failed');
         if (!$dryrun) {
-            $helper->copyFiles() || $this->fatal('Upgrade failed');
-            $helper->deleteObsoleteFiles() || $this->fatal('Upgrade failed');
+            $this->helper->copyFiles() || $this->fatal('Upgrade failed');
+            $this->helper->deleteObsoleteFiles() || $this->fatal('Upgrade failed');
         }
-        $helper->cleanUp();
+        $this->helper->cleanUp();
     }
 
     /** @inheritDoc */
@@ -63,3 +80,10 @@ class cli_plugin_upgrade extends \dokuwiki\Extension\CLIPlugin
     }
 }
 
+// run the script ourselves if called directly
+if(basename($_SERVER['SCRIPT_NAME']) == 'cli.php') {
+    if(!defined('DOKU_INC')) define('DOKU_INC', __DIR__ . '/../../../');
+    require_once(DOKU_INC . 'inc/init.php');
+    $cli = new cli_plugin_upgrade();
+    $cli->run();
+}
