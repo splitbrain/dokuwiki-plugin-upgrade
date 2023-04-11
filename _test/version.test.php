@@ -31,9 +31,10 @@ class version_plugin_upgrade_test extends DokuWikiTest
      */
     public function testVersions($version, $expected)
     {
-        $plugin = new admin_plugin_upgrade();
+        $plugin = new helper_plugin_upgrade();
 
-        $this->assertSame($expected, $plugin->dateFromVersion($version));
+        $result = $this->callInaccessibleMethod($plugin, 'dateFromVersion', [$version]);
+        $this->assertSame($expected, $result);
     }
 
 }

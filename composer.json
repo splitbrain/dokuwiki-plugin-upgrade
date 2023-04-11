@@ -1,0 +1,20 @@
+{
+    "name": "splitbrain/dokuwiki-plugin-upgrade",
+    "description": "The DokuWiki upgrade plugin",
+    "type": "project",
+    "license": "GPLv2",
+    "autoload": {
+        "psr-4": {
+            "dokuwiki\\plugin\\upgrade\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "Andreas Gohr",
+            "email": "andi@splitbrain.org"
+        }
+    ],
+    "require": {
+        "splitbrain/php-archive": "^1.3"
+    }
+}
