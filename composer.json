@@ -3,10 +3,18 @@
     "description": "The DokuWiki upgrade plugin",
     "type": "project",
     "license": "GPLv2",
+    "config": {
+        "platform": {
+            "php": "7.2"
+        }
+    },
     "autoload": {
         "psr-4": {
-            "dokuwiki\\plugin\\upgrade\\": "./"
-        }
+            "dokuwiki\\plugin\\upgrade\\HTTP\\": "HTTP/"
+        },
+        "classmap": [
+            "helper.php"
+        ]
     },
     "authors": [
         {

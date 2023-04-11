@@ -3,7 +3,7 @@
         'name' => 'splitbrain/dokuwiki-plugin-upgrade',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '830f69e6781c94915f40d40e7e3987c0765b7dc5',
+        'reference' => 'afa5eaf7264a01dc61698b6c191810028ea3279d',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'splitbrain/dokuwiki-plugin-upgrade' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '830f69e6781c94915f40d40e7e3987c0765b7dc5',
+            'reference' => 'afa5eaf7264a01dc61698b6c191810028ea3279d',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -143,7 +143,8 @@ class helper_plugin_upgrade extends DokuWiki_Plugin
             return false;
         }
 
-        if (!io_saveFile($this->tgzfile, $data)) {
+        io_mkdir_p(dirname($this->tgzfile));
+        if (!file_put_contents($this->tgzfile, $data)) {
             $this->log('error', $this->getLang('dl_fail'));
             return false;
         }

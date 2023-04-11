@@ -14,7 +14,7 @@ class ComposerStaticInitd7ecbc8a78635cf7e8009a9a05aa8324
         ),
         'd' => 
         array (
-            'dokuwiki\\plugin\\upgrade\\' => 24,
+            'dokuwiki\\plugin\\upgrade\\HTTP\\' => 29,
         ),
     );
 
@@ -27,14 +27,15 @@ class ComposerStaticInitd7ecbc8a78635cf7e8009a9a05aa8324
         array (
             0 => __DIR__ . '/..' . '/splitbrain/php-archive/src',
         ),
-        'dokuwiki\\plugin\\upgrade\\' => 
+        'dokuwiki\\plugin\\upgrade\\HTTP\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/',
+            0 => __DIR__ . '/../..' . '/HTTP',
         ),
     );
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'helper_plugin_upgrade' => __DIR__ . '/../..' . '/helper.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
