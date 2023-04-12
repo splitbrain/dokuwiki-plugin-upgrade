@@ -168,6 +168,7 @@ class admin_plugin_upgrade extends DokuWiki_Admin_Plugin
         } else {
             # first time run, show intro
             echo $this->locale_xhtml('step0');
+            $this->helper->cleanup(); // make sure we start clean
             $abrt = false;
             $next = 'version';
         }
