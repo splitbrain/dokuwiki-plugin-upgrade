@@ -28,7 +28,10 @@ class cli_plugin_upgrade extends DokuWiki_CLI_Plugin
     /** @inheritDoc */
     protected function setup(Options $options)
     {
-        $options->setHelp('Upgrade the wiki to the latest version');
+        $options->setHelp(
+            'This tool will upgrade your wiki to the newest release. It will automatically check file permissions '.
+            'and download the required tarball. Internet access is required.'
+        );
         $options->registerArgument('check|run', 'Either only check if an update can be done or do it', 'true');
         $options->registerOption('ignoreversions', 'Ignore the version check results and continue anyway', 'i');
     }
@@ -46,14 +49,14 @@ class cli_plugin_upgrade extends DokuWiki_CLI_Plugin
         }
 
         if (!$this->helper->checkVersions() && !$options->getOpt('ignoreversions')) {
-            $this->fatal('Upgrade failed');
+            $this->fatal('Upgrade aborted');
         }
-        $this->helper->downloadTarball() || $this->fatal('Upgrade failed');
-        $this->helper->extractTarball() || $this->fatal('Upgrade failed');
-        $this->helper->checkPermissions() || $this->fatal('Upgrade failed');
+        $this->helper->downloadTarball() || $this->fatal('Upgrade aborted');
+        $this->helper->extractTarball() || $this->fatal('Upgrade aborted');
+        $this->helper->checkPermissions() || $this->fatal('Upgrade aborted');
         if (!$dryrun) {
-            $this->helper->copyFiles() || $this->fatal('Upgrade failed');
-            $this->helper->deleteObsoleteFiles() || $this->fatal('Upgrade failed');
+            $this->helper->copyFiles() || $this->fatal('Upgrade aborted');
+            $this->helper->deleteObsoleteFiles() || $this->fatal('Upgrade aborted');
         }
         $this->helper->cleanUp();
     }
