@@ -1,0 +1,31 @@
+# This is a list of files that were present in previous releases
+# but were removed later. They should not exist in your installation.
+.travis.yml
+HTTPClient.php
+VerboseTarLib.class.php
+_test/general.test.php
+lang/cs/safemode.txt
+lang/cy/safemode.txt
+lang/da/safemode.txt
+lang/de-informal/safemode.txt
+lang/de/safemode.txt
+lang/en/safemode.txt
+lang/eo/safemode.txt
+lang/es/safemode.txt
+lang/fa/safemode.txt
+lang/fr/safemode.txt
+lang/hr/safemode.txt
+lang/hu/safemode.txt
+lang/is/safemode.txt
+lang/it/safemode.txt
+lang/ja/safemode.txt
+lang/ko/safemode.txt
+lang/nl/safemode.txt
+lang/no/safemode.txt
+lang/pt/safemode.txt
+lang/ru/safemode.txt
+lang/sr/safemode.txt
+lang/sv/safemode.txt
+lang/tr/safemode.txt
+lang/zh-tw/safemode.txt
+lang/zh/safemode.txt

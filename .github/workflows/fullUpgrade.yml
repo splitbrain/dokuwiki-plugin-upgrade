@@ -1,0 +1,77 @@
+name: Full Upgrade Test
+
+on: [push, pull_request]
+
+jobs:
+    modern:
+      name: DokuWiki ${{ matrix.dokuwiki-release }}
+      runs-on: ubuntu-latest
+      if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
+
+      strategy:
+        matrix:
+          dokuwiki-release:
+            - '2022-06-26rc' # igor
+            - '2020-07-29a' # hogfather
+            - '2018-04-22c' # greebo
+        fail-fast: true
+
+      steps:
+        - name: Setup PHP
+          uses: shivammathur/setup-php@v2
+          with:
+            php-version: '7.2'
+            extensions: mbstring, intl, PDO, pdo_sqlite, bz2
+
+        - name: Download DokuWiki
+          run: |
+            wget https://github.com/dokuwiki/dokuwiki/archive/refs/tags/release-${{ matrix.dokuwiki-release }}.tar.gz -O dokuwiki-${{ matrix.dokuwiki-release }}.tgz
+            tar --strip-components 1 -xzf dokuwiki-${{ matrix.dokuwiki-release }}.tgz
+            rm dokuwiki-${{ matrix.dokuwiki-release }}.tgz
+
+        - name: Checkout
+          uses: actions/checkout@v3
+          with:
+            path: lib/plugins/upgrade
+
+        - name: Run Upgrade
+          run: |
+            pwd
+            php bin/plugin.php --loglevel info upgrade run
+
+    legacy:
+      name: DokuWiki ${{ matrix.dokuwiki-release }}
+      runs-on: ubuntu-latest
+      if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
+
+      strategy:
+        matrix:
+          dokuwiki-release:
+            - '2017-02-19g' # frusterick manners
+            - '2013-05-10a' # weatherwax
+            - '2009-12-25' # lemming
+            - '2006-11-06'
+        fail-fast: true
+
+      steps:
+        - name: Setup PHP
+          uses: shivammathur/setup-php@v2
+          with:
+            php-version: '7.2'
+            extensions: mbstring, intl, PDO, pdo_sqlite, bz2
+
+        - name: Download DokuWiki
+          run: |
+            wget https://download.dokuwiki.org/src/dokuwiki/dokuwiki-${{ matrix.dokuwiki-release }}.tgz -O dokuwiki-${{ matrix.dokuwiki-release }}.tgz
+            tar --strip-components 1 -xzf dokuwiki-${{ matrix.dokuwiki-release }}.tgz
+            rm dokuwiki-${{ matrix.dokuwiki-release }}.tgz
+
+        - name: Checkout
+          uses: actions/checkout@v3
+          with:
+            path: lib/plugins/upgrade
+
+        - name: Run Upgrade
+          run: |
+            pwd
+            php lib/plugins/upgrade/legacy.php --loglevel info run

@@ -4,6 +4,19 @@
     overflow: auto;
 }
 
+#plugin__upgrade .log-error::before {
+    content: "✗ ";
+    color: #f00;
+}
+#plugin__upgrade .log-warning::before {
+    content: "⚠ ";
+    color: #f90;
+}
+#plugin__upgrade .log-notice::before {
+    content: "☛ ";
+    color: #ccc;
+}
+
 #plugin__upgrade_form {
     display: block;
     overflow: auto;

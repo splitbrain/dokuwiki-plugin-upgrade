@@ -1,0 +1,4 @@
+vendor/**/tests
+vendor/**/examples
+vendor/**/*.sh
+vendor/**/.*

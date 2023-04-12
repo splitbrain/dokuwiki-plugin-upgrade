@@ -1,0 +1,29 @@
+{
+    "name": "splitbrain/dokuwiki-plugin-upgrade",
+    "description": "The DokuWiki upgrade plugin",
+    "type": "project",
+    "license": "GPLv2",
+    "config": {
+        "platform": {
+            "php": "7.2"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "dokuwiki\\plugin\\upgrade\\HTTP\\": "HTTP/"
+        },
+        "classmap": [
+            "helper.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Andreas Gohr",
+            "email": "andi@splitbrain.org"
+        }
+    ],
+    "require": {
+        "splitbrain/php-archive": "^1.3",
+        "splitbrain/php-cli": "^1.2"
+    }
+}
