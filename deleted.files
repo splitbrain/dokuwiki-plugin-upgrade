@@ -1,6 +1,8 @@
 # This is a list of files that were present in previous releases
 # but were removed later. They should not exist in your installation.
 .travis.yml
+HTTPClient.php
+VerboseTarLib.class.php
 _test/general.test.php
 lang/cs/safemode.txt
 lang/cy/safemode.txt
