@@ -1,0 +1,7 @@
+Sua Wiki foi atualizado.
+
+Caso encontre algum problema, verifique se todos os seus plugins estão atualizados e compatíveis com a nova versão. O [[https://forum.dokuwiki.org/|fórum de usuários]] pode ter algumas dicas para você.
+
+Se você gosta do DokuWiki e deste plug-in, considere uma [[doku>donate|doação]] para apoiar o desenvolvimento deste e de outros plug-ins. Confira também nossas várias [[doku>social|presenças nas redes sociais]] para se manter informado sobre os novos desenvolvimentos.
+
+Agora, por favor, aproveite [[:|seu novo DokuWiki]]! :-)
