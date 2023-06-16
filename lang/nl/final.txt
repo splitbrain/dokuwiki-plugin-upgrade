@@ -1,0 +1,7 @@
+Je Wiki is geüpdatet.
+
+Mocht je problemen tegen komen, zorg er dan voor dat al je plugins bijgewerkt zijn en compatible met de nieuwste versie. Op het [[https://forum.dokuwiki.org/|gebruikersforum]] kun je misschien wat tips vinden.
+
+Als je DokuWiki en deze plugin leuk vindt, overweeg dan alsjeblieft een [[doku>donate|donatie]] om de ontwikkeling van deze en andere plugins te ondersteunen. Bekijk ook de verschillende [[doku>social|sociale media kanalen]] om op de hoogte te blijven van de nieuwe ontwikkelingen.
+
+En geniet nu van [[:|je nieuwe DokuWiki]]! :-)
