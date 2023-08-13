@@ -1,0 +1,9 @@
+Twoje Wiki zostało zaktualizowane.
+
+Jeśli napotkasz jakiekolwiek problemy, upewnij się, że wszystkie wtyczki są aktualne i kompatybilne z nową wersją. [https://forum.dokuwiki.org/|Forum użytkowników]] może mieć dla Ciebie kilka wskazówek.
+
+
+Jeśli podoba Ci się DokuWiki i ta wtyczka, rozważ [[doku>donate|przekazanie darowizny]], aby wesprzeć rozwój tej i innych wtyczek. Sprawdź także naszą [[doku>social|obecności w sieciach społecznościowych]], aby być na bieżąco z nowymi wydarzeniami.
+
+
+A teraz ciesz się [[:|nowym DokuWiki]]! :-)

@@ -1,0 +1,7 @@
+Ta wtyczka automatycznie zaktualizuje Wiki do najnowszej dostępnej wersji DokuWiki. Zanim przejdziesz dalej, przeczytaj [[doku>changes|dziennik zmian]], aby sprawdzić, czy są jakieś dodatkowe kroki, które należy wykonać przed lub po aktualizacji.
+
+Aby umożliwić automatyczną aktualizację, proces PHP wymaga uprawnień do zapisu plików DokuWiki. Wtyczka sprawdzi niezbędne uprawnienia do pliku przed rozpoczęciem procesu aktualizacji.
+
+Ta wtyczka nie aktualizuje żadnych zainstalowanych wtyczek ani szablonów.
+
+Zalecamy utworzenie kopii zapasowej Wiki przed kontynuowaniem.
