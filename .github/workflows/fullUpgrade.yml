@@ -13,7 +13,6 @@ jobs:
           dokuwiki-release:
             - '2022-06-26rc' # igor
             - '2020-07-29a' # hogfather
-            - '2018-04-22c' # greebo
         fail-fast: true
 
       steps:
@@ -47,6 +46,7 @@ jobs:
       strategy:
         matrix:
           dokuwiki-release:
+            - '2018-04-22c' # greebo
             - '2017-02-19g' # frusterick manners
             - '2013-05-10a' # weatherwax
             - '2009-12-25' # lemming
