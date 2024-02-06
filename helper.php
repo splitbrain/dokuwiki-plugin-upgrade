@@ -20,6 +20,8 @@ class helper_plugin_upgrade extends DokuWiki_Plugin
     public $tgzdir;
     /** @var string URL to the VERSION file of the new DokuWiki release */
     public $tgzversion;
+    /** @var string URL to the composer.json file of the new DokuWiki release */
+    protected string $composer;
     /** @var string URL to the plugin.info.txt file of the upgrade plugin */
     public $pluginversion;
 
@@ -36,6 +38,7 @@ class helper_plugin_upgrade extends DokuWiki_Plugin
         $this->tgzfile = $conf['tmpdir'] . '/dokuwiki-upgrade.tgz';
         $this->tgzdir = $conf['tmpdir'] . '/dokuwiki-upgrade/';
         $this->tgzversion = "https://raw.githubusercontent.com/splitbrain/dokuwiki/$branch/VERSION";
+        $this->composer = "https://raw.githubusercontent.com/splitbrain/dokuwiki/$branch/composer.json";
         $this->pluginversion = "https://raw.githubusercontent.com/splitbrain/dokuwiki-plugin-upgrade/master/plugin.info.txt";
     }
 
@@ -112,7 +115,9 @@ class helper_plugin_upgrade extends DokuWiki_Plugin
         }
 
         // check if PHP is up to date
-        $minphp = '7.2'; // FIXME get this from the composer file upstream
+        $json = $http->get($this->composer);
+        $data = json_decode($json, true);
+        $minphp = $data['config']['platform']['php'];
         if (version_compare(phpversion(), $minphp, '<')) {
             $this->log('error', $this->getLang('vs_php'), $minphp, phpversion());
             $ok = false;
@@ -402,7 +407,7 @@ class helper_plugin_upgrade extends DokuWiki_Plugin
     /**
      * Log a message
      *
-     * @param string ...$level, $msg
+     * @param string ...$level , $msg
      */
     protected function log()
     {
