@@ -21,7 +21,7 @@ class helper_plugin_upgrade extends DokuWiki_Plugin
     /** @var string URL to the VERSION file of the new DokuWiki release */
     public $tgzversion;
     /** @var string URL to the composer.json file of the new DokuWiki release */
-    protected string $composer;
+    protected $composer;
     /** @var string URL to the plugin.info.txt file of the upgrade plugin */
     public $pluginversion;
 
