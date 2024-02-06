@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Legacy command line upgrade script
  *
@@ -16,6 +17,7 @@
  * Only use this if you can't run the normal upgrade script.
  */
 
+// phpcs:disable PSR1.Files.SideEffects.FoundWithSymbols
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -28,7 +30,8 @@ $conf['tmpdir'] = $conf['savedir'] . 'tmp/';
 $conf['proxy'] = ['host' => '', 'port' => '', 'user' => '', 'pass' => '', 'ssl' => '', 'except' => ''];
 $conf['allowdebug'] = false;
 
-function linesToHash($lines) {
+function linesToHash($lines)
+{
     $lines = array_map('trim', $lines);
     $lines = array_filter($lines);
     $lines = array_map(function ($item) {
@@ -44,7 +47,7 @@ function conf_decodeString($string)
 
 function filesize_h($size)
 {
-    return $size.'b';
+    return $size . 'b';
 }
 
 function hsc($string)
@@ -54,7 +57,7 @@ function hsc($string)
 
 function io_mkdir_p($dir)
 {
-    if(file_exists($dir)) return true;
+    if (file_exists($dir)) return true;
     return mkdir($dir, 0777, true);
 }
 
@@ -72,7 +75,7 @@ function getVersionData()
 function getVersion()
 {
     $version = getVersionData();
-    return $version['type'].' '.$version['date'];
+    return $version['type'] . ' ' . $version['date'];
 }
 
 class Doku_Event
@@ -124,7 +127,7 @@ abstract class DokuWiki_CLI_Plugin extends splitbrain\phpcli\CLI
     use UpgradePluginTrait;
 }
 
-class  DokuWiki_Plugin
+class DokuWiki_Plugin
 {
     use UpgradePluginTrait;
 }

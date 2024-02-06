@@ -1,4 +1,5 @@
 <?php
+
 /**
  * DokuWiki Plugin upgrade (Helper Component)
  *
@@ -93,7 +94,7 @@ class helper_plugin_upgrade extends DokuWiki_Plugin
         if (!$versionnum) {
             $this->log('warning', $this->getLang('vs_localno'));
             $ok = false;
-        } else if ($tgzversionnum) {
+        } elseif ($tgzversionnum) {
             if ($tgzversionnum < $versionnum) {
                 $this->log('warning', $this->getLang('vs_newer'));
                 $ok = false;
@@ -250,7 +251,8 @@ class helper_plugin_upgrade extends DokuWiki_Plugin
                 continue;
             }
 
-            if ((is_dir($file) && $this->recursiveDelete($file)) ||
+            if (
+                (is_dir($file) && $this->recursiveDelete($file)) ||
                 @unlink($file)
             ) {
                 $this->log('info', $this->getLang('rm_done'), hsc($line));
@@ -330,10 +332,10 @@ class helper_plugin_upgrade extends DokuWiki_Plugin
                 if ($fmd5 != $tmd5 || !file_exists($to)) {
                     if ($dryrun) {
                         // just check for writability
-                        if ((file_exists($to) && !is_writable($to)) ||
+                        if (
+                            (file_exists($to) && !is_writable($to)) ||
                             (!file_exists($to) && is_dir(dirname($to)) && !is_writable(dirname($to)))
                         ) {
-
                             $this->log('error', '<b>' . $this->getLang('tv_noperm') . '</b>', hsc("$dir/$file"));
                             $ok = false;
                         } else {

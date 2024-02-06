@@ -1,5 +1,7 @@
 <?php
 
+// phpcs:disable PSR1.Files.SideEffects.FoundWithSymbols
+
 use splitbrain\phpcli\Options;
 
 require_once __DIR__ . '/vendor/autoload.php';
@@ -29,7 +31,7 @@ class cli_plugin_upgrade extends DokuWiki_CLI_Plugin
     protected function setup(Options $options)
     {
         $options->setHelp(
-            'This tool will upgrade your wiki to the newest release. It will automatically check file permissions '.
+            'This tool will upgrade your wiki to the newest release. It will automatically check file permissions ' .
             'and download the required tarball. Internet access is required.'
         );
         $options->registerArgument('check|run', 'Either only check if an update can be done or do it', 'true');
@@ -73,7 +75,7 @@ class cli_plugin_upgrade extends DokuWiki_CLI_Plugin
 }
 
 // run the script ourselves if called directly
-if(basename($_SERVER['SCRIPT_NAME']) == 'cli.php') {
+if (basename($_SERVER['SCRIPT_NAME']) == 'cli.php') {
     $cli = new cli_plugin_upgrade();
     $cli->run();
 }
