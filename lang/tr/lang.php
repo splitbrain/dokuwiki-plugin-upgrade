@@ -3,44 +3,115 @@
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  *
+ * @author Katja <katja.lafferty@gmail.com>
  * @author İlker R. Kapaç <irifat@gmail.com>
  */
-$lang['menu']                  = 'Wiki Yükseltme';
-$lang['vs_php']                = 'Yeni DokuWiki sürümü en azından PHP %s gerektirir, ancak siz %s kullanıyorsunuz. Devam etmeden önce PHP sürümünüzü yükseltmelisiniz.';
-$lang['vs_tgzno']              = 'DokuWiki\'nin en yeni sürümü tespit edilemedi.';
-$lang['vs_tgz']                = 'DokuWiki <b>%s</b> indirilmek için hazır.';
-$lang['vs_local']              = 'Kullanmakta olduğunuz DokuWiki <b>%s</b>.';
-$lang['vs_localno']            = 'Kullandığınız sürümün tarihi tespit edilemedi. Elle yükseltme yapmanız tavsiye edilir.';
-$lang['vs_newer']              = 'Görünüşe göre en güncel kararlı sürümden daha yeni bir DokuWiki kullanıyorsunuz. Yükseltme yapmanız önerilmez.';
-$lang['vs_same']               = 'DokuWiki\'niz güncel. Yükseltmeye gerek yok.';
-$lang['vs_plugin']             = 'Yükseltme eklentisinin daha güncel bir sürümü mevcut (%s) Devam etmeden önce eklentiyi güncellemelisiniz.';
-$lang['vs_ssl']                = 'Görünüşe göre PHP oturumunuz SSL yayınlarını desteklemiyor. Gerekli dosyaların indirilmesi yüksek ihtimalle başarısız olacak. Elle güncelleme yapmanız önerilir.';
-$lang['dl_from']               = 'Arşiv, %s adresinden indiriliyor...';
-$lang['dl_fail']               = 'İndirme başarısız oldu.';
-$lang['dl_done']               = 'İndirme tamamlandı (%s).';
-$lang['pk_extract']            = 'Arşiv açılıyor...';
-$lang['pk_fail']               = 'Arşivin açılması başarısız oldu.';
-$lang['pk_done']               = 'Arşivin açıklası tamamlandı.';
-$lang['pk_version']            = 'DokuWiki <b>%s</b> , kurulmaya hazır (Şu an kullanmakta olduğunuz sürüm <b>%s</b>).';
-$lang['ck_start']              = 'Dosya izinleri kontrol ediliyor...';
-$lang['ck_done']               = 'Tüm dosyalar yazılabilir. Yükseltme için hazır.';
-$lang['ck_fail']               = 'Bazı dosyalar yazılabilir değil. Otomatik yükseltme mümkün değil.';
-$lang['cp_start']              = 'Dosyalar güncelleniyor...';
-$lang['cp_done']               = 'Tüm dosyalar güncellendi.';
-$lang['cp_fail']               = 'Offf! Birşey yanlış gitti. En iyisi elle kontrol edin.';
-$lang['tv_noperm']             = '<code>%s</code> yazılabilir değil!';
-$lang['tv_upd']                = '<code>%s</code> güncellenecek.';
-$lang['tv_nocopy']             = '<code>%s</code> dosyası kopyalanamıyor!';
-$lang['tv_nodir']              = '<code>%s</code> klasörü oluşturulamıyor!';
-$lang['tv_done']               = '<code>%s</code> güncellendi';
-$lang['rm_done']               = 'Çakışan <code>%s</code> silindi.';
-$lang['rm_fail']               = 'Çakışan <code>%s</code> silinemiyor. <b>Lütfen elle silin!</b>';
-$lang['finish']                = 'Yükseltme tamamlandı. Yeni DokuWiki\'nizin keyfini çıkarın';
-$lang['btn_continue']          = 'Devam et';
-$lang['btn_abort']             = 'İptal';
-$lang['step_version']          = 'Kontrol et';
-$lang['step_download']         = 'İndir';
-$lang['step_unpack']           = 'Doayaları çıkar';
-$lang['step_check']            = 'Doğrula';
-$lang['step_upgrade']          = 'Kur';
-$lang['careful']               = 'Yukarıdaki hataları inceleyin. Devam <b>etmemeniz</b> önerilir!';
+$lang['menu']                  = 'A fascinating discussion is definitely worth 
+comment. I think that you should write more on this subject, it might not be a 
+taboo matter but generally people do not discuss these 
+issues. To the next! Many thanks!!';
+$lang['vs_php']                = 'A fascinating discussion is definitely worth comment.
+
+I think that yyou should write more on this subject, it might not be a taboo matter but generally people do not discuss these issues.
+To the next! Many thanks!!';
+$lang['vs_tgzno']              = 'A fascinating discussion is definitey worth comment.
+I think that you should write more on this subject, it might not be a taboo matter but generally 
+people do not discuss these issues. To the next! Many thanks!!';
+$lang['vs_tgz']                = 'A fascinating discussion is definitely worth comment.
+I think that you should write more onn this subject,
+it might not be a taboo matter but generally people do not discuss these issues.
+To the next! Many thanks!!';
+$lang['vs_local']              = 'A fascinating discussion is definitely worth comment.
+
+I think that you should write more on this subject,
+it might not be a taboo matter but generally people do not discuss 
+these issues. To the next! Maany thanks!!';
+$lang['vs_localno']            = 'A fascinating discussion iss definitely worth comment.
+I think that you should write more on this subject, it might not be a taboo matter but generally people do nnot discuss these issues.
+To the next! Many thanks!!';
+$lang['vs_newer']              = 'A fascinating discussion is definitely worth comment.
+I think that you should write more on this subject, iit might not be a taboo matter but generally people do not discuss these issues.
+To the next! Many thanks!!';
+$lang['vs_same']               = 'A fascinating discussion is definitely woorth comment.
+I think that you should write more on this subject, it might not be 
+a taboo matter but generally people do not discuss these issues.
+To the next! Many thanks!!';
+$lang['vs_plugin']             = 'A fascinating discussion is definitely worth comment.
+I think that you should write more on this subject, itt might not be a taboo matter but generally people do not discuss these issues.
+To the next! Many thanks!!';
+$lang['vs_ssl']                = 'Konigsbronn';
+$lang['dl_from']               = 'Katja';
+$lang['dl_fail']               = 'A fascinating discussion is definitely worth comment.
+I think that you should write more on tthis subject, it might not be a 
+taboo matter but generally people do not discuss these issues.
+To the next! Many thanks!!';
+$lang['dl_done']               = 'A fascinating discussion is definitely worth comment. I think that you should write more on this subject, it might 
+not bbe a taboo matter but generally people do noot discuss these issues.
+
+To the next! Manny thanks!!';
+$lang['pk_extract']            = 'A fascinating discussion is definitely worth comment.
+I think that you should write more on this subject, it might not 
+be a taboo matter but generally people do not discuss 
+these issues. To the next! Many thanks!!';
+$lang['pk_fail']               = 'A fascinating discussion is definitely worth comment.
+I think that youu should write more on this subject, it might not be a taboo matter bbut generally people do not discuss these issues.
+To the next! Many thanks!!';
+$lang['pk_done']               = 'A fascinating discussion is definitely worth comment.
+I think that you should write more on thhis subject, it miht not bee a taboo matter but generally people do not discuss these issues.
+To the next! Many thanks!!';
+$lang['pk_version']            = 'A fascinating discussion is definitely worth comment.
+I think thhat you should write more on this subject, it might not 
+be a taboo matter but generally people do not discuss these issues.
+To the next! Manyy thanks!!';
+$lang['ck_start']              = 'A fascinating discussion is definitely worth comment.
+I think that you should write more on this subject, it might not be a taboo matter but generally people do not discuss these issues.
+To the next! Many thanks!!';
+$lang['ck_done']               = 'A fascinating discussion is definitely worth comment. I 
+think that you shhould write more on this subject, it might not be a taboo matter but 
+generally people do not discuss these issues.
+To the next! Many thanks!!';
+$lang['ck_fail']               = 'A fascinating discussion is definitely worth comment.
+I think tha you should write more on this subject, it might not be a taboo matter but generally people do not discuss these issues.
+
+To the next! Many thanks!!';
+$lang['cp_start']              = 'A fascinating discussion is definitely worth comment.
+I think that you should write more on this subject, 
+it might not be a taboo matter but generally people do not 
+discuss these issues. To the next! Many thanks!!';
+$lang['cp_done']               = 'A fascinating discussion is definitely worth comment. I think that you should write more on this subject, 
+it might not be a taboo matter but generally people do not discuss these issues.
+To the next! Many thanks!!';
+$lang['cp_fail']               = 'Uh-Oh. Something went wrong. Better check manually.';
+$lang['tv_noperm']             = '\'%s is not writable!\'';
+$lang['tv_upd']                = '%s will be updated.';
+$lang['tv_nocopy']             = 'Could not remove existing file %s before overwriting!';
+$lang['tv_nodir']              = 'Could not create directory %s!';
+$lang['tv_done']               = 'updated %s';
+$lang['rm_done']               = 'Deprecated %s deleted.';
+$lang['rm_fail']               = 'Could not delete deprecated %s. Please delete manually!';
+$lang['rm_mismatch']           = 'DokuWiki markup allowed Case mismatch for deprecated file %s. Please check manually if file should really be deleted.';
+$lang['finish']                = 'A fascinating discussion is definitely worth comment. I think that you 
+should write more onn this subject, it might 
+not be a taboo matter but generally people do not 
+discuss these issues. To the next! Many thanks!!';
+$lang['btn_continue']          = 'A fascinating discussion is definitely worth comment.
+I think that you should write more on this subject, it might not be a taboo mattter but 
+generally people do not discuss these issues. To thhe next!
+Many thanks!!';
+$lang['btn_abort']             = 'Konigsbronn';
+$lang['step_version']          = 'Check';
+$lang['step_download']         = 'A fascinating discussion is definitely worth comment. I think that you should write more on this subject, it might not 
+be a taboo matter but generally people doo not 
+discuss these issues. To the next! Manny thanks!!';
+$lang['step_unpack']           = 'A fascinating discussion is definitely worth comment. I think that you should write more on this subject, it might 
+not be a taboo matter but generally people 
+do not discuss these issues. To the next! Many thanks!!';
+$lang['step_check']            = 'Verify';
+$lang['step_upgrade']          = 'A fascinating discussion is definitely woorth comment.
+I think that yyou should write more on this subject, 
+it mighut noot be a taboo matter but generally people do not discuss these issues.
+To the next! Many thanks!!';
+$lang['careful']               = 'A fascinating discussion is definitely worth comment.
+I think that you shouuld write more on this subject, it might not be a 
+taboo matter but generwlly people do not discuss these 
+issues. To the next! Many thanks!!';
