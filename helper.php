@@ -7,11 +7,12 @@
  * @author  Andreas Gohr <andi@splitbrain.org>
  */
 
+use dokuwiki\Extension\Plugin;
 use dokuwiki\plugin\upgrade\HTTP\DokuHTTPClient;
 use splitbrain\PHPArchive\FileInfo;
 use splitbrain\PHPArchive\Tar;
 
-class helper_plugin_upgrade extends DokuWiki_Plugin
+class helper_plugin_upgrade extends Plugin
 {
     /** @var string download URL for the new DokuWiki release */
     public $tgzurl;
@@ -24,7 +25,7 @@ class helper_plugin_upgrade extends DokuWiki_Plugin
     /** @var string URL to the composer.json file of the new DokuWiki release */
     protected $composer;
     /** @var string URL to the plugin.info.txt file of the upgrade plugin */
-    public $pluginversion;
+    public $pluginversion = "https://raw.githubusercontent.com/splitbrain/dokuwiki-plugin-upgrade/master/plugin.info.txt";
 
     /** @var admin_plugin_upgrade|cli_plugin_upgrade */
     protected $logger;
@@ -40,7 +41,6 @@ class helper_plugin_upgrade extends DokuWiki_Plugin
         $this->tgzdir = $conf['tmpdir'] . '/dokuwiki-upgrade/';
         $this->tgzversion = "https://raw.githubusercontent.com/splitbrain/dokuwiki/$branch/VERSION";
         $this->composer = "https://raw.githubusercontent.com/splitbrain/dokuwiki/$branch/composer.json";
-        $this->pluginversion = "https://raw.githubusercontent.com/splitbrain/dokuwiki-plugin-upgrade/master/plugin.info.txt";
     }
 
     /**
@@ -98,7 +98,7 @@ class helper_plugin_upgrade extends DokuWiki_Plugin
             if ($tgzversionnum < $versionnum) {
                 $this->log('warning', $this->getLang('vs_newer'));
                 $ok = false;
-            } elseif ($tgzversionnum == $versionnum && $tgzversion == $version) {
+            } elseif ($tgzversionnum == $versionnum && $tgzversion === $version) {
                 $this->log('warning', $this->getLang('vs_same'));
                 $ok = false;
             }
@@ -246,7 +246,7 @@ class helper_plugin_upgrade extends DokuWiki_Plugin
             if (!file_exists($file)) continue;
 
             // check that the given file is a case sensitive match
-            if (basename(realpath($file)) != basename($file)) {
+            if (basename(realpath($file)) !== basename($file)) {
                 $this->log('info', $this->getLang('rm_mismatch'), hsc($line));
                 continue;
             }
@@ -329,7 +329,7 @@ class helper_plugin_upgrade extends DokuWiki_Plugin
             } else {
                 $fmd5 = md5(@file_get_contents($from));
                 $tmd5 = md5(@file_get_contents($to));
-                if ($fmd5 != $tmd5 || !file_exists($to)) {
+                if ($fmd5 !== $tmd5 || !file_exists($to)) {
                     if ($dryrun) {
                         // just check for writability
                         if (
@@ -341,25 +341,23 @@ class helper_plugin_upgrade extends DokuWiki_Plugin
                         } else {
                             $this->log('info', $this->getLang('tv_upd'), hsc("$dir/$file"));
                         }
-                    } else {
+                    } elseif (io_mkdir_p(dirname($to))) {
                         // check dir
-                        if (io_mkdir_p(dirname($to))) {
-                            // remove existing (avoid case sensitivity problems)
-                            if (file_exists($to) && !@unlink($to)) {
-                                $this->log('error', '<b>' . $this->getLang('tv_nodel') . '</b>', hsc("$dir/$file"));
-                                $ok = false;
-                            }
-                            // copy
-                            if (!copy($from, $to)) {
-                                $this->log('error', '<b>' . $this->getLang('tv_nocopy') . '</b>', hsc("$dir/$file"));
-                                $ok = false;
-                            } else {
-                                $this->log('info', $this->getLang('tv_done'), hsc("$dir/$file"));
-                            }
-                        } else {
-                            $this->log('error', '<b>' . $this->getLang('tv_nodir') . '</b>', hsc("$dir"));
+                        // remove existing (avoid case sensitivity problems)
+                        if (file_exists($to) && !@unlink($to)) {
+                            $this->log('error', '<b>' . $this->getLang('tv_nodel') . '</b>', hsc("$dir/$file"));
                             $ok = false;
                         }
+                        // copy
+                        if (!copy($from, $to)) {
+                            $this->log('error', '<b>' . $this->getLang('tv_nocopy') . '</b>', hsc("$dir/$file"));
+                            $ok = false;
+                        } else {
+                            $this->log('info', $this->getLang('tv_done'), hsc("$dir/$file"));
+                        }
+                    } else {
+                        $this->log('error', '<b>' . $this->getLang('tv_nodir') . '</b>', hsc("$dir"));
+                        $ok = false;
                     }
                 }
             }
@@ -411,9 +409,8 @@ class helper_plugin_upgrade extends DokuWiki_Plugin
      *
      * @param string ...$level , $msg
      */
-    protected function log()
+    protected function log(...$args)
     {
-        $args = func_get_args();
         $level = array_shift($args);
         $msg = array_shift($args);
         $msg = vsprintf($msg, $args);
