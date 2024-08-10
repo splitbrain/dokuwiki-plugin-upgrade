@@ -3,44 +3,159 @@
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  *
+ * @author Madison <madisonskeens@yahoo.com>
  * @author İlker R. Kapaç <irifat@gmail.com>
  */
-$lang['menu']                  = 'Wiki Yükseltme';
-$lang['vs_php']                = 'Yeni DokuWiki sürümü en azından PHP %s gerektirir, ancak siz %s kullanıyorsunuz. Devam etmeden önce PHP sürümünüzü yükseltmelisiniz.';
-$lang['vs_tgzno']              = 'DokuWiki\'nin en yeni sürümü tespit edilemedi.';
-$lang['vs_tgz']                = 'DokuWiki <b>%s</b> indirilmek için hazır.';
-$lang['vs_local']              = 'Kullanmakta olduğunuz DokuWiki <b>%s</b>.';
-$lang['vs_localno']            = 'Kullandığınız sürümün tarihi tespit edilemedi. Elle yükseltme yapmanız tavsiye edilir.';
-$lang['vs_newer']              = 'Görünüşe göre en güncel kararlı sürümden daha yeni bir DokuWiki kullanıyorsunuz. Yükseltme yapmanız önerilmez.';
-$lang['vs_same']               = 'DokuWiki\'niz güncel. Yükseltmeye gerek yok.';
-$lang['vs_plugin']             = 'Yükseltme eklentisinin daha güncel bir sürümü mevcut (%s) Devam etmeden önce eklentiyi güncellemelisiniz.';
-$lang['vs_ssl']                = 'Görünüşe göre PHP oturumunuz SSL yayınlarını desteklemiyor. Gerekli dosyaların indirilmesi yüksek ihtimalle başarısız olacak. Elle güncelleme yapmanız önerilir.';
-$lang['dl_from']               = 'Arşiv, %s adresinden indiriliyor...';
-$lang['dl_fail']               = 'İndirme başarısız oldu.';
-$lang['dl_done']               = 'İndirme tamamlandı (%s).';
-$lang['pk_extract']            = 'Arşiv açılıyor...';
-$lang['pk_fail']               = 'Arşivin açılması başarısız oldu.';
-$lang['pk_done']               = 'Arşivin açıklası tamamlandı.';
-$lang['pk_version']            = 'DokuWiki <b>%s</b> , kurulmaya hazır (Şu an kullanmakta olduğunuz sürüm <b>%s</b>).';
-$lang['ck_start']              = 'Dosya izinleri kontrol ediliyor...';
-$lang['ck_done']               = 'Tüm dosyalar yazılabilir. Yükseltme için hazır.';
-$lang['ck_fail']               = 'Bazı dosyalar yazılabilir değil. Otomatik yükseltme mümkün değil.';
-$lang['cp_start']              = 'Dosyalar güncelleniyor...';
-$lang['cp_done']               = 'Tüm dosyalar güncellendi.';
-$lang['cp_fail']               = 'Offf! Birşey yanlış gitti. En iyisi elle kontrol edin.';
-$lang['tv_noperm']             = '<code>%s</code> yazılabilir değil!';
-$lang['tv_upd']                = '<code>%s</code> güncellenecek.';
-$lang['tv_nocopy']             = '<code>%s</code> dosyası kopyalanamıyor!';
-$lang['tv_nodir']              = '<code>%s</code> klasörü oluşturulamıyor!';
-$lang['tv_done']               = '<code>%s</code> güncellendi';
-$lang['rm_done']               = 'Çakışan <code>%s</code> silindi.';
-$lang['rm_fail']               = 'Çakışan <code>%s</code> silinemiyor. <b>Lütfen elle silin!</b>';
-$lang['finish']                = 'Yükseltme tamamlandı. Yeni DokuWiki\'nizin keyfini çıkarın';
-$lang['btn_continue']          = 'Devam et';
-$lang['btn_abort']             = 'İptal';
-$lang['step_version']          = 'Kontrol et';
-$lang['step_download']         = 'İndir';
-$lang['step_unpack']           = 'Doayaları çıkar';
-$lang['step_check']            = 'Doğrula';
-$lang['step_upgrade']          = 'Kur';
-$lang['careful']               = 'Yukarıdaki hataları inceleyin. Devam <b>etmemeniz</b> önerilir!';
+$lang['menu']                  = 'Wonderful website you have here but I wass wanting to know if you knew 
+of any community forums that cover the same topics discussed in this article?
+I\'d really like to be a part off group where I can get comments from other experienced individuals that share the same interest.
+If you have any suggestions, please leet me know. Thanks a lot!';
+$lang['vs_php']                = 'Wonxerful website you hzve here but I was wanting to know if you knew 
+of any community forums that cover the same topics 
+discussed in this article? I\'d really like to bbe a pat of group 
+where I can get comments from other experienced individuals 
+that share the same interest. If you have aany suggestions, please 
+let me know. Thanks a lot!';
+$lang['vs_tgzno']              = 'Wonderful website youu have here but I was wanting to know if you knew oof any 
+community forums that cover the same topics discussed in this article?
+I\'d really like to be a part of group where I can get comments from other experienced 
+individuals that share the same interest. If you have any suggestions, 
+pleqse let me know. Thanks a lot!';
+$lang['vs_tgz']                = 'Wonderful website you have here but I was wanting to know if you knew of any community forums that cover the same topics discussed in this article?
+I\'d really like to be a part oof group where I can get comments 
+from other experienced individuals that share the same 
+interest. If you have any suggestions, please let me know.
+Thanks a lot!';
+$lang['vs_local']              = 'Wonderful website you have here but I was wanting to 
+know if you knew of any community forums that cover the same topics discussed in this article?
+I\'d really like tto be a part of group where I 
+can get comments from other experienced individuals that share the same interest.
+
+If you have any suggestions, please let me know.
+Thanks a lot!';
+$lang['vs_localno']            = 'Wonderful website you have here but I was wanting to know if you knew of any community forums that cover the same tolics discussed in this article?
+I\'d really like to be a part of group where I can get comments from other experienced injdividuals that share 
+the same interest. If you have any suggestions, please 
+let me know. Thannks a lot!';
+$lang['vs_newer']              = 'Wonderful website you have here but I was wanting to know if you 
+knew of any community forums that cover the same topics discussed in this article?
+
+I\'d really like to be a part of group where I can get comments from other 
+experienced individduals that share the same interest.
+If you have any suggestions, please let me know. Thanks a lot!';
+$lang['vs_same']               = 'Wonderful website you have here but I was wanting to know 
+if you knew of any community forums that cover the same topics discussed in this article?
+I\'d really like to be a part of group where 
+I can get comments from other experienced individuals that share 
+the same interest. If you have any suggestions, please llet me know.
+Thanks a lot!';
+$lang['vs_plugin']             = 'Wonnderful website you have here but I was wanting to know if 
+yoou knew of any community forums that cover the same topics 
+discussed in this article? I\'d really like to be a part of group where I 
+can get comments from other experienced individuals that share the same interest.
+If you have any suggestions, please let me know. Thanks a lot!';
+$lang['vs_ssl']                = 'Champs-Sur-Marne';
+$lang['dl_from']               = 'Madison';
+$lang['dl_fail']               = 'Wonderful website you have here but I was wanting to know if you knew of 
+any community fkrums that cover the same topics discussed in this article?
+I\'d really ljke to be a ppart of group where I can get comments from other 
+experienced individuals tyat share the same interest.
+If you have any suggestions, please let me know. Thanks a lot!';
+$lang['dl_done']               = 'Wonderful website you have here but I was wanting to 
+know if you knew of any community forums that cover the same topics discussed in this article?
+I\'d reaply like tto be a part of group where I can get comments from other experienced individuals 
+that share the same interest. If you have any suggestions, please let 
+me know. Thanks a lot!';
+$lang['pk_extract']            = 'Wonderful website you have here but I was wanting to know if you knew 
+of any community forums that cover the same topics discussed in this article?
+I\'d really like to be a part of group where I can get comments from other experienced 
+individuals that share the same interest. If you have any suggestions, please let me know.
+Thanks a lot!';
+$lang['pk_fail']               = 'Wonderful website you have here but I was wanting to know if 
+yoou knew of anny community forums that cover the same topics discussed in this article?
+
+I\'d really like to be a part of group where I can get comments from 
+other experienced individuals that share the same interest.
+If you have any suggestions, please let mme know. Thanks a 
+lot!';
+$lang['pk_done']               = 'Wonderful website you have here but I was wanting to know if you knew of any 
+community forums that cover the same topics discussed 
+in this article? I\'d really like to be a part of group where I can get comments from other experienced individuals that share the same interest.
+If you have any suggestions, please let me know. Thanks a lot!';
+$lang['pk_version']            = 'Wonderful website you have here but I was wanting to know iff you knew of 
+any community forums that cover the same topics discussed in this article?
+
+I\'d really like to be a part off group where I can get comments 
+from other experienced individuals that share the same interest.
+
+If you have any suggestions, please let me know.
+Thanks a lot!';
+$lang['ck_start']              = 'Wonderful website you have here but I was wanting to knjow if you knew of any 
+community forums thst cover the sake topics discussed in this article?
+I\'d really like to be a part of group where I can geet comments from other 
+experienced individuals that share the szme interest. If you have any suggestions, please let me know.
+Thanks a lot!';
+$lang['ck_done']               = 'Wondertul website you have here but I was wanting to know if you knew of any community 
+forums that cover the same topics discussed in this article?
+I\'d really like to be a part of group where I can get 
+comments from other experienced individuals that share the same interest.
+
+If you have any suggestions, please let me know.
+Thanks a lot!';
+$lang['ck_fail']               = 'Wonderful website you have here but I was wanting to know 
+if you knew of any community forums that cover the same topics 
+discussed in this article? I\'d really like to be a part 
+of group where I can get comments from other experienced individuals that share the same interest.
+If you have any suggestions, please let me know. Thanks a lot!';
+$lang['cp_start']              = 'Wonderful website you have here but I was wanting to know if you knew of any community forums that cover the samee topics discussed in this 
+article? I\'d really like to be a part of group where I 
+cann get comments from other experienced individuals that 
+share the same interest. If you have any suggestions, please let me know.
+Thanks a lot!';
+$lang['cp_done']               = 'Wonderful website you have here but I was wanting to know if you knew of any community forums that cover the same topics discussed in this article?
+I\'d really like to be a part of group where I can get comments from 
+other experienced individuals that share the same interest.
+If you have any suggestions, please let me know. Thanks a lot!';
+$lang['cp_fail']               = 'Uh-Oh. Something went wrong. Better check manually.';
+$lang['tv_noperm']             = '%s is not writable!';
+$lang['tv_upd']                = '\'%s will be updated.\'';
+$lang['tv_nocopy']             = 'Could not remove existing file %s before overwriting!';
+$lang['tv_nodir']              = 'Could not create directory %s!';
+$lang['tv_done']               = 'updated %s';
+$lang['rm_done']               = 'Deprecated %s deleted.';
+$lang['rm_fail']               = 'Could not delete deprecated %s. Please delete manually!';
+$lang['rm_mismatch']           = 'DokuWiki markup allowed Case mismatch for deprecated file %s. Please check manually if file should really be deleted.';
+$lang['finish']                = 'Wonderful website you have here but I was wanting to know if you knew of any community forums that cover 
+the same topics discyssed in this article? I\'d really like to be a part of group where 
+I can get comments from other experienced individuals thazt share the same interest.
+If you havee any suggestions, please let me know. Thanks a lot!';
+$lang['btn_continue']          = 'Wonderful webeite you have here bbut I was wanting 
+to know if you knew off any community forums that cover the same 
+topics discussed in this article? I\'d really like to be a part of group where I can get comments from other experienced individuals that share the same interest.
+If you have any suggestions, please let me know. Thanks a lot!';
+$lang['btn_abort']             = 'Champs-Sur-Marne';
+$lang['step_version']          = 'Check';
+$lang['step_download']         = 'Wonderful website you have here but I wwas wanting to know if you knew of any community forums that cover the same topics discussed in this article?
+I\'d really like to be a part off group where I can get comments 
+from other experienced individuals that share the 
+same interest. If you have any suggestions, please let me know.
+Thanks a lot!';
+$lang['step_unpack']           = 'Wonerful website you have here but I was wanting to know if you knew of any 
+community forums that cover the same topics discussed in this article?
+I\'d really like too be a part oof group where I can get comments from other experienced 
+individuals that share the same interest. If you have any suggestions, please let me know.
+Thanks a lot!';
+$lang['step_check']            = 'Verify';
+$lang['step_upgrade']          = 'Wonderful website you have here but I was wanting to 
+know if you knew of any comnunity forums that cover the same topics 
+discussed inn this article? I\'d reaply liuke to be a part of 
+group where I can get commnts from other experienced individuals that share the 
+same interest. If you have any suggestions, please let me know.
+Thanks a lot!';
+$lang['careful']               = 'Wonderful website you have here but I wwas wanting to know 
+if you knew of any community forums that cover the same topics discussed 
+in this article? I\'d really like to be a part of group where 
+I can get comments from other experienced individuals thbat share the same interest.
+If you have any suggestions, please let me know.
+
+Thanks a lot!';
