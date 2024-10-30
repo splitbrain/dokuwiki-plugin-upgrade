@@ -1,5 +1,7 @@
 <?php
 
+use dokuwiki\Extension\AdminPlugin;
+
 /**
  * DokuWiki Plugin upgrade (Admin Component)
  *
@@ -9,7 +11,7 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-class admin_plugin_upgrade extends DokuWiki_Admin_Plugin
+class admin_plugin_upgrade extends AdminPlugin
 {
     protected $haderrors = false;
 
