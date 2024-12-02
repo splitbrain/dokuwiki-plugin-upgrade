@@ -1,23 +1,23 @@
 <?php
 
-
 namespace dokuwiki\plugin\upgrade\HTTP;
 
-
+use dokuwiki\Extension\Event;
 
 /**
  * Adds DokuWiki specific configs to the HTTP client
  *
  * @author Andreas Goetz <cpuidle@gmx.de>
  */
-class DokuHTTPClient extends HTTPClient {
-
+class DokuHTTPClient extends HTTPClient
+{
     /**
      * Constructor.
      *
      * @author Andreas Gohr <andi@splitbrain.org>
      */
-    public function __construct(){
+    public function __construct()
+    {
         global $conf;
 
         // call parent constructor
@@ -32,8 +32,8 @@ class DokuHTTPClient extends HTTPClient {
         $this->proxy_except = $conf['proxy']['except'];
 
         // allow enabling debugging via URL parameter (if debugging allowed)
-        if($conf['allowdebug']) {
-            if(
+        if ($conf['allowdebug']) {
+            if (
                 isset($_REQUEST['httpdebug']) ||
                 (
                     isset($_SERVER['HTTP_REFERER']) &&
@@ -58,20 +58,17 @@ class DokuHTTPClient extends HTTPClient {
      * @param string $method
      * @return bool
      */
-    public function sendRequest($url,$data='',$method='GET'){
-        $httpdata = array('url'    => $url,
-            'data'   => $data,
-            'method' => $method);
-        $evt = new \Doku_Event('HTTPCLIENT_REQUEST_SEND',$httpdata);
-        if($evt->advise_before()){
+    public function sendRequest($url, $data = '', $method = 'GET')
+    {
+        $httpdata = ['url'    => $url, 'data'   => $data, 'method' => $method];
+        $evt = new Event('HTTPCLIENT_REQUEST_SEND', $httpdata);
+        if ($evt->advise_before()) {
             $url    = $httpdata['url'];
             $data   = $httpdata['data'];
             $method = $httpdata['method'];
         }
         $evt->advise_after();
         unset($evt);
-        return parent::sendRequest($url,$data,$method);
+        return parent::sendRequest($url, $data, $method);
     }
-
 }
-
