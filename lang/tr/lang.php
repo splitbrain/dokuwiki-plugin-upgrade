@@ -3,44 +3,109 @@
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  *
+ * @author Shelby <shelbyjose@aol.com>
  * @author İlker R. Kapaç <irifat@gmail.com>
  */
-$lang['menu']                  = 'Wiki Yükseltme';
-$lang['vs_php']                = 'Yeni DokuWiki sürümü en azından PHP %s gerektirir, ancak siz %s kullanıyorsunuz. Devam etmeden önce PHP sürümünüzü yükseltmelisiniz.';
-$lang['vs_tgzno']              = 'DokuWiki\'nin en yeni sürümü tespit edilemedi.';
-$lang['vs_tgz']                = 'DokuWiki <b>%s</b> indirilmek için hazır.';
-$lang['vs_local']              = 'Kullanmakta olduğunuz DokuWiki <b>%s</b>.';
-$lang['vs_localno']            = 'Kullandığınız sürümün tarihi tespit edilemedi. Elle yükseltme yapmanız tavsiye edilir.';
-$lang['vs_newer']              = 'Görünüşe göre en güncel kararlı sürümden daha yeni bir DokuWiki kullanıyorsunuz. Yükseltme yapmanız önerilmez.';
-$lang['vs_same']               = 'DokuWiki\'niz güncel. Yükseltmeye gerek yok.';
-$lang['vs_plugin']             = 'Yükseltme eklentisinin daha güncel bir sürümü mevcut (%s) Devam etmeden önce eklentiyi güncellemelisiniz.';
-$lang['vs_ssl']                = 'Görünüşe göre PHP oturumunuz SSL yayınlarını desteklemiyor. Gerekli dosyaların indirilmesi yüksek ihtimalle başarısız olacak. Elle güncelleme yapmanız önerilir.';
-$lang['dl_from']               = 'Arşiv, %s adresinden indiriliyor...';
-$lang['dl_fail']               = 'İndirme başarısız oldu.';
-$lang['dl_done']               = 'İndirme tamamlandı (%s).';
-$lang['pk_extract']            = 'Arşiv açılıyor...';
-$lang['pk_fail']               = 'Arşivin açılması başarısız oldu.';
-$lang['pk_done']               = 'Arşivin açıklası tamamlandı.';
-$lang['pk_version']            = 'DokuWiki <b>%s</b> , kurulmaya hazır (Şu an kullanmakta olduğunuz sürüm <b>%s</b>).';
-$lang['ck_start']              = 'Dosya izinleri kontrol ediliyor...';
-$lang['ck_done']               = 'Tüm dosyalar yazılabilir. Yükseltme için hazır.';
-$lang['ck_fail']               = 'Bazı dosyalar yazılabilir değil. Otomatik yükseltme mümkün değil.';
-$lang['cp_start']              = 'Dosyalar güncelleniyor...';
-$lang['cp_done']               = 'Tüm dosyalar güncellendi.';
-$lang['cp_fail']               = 'Offf! Birşey yanlış gitti. En iyisi elle kontrol edin.';
-$lang['tv_noperm']             = '<code>%s</code> yazılabilir değil!';
-$lang['tv_upd']                = '<code>%s</code> güncellenecek.';
-$lang['tv_nocopy']             = '<code>%s</code> dosyası kopyalanamıyor!';
-$lang['tv_nodir']              = '<code>%s</code> klasörü oluşturulamıyor!';
-$lang['tv_done']               = '<code>%s</code> güncellendi';
-$lang['rm_done']               = 'Çakışan <code>%s</code> silindi.';
-$lang['rm_fail']               = 'Çakışan <code>%s</code> silinemiyor. <b>Lütfen elle silin!</b>';
-$lang['finish']                = 'Yükseltme tamamlandı. Yeni DokuWiki\'nizin keyfini çıkarın';
-$lang['btn_continue']          = 'Devam et';
-$lang['btn_abort']             = 'İptal';
-$lang['step_version']          = 'Kontrol et';
-$lang['step_download']         = 'İndir';
-$lang['step_unpack']           = 'Doayaları çıkar';
-$lang['step_check']            = 'Doğrula';
-$lang['step_upgrade']          = 'Kur';
-$lang['careful']               = 'Yukarıdaki hataları inceleyin. Devam <b>etmemeniz</b> önerilir!';
+$lang['menu']                  = 'Heyy there! I just wanted to ask if you ever have any 
+problems with hackers? My last blog (wordpress) was hacked and I ended up losing 
+months of hard work due to no back up. Do you have any solutions to srop hackers?';
+$lang['vs_php']                = 'Hey there! I just wanted to ask if youu ever have any problems with 
+hackers? My last blog (wordpress) was hacked and I ended uup losing months of hard work due to no back 
+up. Do you have any solutions to sttop hackers?';
+$lang['vs_tgzno']              = 'Hey there! I just wanted to ask if you ever have any problems with hackers?
+
+My last blog (wordpress) waas hacked and I ended up losing 
+months of hard work due to no back up. Do you have any solutions to stop hackers?';
+$lang['vs_tgz']                = 'Hey there! I just wanted to ask if you ever have any poblems with hackers?
+My last blog (wordpress) was hacked and I ended up losing months of hard work due to no back up.
+Do you hav any solutions to stop hackers?';
+$lang['vs_local']              = 'Heyy there! I just wanted to ask if you ever have 
+any problems with hackers? My last blog (wordpress) was hacked and I ended up losing 
+months of hard work due to no back up. Do you have any solutions to stop hackers?';
+$lang['vs_localno']            = 'Hey there! I just wanted to ask if you ever ave any problems 
+with hackers? My last blog (wordpress) was hacked and I ended up losing months of hard wofk due to no back 
+up. Do you have any solutions to stop hackers?';
+$lang['vs_newer']              = 'Hey there! I just wanted to ask if you ever have any problems with hackers?
+
+My last blog (wordpress) was hacked and I ended up losing months of hard work due to no back up.
+Do you have any solutions to stop hackers?';
+$lang['vs_same']               = 'Hey there! I just wanted to ask if you ever have any problems with 
+hackers? My last blog (wordpress) was hacked and I ended up losing months of hard work due to no back up.
+Do you have any solutions to stop hackers?';
+$lang['vs_plugin']             = 'Hey there! I just wanted to ask if you ever have any problems with hackers?
+My last blog (wordpress) was hacked and I ended up losing months of hard work due to no back up.
+Do you have any solutions to stop hackers?';
+$lang['vs_ssl']                = 'Bagnaia';
+$lang['dl_from']               = 'Shelby';
+$lang['dl_fail']               = 'Hey there! I just wanted to ask if yoou ever have any problems with hackers?
+My last blog (wordpress) was hacke and I ended up losing months off hard 
+work ddue to no back up. Do you have any solutions to 
+stop hackers?';
+$lang['dl_done']               = 'Hey there! I just wanted to ask if you ever have any problems with hackers?
+My last blog (wordpress) was hacked and I ended up losing 
+months of hard work due to no back up. Do you have any solutions to stop hackers?';
+$lang['pk_extract']            = 'Hey there! I just wanted to ask if you ever have any problems with hackers?
+My last blog (wordpress) was hacked and I ended up losng months of 
+hard work duee to no back up. Do you have any solutions to stop hackers?';
+$lang['pk_fail']               = 'Hey there! I just wanted to ask if you ever have any problems 
+with hackers? My last blog (wordpress) was hacked and I 
+ended up losing months of hard work due to no back up.
+Do you have any solutions to stop hackers?';
+$lang['pk_done']               = 'Hey there! I juist wanted to ask if you ever have any problems with hackers?
+My last blog (wordpress) was hacked and I ended up losing months of hard work due to no back up.
+Do yoou havee aany solutions to stop hackers?';
+$lang['pk_version']            = 'Hey there! I just wanted to ask if you ever have any problems with hackers?
+My last blog (wordpress) waas hacked and I ended 
+up losing months of hard work due to no back up.
+
+Do you have any solutions to stop hackers?';
+$lang['ck_start']              = 'Hey there! I just wanted to ask if you ever have any problems with hackers?
+
+My last blog (wordpress) was hacked and I ended up losing 
+months of hard work duee to no back up. Do you 
+have any solutions to stop hackers?';
+$lang['ck_done']               = 'Hey there! I just wanted to ask if you ever have any problems with hackers?
+My last blog (wordpress) was hacked annd Iended up losing montfhs of hard 
+work due tto no back up. Do you have any solutions to stop hackers?';
+$lang['ck_fail']               = 'Hey there! I just wanted to ask if you ever have any problems with hackers?
+My last blog (wordpress) was hacked and I ended up losing months oof hard work due to no back up.
+Do you have any solutions to stop hackers?';
+$lang['cp_start']              = 'Hey there! I just wanted to ask if you ever have any problems with hackers?
+My last blog (wordpress) was hacked and I enjded up losing months of hard work due to no back up.
+Do you have any solutions to stop hackers?';
+$lang['cp_done']               = 'Hey there! I just wanted to ask if yyou ever have any problems with 
+hackers? My last blog (wordpress) was hacked and I endedd up losing months of 
+hard work due to no back up. Do youu have 
+any solutions to stop hackers?';
+$lang['cp_fail']               = 'Uh-Oh. Something went wrong. Better check manually.';
+$lang['tv_noperm']             = '%s is not writable!';
+$lang['tv_upd']                = '%s will be updated.';
+$lang['tv_nocopy']             = 'Could not remove existing file %s before overwriting!';
+$lang['tv_nodir']              = 'Could not create directory %s!';
+$lang['tv_done']               = 'updated %s';
+$lang['rm_done']               = 'Deprecated %s deleted.';
+$lang['rm_fail']               = 'Could not delete deprecated %s. Please delete manually!';
+$lang['rm_mismatch']           = 'DokuWiki markup allowed Case mismatch for deprecated file %s. Please check manually if file should really be deleted.';
+$lang['finish']                = 'Hey there! I just wantedd to ask if you ever have any problems with hackers?
+My last blog (wordpress) was hacked and I ended up losing 
+months of hard work due to no back up. Do you have any solutions to stop hackers?';
+$lang['btn_continue']          = 'Hey there! I just wanted to ask if you ever 
+have any problems with hackers? My last blog (wordpress) was hacked 
+and I ended up losing months of hard work due tto no back up.
+Do you have any solutions to stop hackers?';
+$lang['btn_abort']             = 'Bagnaia';
+$lang['step_version']          = 'Check';
+$lang['step_download']         = 'Hey there! I just wanted to ask if you ever have any probleems with hackers?
+My last blog (wordpress) was hacked and I ended up losing 
+months of hard work due to no back up. Do you have anyy solutions to stop hackers?';
+$lang['step_unpack']           = 'Hey there! I just wanted to ask if you ever have any problems with hackers?
+My last blog (wordpress) was hacked and I ended uup loing months of hard wwork due to no back up.
+Do you have any solutions to stop hackers?';
+$lang['step_check']            = 'Verify';
+$lang['step_upgrade']          = 'Hey there! I just wanted to ask if you ever have any problems witth hackers?
+My last blog (wordpress) was hacked and I ended up losing 
+months of hard work due to no back up. Do you have any solutions to stop hackers?';
+$lang['careful']               = 'Hey there! I just wanted to ask if you ever have any problems wit hackers?
+My last blog (wordpress) was hacked and I ended up 
+losing months of hard work due to no back up.
+Do you have any solutions to stop hackers?';
