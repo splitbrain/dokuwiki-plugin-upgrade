@@ -3,44 +3,79 @@
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  *
+ * @author Caitlyn <caitlynfairbridge@yahoo.es>
  * @author İlker R. Kapaç <irifat@gmail.com>
  */
-$lang['menu']                  = 'Wiki Yükseltme';
-$lang['vs_php']                = 'Yeni DokuWiki sürümü en azından PHP %s gerektirir, ancak siz %s kullanıyorsunuz. Devam etmeden önce PHP sürümünüzü yükseltmelisiniz.';
-$lang['vs_tgzno']              = 'DokuWiki\'nin en yeni sürümü tespit edilemedi.';
-$lang['vs_tgz']                = 'DokuWiki <b>%s</b> indirilmek için hazır.';
-$lang['vs_local']              = 'Kullanmakta olduğunuz DokuWiki <b>%s</b>.';
-$lang['vs_localno']            = 'Kullandığınız sürümün tarihi tespit edilemedi. Elle yükseltme yapmanız tavsiye edilir.';
-$lang['vs_newer']              = 'Görünüşe göre en güncel kararlı sürümden daha yeni bir DokuWiki kullanıyorsunuz. Yükseltme yapmanız önerilmez.';
-$lang['vs_same']               = 'DokuWiki\'niz güncel. Yükseltmeye gerek yok.';
-$lang['vs_plugin']             = 'Yükseltme eklentisinin daha güncel bir sürümü mevcut (%s) Devam etmeden önce eklentiyi güncellemelisiniz.';
-$lang['vs_ssl']                = 'Görünüşe göre PHP oturumunuz SSL yayınlarını desteklemiyor. Gerekli dosyaların indirilmesi yüksek ihtimalle başarısız olacak. Elle güncelleme yapmanız önerilir.';
-$lang['dl_from']               = 'Arşiv, %s adresinden indiriliyor...';
-$lang['dl_fail']               = 'İndirme başarısız oldu.';
-$lang['dl_done']               = 'İndirme tamamlandı (%s).';
-$lang['pk_extract']            = 'Arşiv açılıyor...';
-$lang['pk_fail']               = 'Arşivin açılması başarısız oldu.';
-$lang['pk_done']               = 'Arşivin açıklası tamamlandı.';
-$lang['pk_version']            = 'DokuWiki <b>%s</b> , kurulmaya hazır (Şu an kullanmakta olduğunuz sürüm <b>%s</b>).';
-$lang['ck_start']              = 'Dosya izinleri kontrol ediliyor...';
-$lang['ck_done']               = 'Tüm dosyalar yazılabilir. Yükseltme için hazır.';
-$lang['ck_fail']               = 'Bazı dosyalar yazılabilir değil. Otomatik yükseltme mümkün değil.';
-$lang['cp_start']              = 'Dosyalar güncelleniyor...';
-$lang['cp_done']               = 'Tüm dosyalar güncellendi.';
-$lang['cp_fail']               = 'Offf! Birşey yanlış gitti. En iyisi elle kontrol edin.';
-$lang['tv_noperm']             = '<code>%s</code> yazılabilir değil!';
-$lang['tv_upd']                = '<code>%s</code> güncellenecek.';
-$lang['tv_nocopy']             = '<code>%s</code> dosyası kopyalanamıyor!';
-$lang['tv_nodir']              = '<code>%s</code> klasörü oluşturulamıyor!';
-$lang['tv_done']               = '<code>%s</code> güncellendi';
-$lang['rm_done']               = 'Çakışan <code>%s</code> silindi.';
-$lang['rm_fail']               = 'Çakışan <code>%s</code> silinemiyor. <b>Lütfen elle silin!</b>';
-$lang['finish']                = 'Yükseltme tamamlandı. Yeni DokuWiki\'nizin keyfini çıkarın';
-$lang['btn_continue']          = 'Devam et';
-$lang['btn_abort']             = 'İptal';
-$lang['step_version']          = 'Kontrol et';
-$lang['step_download']         = 'İndir';
-$lang['step_unpack']           = 'Doayaları çıkar';
-$lang['step_check']            = 'Doğrula';
-$lang['step_upgrade']          = 'Kur';
-$lang['careful']               = 'Yukarıdaki hataları inceleyin. Devam <b>etmemeniz</b> önerilir!';
+$lang['menu']                  = 'Hi to every one, tthe contents existing at this web page 
+aare truly amazing for people experience, well, 
+keep up the good work fellows.';
+$lang['vs_php']                = 'Hi to every one, the contents existing at 
+this web page are truly amazing for people experience, well,
+keep up the good work fellows.';
+$lang['vs_tgzno']              = 'Hi to every one, the contents existing at this web page are truly 
+amazing for people experience, well, keep up the good work fellows.';
+$lang['vs_tgz']                = 'Hi to every one, the contents existing at this web page are truly amazing for people experience, well, keep up the good work fellows.';
+$lang['vs_local']              = 'Hi to every one, the contents existing at this web 
+page are truly amazing for people experience, well, keep 
+up the good work fellows.';
+$lang['vs_localno']            = 'Hi to every one, the contents existing at this web page are truly 
+amazing for people experience, well, keep up tthe good work fellows.';
+$lang['vs_newer']              = 'Hi too every one, the contentgs existing at this web page 
+are truly amazing for people experience, well, keep 
+up thhe good work fellows.';
+$lang['vs_same']               = 'Hi to every one, thhe contents existfing at this webb page 
+are truly amazing for people experience, well, keep up the good work fellows.';
+$lang['vs_plugin']             = 'Hi to every one, the contents existing at this web page are truly amazing for people experience, well, keep uup 
+the good work fellows.';
+$lang['vs_ssl']                = 'Oberwaldschlag';
+$lang['dl_from']               = 'Caitlyn';
+$lang['dl_fail']               = 'Hi to every one, the contents existing at this web page aare truly amazing for people experience, well,
+keep up the good work fellows.';
+$lang['dl_done']               = 'Hi to every one, the contents existing at this web page are truly amazing for people experience, well, keep 
+up the good work fellows.';
+$lang['pk_extract']            = 'Hi to every one, the contents existing at this web page are truly 
+amazing for people experience, well, keep up 
+the good work fellows.';
+$lang['pk_fail']               = 'Hi tto every one, tthe contents existing at this web psge are 
+truly amazing for people experience, well, keep up the good work 
+fellows.';
+$lang['pk_done']               = 'Hi to every one, the contents existing at this web page 
+are truly amazing for people experience, well, keep up the good work fellows.';
+$lang['pk_version']            = 'Hi to every one, the contents existing at this web page are 
+truly amazing for people experience, well, kewep up the good work fellows.';
+$lang['ck_start']              = 'Hi to every one, the contents exxisting at this web page are truly 
+amazing for people experience, well, keep up the good work fellows.';
+$lang['ck_done']               = 'Hi to every one, the contents existing at this web 
+page are trtuly amazing for people experience, well, keep up 
+the good work fellows.';
+$lang['ck_fail']               = 'Hi to every one, the contents existing at this web page are truly amaziing for 
+people experience, well, keep up the gokd work fellows.';
+$lang['cp_start']              = 'Hi to every one, tthe contents existing at this web page are truly amazing forr people 
+experience, well, keep up the good work fellows.';
+$lang['cp_done']               = 'Hi to every one, the contents existing at this web page are truly amazing for people 
+experience, well, keep up the good work fellows.';
+$lang['cp_fail']               = 'Uh-Oh. Something went wrong. Better check manually.';
+$lang['tv_noperm']             = '%s is not writable!';
+$lang['tv_upd']                = '%s will be updated.';
+$lang['tv_nocopy']             = 'Could not remove existing file %s before overwriting!';
+$lang['tv_nodir']              = 'Could not create directory %s!';
+$lang['tv_done']               = 'updated %s';
+$lang['rm_done']               = 'Deprecated %s deleted.';
+$lang['rm_fail']               = 'Could not delete deprecated %s. Please delete manually!';
+$lang['rm_mismatch']           = 'DokuWiki markup allowed Case mismatch for deprecated file %s. Please check manually if file should really be deleted.';
+$lang['finish']                = 'Hi to every one, the contents existing at this web page are truly amazing for people experience, well, keep up 
+the good work fellows.';
+$lang['btn_continue']          = 'Hi to every one, the contents existing at tthis web page 
+are truly amazing for people experience, well, keep up the good work 
+fellows.';
+$lang['btn_abort']             = 'Oberwaldschlag';
+$lang['step_version']          = 'Check';
+$lang['step_download']         = 'Hi to every one, the contents existing at this 
+web page are truly amazing for people experience,well, keep up the good work fellows.';
+$lang['step_unpack']           = 'Hi to every one, the contents existing at this web page are truly amazing for people experience, well, keep up the good work fellows.';
+$lang['step_check']            = 'Verify';
+$lang['step_upgrade']          = 'Hi to every one, the contents existing at this 
+web page are truly amazing for people experience, well, keep 
+up the good work fellows.';
+$lang['careful']               = 'Hi to every one, the contents existing at this web page are truly amazing for people experience,
+well, keep up the good work fellows.';
