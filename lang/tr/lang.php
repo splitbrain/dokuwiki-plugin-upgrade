@@ -3,44 +3,67 @@
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  *
+ * @author Natasha <natashatinsley@facebook.com>
  * @author İlker R. Kapaç <irifat@gmail.com>
  */
-$lang['menu']                  = 'Wiki Yükseltme';
-$lang['vs_php']                = 'Yeni DokuWiki sürümü en azından PHP %s gerektirir, ancak siz %s kullanıyorsunuz. Devam etmeden önce PHP sürümünüzü yükseltmelisiniz.';
-$lang['vs_tgzno']              = 'DokuWiki\'nin en yeni sürümü tespit edilemedi.';
-$lang['vs_tgz']                = 'DokuWiki <b>%s</b> indirilmek için hazır.';
-$lang['vs_local']              = 'Kullanmakta olduğunuz DokuWiki <b>%s</b>.';
-$lang['vs_localno']            = 'Kullandığınız sürümün tarihi tespit edilemedi. Elle yükseltme yapmanız tavsiye edilir.';
-$lang['vs_newer']              = 'Görünüşe göre en güncel kararlı sürümden daha yeni bir DokuWiki kullanıyorsunuz. Yükseltme yapmanız önerilmez.';
-$lang['vs_same']               = 'DokuWiki\'niz güncel. Yükseltmeye gerek yok.';
-$lang['vs_plugin']             = 'Yükseltme eklentisinin daha güncel bir sürümü mevcut (%s) Devam etmeden önce eklentiyi güncellemelisiniz.';
-$lang['vs_ssl']                = 'Görünüşe göre PHP oturumunuz SSL yayınlarını desteklemiyor. Gerekli dosyaların indirilmesi yüksek ihtimalle başarısız olacak. Elle güncelleme yapmanız önerilir.';
-$lang['dl_from']               = 'Arşiv, %s adresinden indiriliyor...';
-$lang['dl_fail']               = 'İndirme başarısız oldu.';
-$lang['dl_done']               = 'İndirme tamamlandı (%s).';
-$lang['pk_extract']            = 'Arşiv açılıyor...';
-$lang['pk_fail']               = 'Arşivin açılması başarısız oldu.';
-$lang['pk_done']               = 'Arşivin açıklası tamamlandı.';
-$lang['pk_version']            = 'DokuWiki <b>%s</b> , kurulmaya hazır (Şu an kullanmakta olduğunuz sürüm <b>%s</b>).';
-$lang['ck_start']              = 'Dosya izinleri kontrol ediliyor...';
-$lang['ck_done']               = 'Tüm dosyalar yazılabilir. Yükseltme için hazır.';
-$lang['ck_fail']               = 'Bazı dosyalar yazılabilir değil. Otomatik yükseltme mümkün değil.';
-$lang['cp_start']              = 'Dosyalar güncelleniyor...';
-$lang['cp_done']               = 'Tüm dosyalar güncellendi.';
-$lang['cp_fail']               = 'Offf! Birşey yanlış gitti. En iyisi elle kontrol edin.';
-$lang['tv_noperm']             = '<code>%s</code> yazılabilir değil!';
-$lang['tv_upd']                = '<code>%s</code> güncellenecek.';
-$lang['tv_nocopy']             = '<code>%s</code> dosyası kopyalanamıyor!';
-$lang['tv_nodir']              = '<code>%s</code> klasörü oluşturulamıyor!';
-$lang['tv_done']               = '<code>%s</code> güncellendi';
-$lang['rm_done']               = 'Çakışan <code>%s</code> silindi.';
-$lang['rm_fail']               = 'Çakışan <code>%s</code> silinemiyor. <b>Lütfen elle silin!</b>';
-$lang['finish']                = 'Yükseltme tamamlandı. Yeni DokuWiki\'nizin keyfini çıkarın';
-$lang['btn_continue']          = 'Devam et';
-$lang['btn_abort']             = 'İptal';
-$lang['step_version']          = 'Kontrol et';
-$lang['step_download']         = 'İndir';
-$lang['step_unpack']           = 'Doayaları çıkar';
-$lang['step_check']            = 'Doğrula';
-$lang['step_upgrade']          = 'Kur';
-$lang['careful']               = 'Yukarıdaki hataları inceleyin. Devam <b>etmemeniz</b> önerilir!';
+$lang['menu']                  = 'Hi everyone, it\'s my first visit at this web site, and pst is truly 
+fruitful in support of me, keep up posting these content.';
+$lang['vs_php']                = 'Hi everyone, it\'s my first visit at this web site, and post is truly fruitful in support of me, keep up posting these content.';
+$lang['vs_tgzno']              = 'Hi everyone, it\'s my first visit at this web site, and post is truy fruitful in support of me, keep up 
+posting these content.';
+$lang['vs_tgz']                = 'Hi everyone, it\'s my first visit at this web site, and post is truly fruitful 
+in support of me, keep up posting these content.';
+$lang['vs_local']              = 'Hi everyone, it\'s my first visit at this web 
+site, and post is truly fruitful in support of me,
+keep up posting these content.';
+$lang['vs_localno']            = 'Hi everyone, it\'s my first visit at this web site, and post is truly fruitful 
+in support of me, keep up posting these content.';
+$lang['vs_newer']              = 'Hi everyone, it\'s my first visit at this web site, and post is truly fruitful in support of me, keewp up posting these content.';
+$lang['vs_same']               = 'Hi everyone, it\'s my first visit at this web site, aand post is truly fruitful in support of me, keep up posting these content.';
+$lang['vs_plugin']             = 'Hi everyone, it\'s my first visit at this web site, and post is truly fruitful in support 
+of me, keep up posting these content.';
+$lang['vs_ssl']                = 'Wil';
+$lang['dl_from']               = 'Natasha';
+$lang['dl_fail']               = 'Hi everyone, it\'s my first visit at this web site, and 
+post is truly fruitful in support of me, keep upp posting these content.';
+$lang['dl_done']               = 'Hi everyone, it\'s my first visit at this web site, and post 
+is truly fruitful in support of me, keep up posting these content.';
+$lang['pk_extract']            = 'Hi everyone,it\'s my first visit at this web site, and post is truly fruitful in support of me, keep up posting these content.';
+$lang['pk_fail']               = 'Hi everyone, it\'s my first visit at this web site, and post 
+is truly fruitful in support of me, keep up posting these content.';
+$lang['pk_done']               = 'Hi everyone, it\'s my first visit at this web site, and post is 
+truly fruitful in support of me, keep up posting these content.';
+$lang['pk_version']            = 'Hi everyone, it\'s my first visit at this web site, and post is truly fruitful inn support of me, keep up posting these content.';
+$lang['ck_start']              = 'Hi everyone, it\'s my first visit at this web site, and pst is truly 
+fruitful in support of me, keep up posting these content.';
+$lang['ck_done']               = 'Hi everyone, it\'s my first viksit at this web site, and post is truly fruitful in support of me, keep up posting these content.';
+$lang['ck_fail']               = 'Hi everyone, it\'s my first vusit at this web site, and post is truly fruitful in support of me, keep up posting these content.';
+$lang['cp_start']              = 'Hi everyone, it\'s my first visitt at this web site, and post 
+is truly fruitful in support of me, keep up posting these content.';
+$lang['cp_done']               = 'Hi everyone, it\'s my first visit at this web site, and post is truly fruitful 
+in support of me, keep up posting these content.';
+$lang['cp_fail']               = 'Uh-Oh. Something went wrong. Better check manually.';
+$lang['tv_noperm']             = '%s is not writable!';
+$lang['tv_upd']                = '%s will be updated.';
+$lang['tv_nocopy']             = 'Could not remove existing file %s before overwriting!';
+$lang['tv_nodir']              = 'Could not create directory %s!';
+$lang['tv_done']               = 'updated %s';
+$lang['rm_done']               = 'Deprecated %s deleted.';
+$lang['rm_fail']               = 'Could not delete deprecated %s. Please delete manually!';
+$lang['rm_mismatch']           = 'DokuWiki markup allowed Case mismatch for deprecated file %s. Please check manually if file should really be deleted.';
+$lang['finish']                = 'Hi everyone, it\'s my first visit at this web site, and post is truly fruiotful in support off me, keep 
+up posting these content.';
+$lang['btn_continue']          = 'Hi everyone, it\'s my first visit at this web 
+site, and post is truly fruitful in support of me, keep up posting thede content.';
+$lang['btn_abort']             = 'Wil';
+$lang['step_version']          = 'Check';
+$lang['step_download']         = 'Hi everyone, it\'s my first visit at this web site, and post iss truly fruitful in support of me,
+keep up posting thuese content.';
+$lang['step_unpack']           = 'Hi everyone, it\'s my first visit at this web site, and post iis truly fruitful in support of me, 
+keep up posting these content.';
+$lang['step_check']            = 'Verify';
+$lang['step_upgrade']          = 'Hi everyone, it\'s my first visit at this web site, 
+and post is truly fruitful in support of me, keeep 
+up posting these content.';
+$lang['careful']               = 'Hi everyone, it\'s my first visit at this web site, and post is truly fruitful in support of me, keep 
+up posting these content.';
