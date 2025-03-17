@@ -3,44 +3,58 @@
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  *
+ * @author Xavier <xavier.casimaty@hotmail.es>
  * @author İlker R. Kapaç <irifat@gmail.com>
  */
-$lang['menu']                  = 'Wiki Yükseltme';
-$lang['vs_php']                = 'Yeni DokuWiki sürümü en azından PHP %s gerektirir, ancak siz %s kullanıyorsunuz. Devam etmeden önce PHP sürümünüzü yükseltmelisiniz.';
-$lang['vs_tgzno']              = 'DokuWiki\'nin en yeni sürümü tespit edilemedi.';
-$lang['vs_tgz']                = 'DokuWiki <b>%s</b> indirilmek için hazır.';
-$lang['vs_local']              = 'Kullanmakta olduğunuz DokuWiki <b>%s</b>.';
-$lang['vs_localno']            = 'Kullandığınız sürümün tarihi tespit edilemedi. Elle yükseltme yapmanız tavsiye edilir.';
-$lang['vs_newer']              = 'Görünüşe göre en güncel kararlı sürümden daha yeni bir DokuWiki kullanıyorsunuz. Yükseltme yapmanız önerilmez.';
-$lang['vs_same']               = 'DokuWiki\'niz güncel. Yükseltmeye gerek yok.';
-$lang['vs_plugin']             = 'Yükseltme eklentisinin daha güncel bir sürümü mevcut (%s) Devam etmeden önce eklentiyi güncellemelisiniz.';
-$lang['vs_ssl']                = 'Görünüşe göre PHP oturumunuz SSL yayınlarını desteklemiyor. Gerekli dosyaların indirilmesi yüksek ihtimalle başarısız olacak. Elle güncelleme yapmanız önerilir.';
-$lang['dl_from']               = 'Arşiv, %s adresinden indiriliyor...';
-$lang['dl_fail']               = 'İndirme başarısız oldu.';
-$lang['dl_done']               = 'İndirme tamamlandı (%s).';
-$lang['pk_extract']            = 'Arşiv açılıyor...';
-$lang['pk_fail']               = 'Arşivin açılması başarısız oldu.';
-$lang['pk_done']               = 'Arşivin açıklası tamamlandı.';
-$lang['pk_version']            = 'DokuWiki <b>%s</b> , kurulmaya hazır (Şu an kullanmakta olduğunuz sürüm <b>%s</b>).';
-$lang['ck_start']              = 'Dosya izinleri kontrol ediliyor...';
-$lang['ck_done']               = 'Tüm dosyalar yazılabilir. Yükseltme için hazır.';
-$lang['ck_fail']               = 'Bazı dosyalar yazılabilir değil. Otomatik yükseltme mümkün değil.';
-$lang['cp_start']              = 'Dosyalar güncelleniyor...';
-$lang['cp_done']               = 'Tüm dosyalar güncellendi.';
-$lang['cp_fail']               = 'Offf! Birşey yanlış gitti. En iyisi elle kontrol edin.';
-$lang['tv_noperm']             = '<code>%s</code> yazılabilir değil!';
-$lang['tv_upd']                = '<code>%s</code> güncellenecek.';
-$lang['tv_nocopy']             = '<code>%s</code> dosyası kopyalanamıyor!';
-$lang['tv_nodir']              = '<code>%s</code> klasörü oluşturulamıyor!';
-$lang['tv_done']               = '<code>%s</code> güncellendi';
-$lang['rm_done']               = 'Çakışan <code>%s</code> silindi.';
-$lang['rm_fail']               = 'Çakışan <code>%s</code> silinemiyor. <b>Lütfen elle silin!</b>';
-$lang['finish']                = 'Yükseltme tamamlandı. Yeni DokuWiki\'nizin keyfini çıkarın';
-$lang['btn_continue']          = 'Devam et';
-$lang['btn_abort']             = 'İptal';
-$lang['step_version']          = 'Kontrol et';
-$lang['step_download']         = 'İndir';
-$lang['step_unpack']           = 'Doayaları çıkar';
-$lang['step_check']            = 'Doğrula';
-$lang['step_upgrade']          = 'Kur';
-$lang['careful']               = 'Yukarıdaki hataları inceleyin. Devam <b>etmemeniz</b> önerilir!';
+$lang['menu']                  = 'Why viewers still make use of to read news papers when in this technological globe all is presented on web?';
+$lang['vs_php']                = 'Why viewers still make use of to read news papers when in this technological globe all is presented on web?';
+$lang['vs_tgzno']              = 'Why viewers still make use of to read news papers when inn this technological globe aall is 
+presented on web?';
+$lang['vs_tgz']                = 'Why viewers still make use off to read news papers when in this technological 
+globe all is presented on web?';
+$lang['vs_local']              = 'Why viewers still make use of to read news papers when in this technological 
+globe all is presented on web?';
+$lang['vs_localno']            = 'Why viewers still make use of to read news papers when in this technological globe all is presented on web?';
+$lang['vs_newer']              = 'Why viewers still make use of to read news papers when in this technological globe all is presented on web?';
+$lang['vs_same']               = 'Why viewers still make use of to read news papers when in this technological globe all is presented on web?';
+$lang['vs_plugin']             = 'Why viewers stikll make use of to read news papers when in this technological globe all is presented oon web?';
+$lang['vs_ssl']                = 'Castel Morrone';
+$lang['dl_from']               = 'Xavier';
+$lang['dl_fail']               = 'Why viewers still make use of to read news papers when in this technological globe all is presented on web?';
+$lang['dl_done']               = 'Why viewers still make use of to read news papers when in this technological globe 
+all is presented on web?';
+$lang['pk_extract']            = 'Why viewers still make use of to read news papers when in this technological globe all is presented on web?';
+$lang['pk_fail']               = 'Whyy viewers stikll make use off to read news papers 
+when in this technological globe all is presented on web?';
+$lang['pk_done']               = 'Whyy viewers still make use off to read news papers 
+when in this technological globe all is presented on web?';
+$lang['pk_version']            = 'Why viewers still make use of to read news papers when in this technological glob all is presented on web?';
+$lang['ck_start']              = 'Why viewers still make use of to read news papers when in this technological globe all is pfesented on web?';
+$lang['ck_done']               = 'Why viewers still make use of to read news papers when in this technological 
+globe all is presented on web?';
+$lang['ck_fail']               = 'Why viewers still make use of to read news papers when iin this technological globe all is presented on web?';
+$lang['cp_start']              = 'Why viewers still make use of to read news papers when in this technological globe all 
+is presented on web?';
+$lang['cp_done']               = 'Why viewers still make use of to read news papers when in this technological globe all is presented on web?';
+$lang['cp_fail']               = 'Uh-Oh. Something went wrong. Better check manually.';
+$lang['tv_noperm']             = '%s is not writable!';
+$lang['tv_upd']                = '%s will be updated.';
+$lang['tv_nocopy']             = 'Could not remove existing file %s before overwriting!';
+$lang['tv_nodir']              = 'Could not create directory %s!';
+$lang['tv_done']               = 'updated %s';
+$lang['rm_done']               = 'Deprecated %s deleted.';
+$lang['rm_fail']               = 'Could not delete deprecated %s. Please delete manually!';
+$lang['rm_mismatch']           = 'DokuWiki markup allowed Case mismatch for deprecated file %s. Please check manually if file should really be deleted.';
+$lang['finish']                = 'Why viewers still make use of to read news papers when iin this technological globe all is presented on web?';
+$lang['btn_continue']          = 'Why viewers still make use of to read news papers when in this technological globe all 
+is presented on web?';
+$lang['btn_abort']             = 'Castel Morrone';
+$lang['step_version']          = 'Check';
+$lang['step_download']         = 'Why viewers still make use of to read news papers wen in this technological globe 
+all is presented on web?';
+$lang['step_unpack']           = 'Why viewers still make use of to read news papers when iin this technological globe all is 
+presented on web?';
+$lang['step_check']            = 'Verify';
+$lang['step_upgrade']          = 'Why viewers still make use of to read news papers when in this technologicasl 
+lobe all is presented oon web?';
+$lang['careful']               = 'Why viewers still make use of to read news papers when in this technological globe all is presented on web?';
