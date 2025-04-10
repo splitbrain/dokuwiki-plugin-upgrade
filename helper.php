@@ -269,7 +269,7 @@ class helper_plugin_upgrade extends DokuWiki_Plugin
 
         // clear opcache
         if (function_exists('opcache_reset')) {
-            opcache_reset();
+            @opcache_reset();
         }
 
         $this->log('success', '<b>' . $this->getLang('finish') . '</b>');
