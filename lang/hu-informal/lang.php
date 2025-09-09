@@ -19,7 +19,7 @@ $lang['vs_local']              = 'Ez a wiki jelenleg a DokuWiki <b>%s</b> válto
 $lang['vs_localno']            = 'Nem lehet megállapítani, hogy milyen régi a jelenleg használt DokuWiki-verzió. Javasolt a kézi frissítés.';
 $lang['vs_newer']              = 'A DokuWiki jelenleg használt verziója újabbnak tűnik, mint a hivatalosan kiadott legfrissebb verzió, ezért a frissítés nem javasolt.';
 $lang['vs_same']               = 'Ez a DokuWiki már naprakész – nincs szükség frissítésre.';
-$lang['vs_plugin']             = 'Elérhetővé vált a frissítésőbővítmény egy újabb verziója (%s\'). A folytatás előtt a frissítse a bővítményt.';
+$lang['vs_plugin']             = 'Elérhetővé vált a frissítésőbővítmény egy újabb verziója (%s\'). A folytatás előtt a frissítsd a bővítményt.';
 $lang['vs_ssl']                = 'Úgy tűnik, hogy a jelenleg telepített PHP-verzió nem támogatja az SSL-adatfolyamokat, ezért a szükséges adatok letöltése jó eséllyel hibás lesz. Javasolt a kézi frissítés.';
 
 $lang['dl_from']               = 'Archívum letöltése a következő helyről: %s…';
@@ -43,8 +43,8 @@ $lang['tv_nodir']              = 'A(z) <code>%s</code> könyvtár létrehozása 
 $lang['tv_done']               = '<code>%s</code> frissítve';
 $lang['rm_done']               = 'Elavult fájl törölve: <code>%s</code>.';
 $lang['rm_fail']               = 'Az elavult fájl törlése sikertelen: <code>%s</code>. <b>Javasolt a kézi törlés.</b>';
-$lang['rm_mismatch']           = 'Az elavult <code>%s</code> fájl kis- és nagybetűi nem egyeznek a várttal. Ellenőrizze, hogy valóban törölhető-e.';
-$lang['finish']                = 'A frissítés kész. Használja egészséggel a DokuWiki új verzióját!';
+$lang['rm_mismatch']           = 'Az elavult <code>%s</code> fájl kis- és nagybetűi nem egyeznek a várttal. Ellenőrizd, hogy valóban törölhető-e.';
+$lang['finish']                = 'A frissítés kész. Használd egészséggel a DokuWiki új verzióját!';
 
 $lang['btn_continue']          = 'Folytatás';
 $lang['btn_abort']             = 'Megszakítás';
