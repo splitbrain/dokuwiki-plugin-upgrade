@@ -4,4 +4,4 @@ Az automatikus frissítéshez a PHP-folyamatnak írási jogosultságra van szük
 
 A bővítmény nem frissíti a már telepített bővítményeket vagy sablonokat.
 
-Javasoljuk, hogy a frissítés előtt készítsünk biztonsági másolatot.
+Javasoljuk, hogy a frissítés előtt készíts biztonsági másolatot.

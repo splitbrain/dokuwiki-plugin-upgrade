@@ -38,12 +38,12 @@ $lang['cp_fail']               = 'Hiba történt. Javasolt a kézi ellenőrzés.
 $lang['tv_noperm']             = 'A(z) <code>%s</code> nem írható.';
 $lang['tv_upd']                = 'A(z) <code>%s</code> frissítésre kerül.';
 $lang['tv_nocopy']             = 'A(z) <code>%s</code> fájl lemásolása sikertelen.';
-$lang['tv_nocopy']  = 'A létező <code>%s</code> fájl másolata felülírás előtt sikertelen.';
+$lang['tv_nocopy']             = 'A létező <code>%s</code> fájl másolata felülírás előtt sikertelen.';
 $lang['tv_nodir']              = 'A(z) <code>%s</code> könyvtár létrehozása sikertelen.';
 $lang['tv_done']               = '<code>%s</code> frissítve';
 $lang['rm_done']               = 'Elavult fájl törölve: <code>%s</code>.';
 $lang['rm_fail']               = 'Az elavult fájl törlése sikertelen: <code>%s</code>. <b>Javasolt a kézi törlés.</b>';
-$lang['rm_mismatch']= 'Az elavult <code>%s</code> fájl kis- és nagybetűi nem egyeznek a várttal. Ellenőrizd, hogy valóban törölhető-e.';
+$lang['rm_mismatch']           = 'Az elavult <code>%s</code> fájl kis- és nagybetűi nem egyeznek a várttal. Ellenőrizd, hogy valóban törölhető-e.';
 $lang['finish']                = 'A frissítés kész. Használd egészséggel a DokuWiki új verzióját!';
 
 $lang['btn_continue']          = 'Folytatás';
