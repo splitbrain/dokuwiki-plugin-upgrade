@@ -3,6 +3,7 @@
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  *
+ * @author CL <chris.loewe@vodafone.de>
  * @author Gunnar Lindenblatt <gunnar.lindenblatt@gmail.com>
  * @author Christoph Ziehr <info@einsatzleiterwiki.de>
  * @author Alex Timmermann <alex@modprobe.io>
@@ -15,7 +16,7 @@ $lang['vs_tgzno']              = 'Die neuste Version von DokuWiki konnte nicht e
 $lang['vs_tgz']                = 'DokuWiki <b>%s</b> steht zum Download bereit.';
 $lang['vs_local']              = 'Ihre DokuWiki-Version ist <b>%s</b>';
 $lang['vs_localno']            = 'Es konnte nicht festgestellt werden, wie alt die aktuell laufende Version ist. Ein manuelles Upgrade wird empfohlen.';
-$lang['vs_newer']              = 'Es sieht so aus als sie Ihre DokuWiki-Version aktueller als die letzte stabile Version. Ein Upgrade wird nicht empfohlen.';
+$lang['vs_newer']              = 'Es sieht so aus als ob Ihre DokuWiki-Version aktueller als die letzte stabile Version. Ein Upgrade wird nicht empfohlen.';
 $lang['vs_same']               = 'Ihre DokuWiki-Version ist aktuell. Ein Upgrade ist nicht nötig.';
 $lang['vs_plugin']             = 'Es existiert ein neueres Update Plugin (%s), Sie sollten das Plugin updaten bevor Sie aktualisieren.';
 $lang['vs_ssl']                = 'Ihre php-Version scheine keine SSL-Streams zu unterstützen, das Laden Sie die benötigten Daten wird daher vermutlich nicht funktionieren. Ein manuelles Update wird daher benötigt.';
