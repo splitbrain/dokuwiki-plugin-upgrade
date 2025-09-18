@@ -1,4 +1,4 @@
-Sua Wiki foi atualizado.
+Seu Wiki foi atualizado.
 
 Caso encontre algum problema, verifique se todos os seus plugins estão atualizados e compatíveis com a nova versão. O [[https://forum.dokuwiki.org/|fórum de usuários]] pode ter algumas dicas para você.
 
