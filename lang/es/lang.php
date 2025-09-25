@@ -3,6 +3,7 @@
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  *
+ * @author smocap <smocap@gmail.com>
  * @author Domingo Redal <docxml@gmail.com>
  * @author carlos <carloscyb@gmail.com>
  */
@@ -14,7 +15,7 @@ $lang['vs_local']              = 'Actualmente estás ejecutando DokuWiki <b>%s</
 $lang['vs_localno']            = 'No está clara la antigüedad de la versión que ejecutas actualmente; se recomienda una actualización manual.';
 $lang['vs_newer']              = 'Parece que tu DokuWiki actual es incluso más nueva que la última versión estable. No se recomienda actualizarla.';
 $lang['vs_same']               = 'Tú DokuWiki actual ya está al día. No se necesita actualización.';
-$lang['vs_plugin']             = 'Hay disponible una nueva actualización del //plugin// (%s), deberías actualizar el //plugin// antes de continuar.';
+$lang['vs_plugin']             = 'Hay disponible una nueva actualización del complemento (%s), deberías actualizar el complemento antes de continuar.';
 $lang['vs_ssl']                = 'Tu PHP parece no soportar canales SSL, la descarga de los datos necesarios lo más probable es que falle. Actualizalo manualmente en su lugar.';
 $lang['dl_from']               = 'Descargando el archivo desde %s...';
 $lang['dl_fail']               = 'Fallo en la descarga.';
@@ -45,4 +46,4 @@ $lang['step_download']         = 'Descargar';
 $lang['step_unpack']           = 'Desempaquetar';
 $lang['step_check']            = 'Verificar';
 $lang['step_upgrade']          = 'Instalar';
-$lang['careful']               = '¡Errores arriba! Deberías <b>no</ b> continuar!';
+$lang['careful']               = '¡Errores arriba! <b>No</b> deberías continuar!';
