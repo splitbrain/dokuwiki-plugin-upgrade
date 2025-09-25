@@ -1,5 +1,7 @@
 <?php
 
+use splitbrain\phpcli\CLI;
+
 /**
  * Legacy command line upgrade script
  *
@@ -34,9 +36,7 @@ function linesToHash($lines)
 {
     $lines = array_map('trim', $lines);
     $lines = array_filter($lines);
-    $lines = array_map(function ($item) {
-        return array_map('trim', explode(' ', $item, 2));
-    }, $lines);
+    $lines = array_map(fn($item) => array_map('trim', explode(' ', $item, 2)), $lines);
     return array_combine(array_column($lines, 0), array_column($lines, 1));
 }
 
@@ -63,7 +63,7 @@ function io_mkdir_p($dir)
 
 function getVersionData()
 {
-    $version = array();
+    $version = [];
     if (file_exists(DOKU_INC . 'VERSION')) {
         //official release
         $version['date'] = trim(file_get_contents(DOKU_INC . 'VERSION'));
@@ -80,10 +80,6 @@ function getVersion()
 
 class Doku_Event
 {
-    public function __construct($name, &$data)
-    {
-    }
-
     public function advise_before()
     {
         return true;
@@ -96,7 +92,7 @@ class Doku_Event
 
 trait UpgradePluginTrait
 {
-    protected $lang = null;
+    protected $lang;
 
     /**
      * @return string
@@ -122,7 +118,7 @@ trait UpgradePluginTrait
     }
 }
 
-abstract class DokuWiki_CLI_Plugin extends splitbrain\phpcli\CLI
+abstract class DokuWiki_CLI_Plugin extends CLI
 {
     use UpgradePluginTrait;
 }
