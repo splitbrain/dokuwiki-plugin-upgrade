@@ -1,0 +1,9 @@
+La seva wiki ha estat actualitzada.
+
+Si troba cap problema, asseguris de que tots els seus plugins estan actualitzats i són compatibles amb la nova versió. El [[https://forum.dokuwiki.org/|foro d'usuari]] pot contenir suggerències per a vosté.
+
+
+Si disfruta de DokuWiki i aquest plugin, si us plau consideri una [[doku>donate|donació]] per donar suport al desenvolupament d'aquest i altres plugins. També comprovi la nostra [[doku>social|presència a les xarxes socials]] per tal de romandre informat sobre nous desenvolumapents.
+
+
+Ara si us plau disfruti de [[:|la seva nova DokuWiki]]! :-)
