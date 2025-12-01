@@ -3,8 +3,10 @@
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  *
+ * @author Juanma <juxmix@gmail.com>
  * @author Adolfo Jayme Barrientos <fito@libreoffice.org>
  */
+$lang['menu']                  = 'Actualització de la Wiki';
 $lang['vs_tgzno']              = 'No s’ha pogut determinar la darrera versió del DokuWiki.';
 $lang['dl_fail']               = 'Ha fallat la baixada.';
 $lang['cp_start']              = 'S’estan actualitzant els fitxers…';
