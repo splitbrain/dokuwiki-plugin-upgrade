@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "splitbrain/php-archive",
-            "version": "1.3.1",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/splitbrain/php-archive.git",
-                "reference": "d274e5190ba309777926348900cf9578d9e533c9"
+                "reference": "e45d0d9247742490ea87afc6c026f211424999c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/splitbrain/php-archive/zipball/d274e5190ba309777926348900cf9578d9e533c9",
-                "reference": "d274e5190ba309777926348900cf9578d9e533c9",
+                "url": "https://api.github.com/repos/splitbrain/php-archive/zipball/e45d0d9247742490ea87afc6c026f211424999c8",
+                "reference": "e45d0d9247742490ea87afc6c026f211424999c8",
                 "shasum": ""
             },
             "require": {
@@ -62,22 +62,28 @@
             ],
             "support": {
                 "issues": "https://github.com/splitbrain/php-archive/issues",
-                "source": "https://github.com/splitbrain/php-archive/tree/1.3.1"
+                "source": "https://github.com/splitbrain/php-archive/tree/1.4.1"
             },
-            "time": "2022-03-23T09:21:55+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/splitbrain",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-08-01T08:09:37+00:00"
         },
         {
             "name": "splitbrain/php-cli",
-            "version": "1.2.1",
+            "version": "1.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/splitbrain/php-cli.git",
-                "reference": "47cd2b2c1d976d22afb01e121985d59c4f98c031"
+                "reference": "813410b23f9790a62620a79a4e87aed4c5c43e37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/splitbrain/php-cli/zipball/47cd2b2c1d976d22afb01e121985d59c4f98c031",
-                "reference": "47cd2b2c1d976d22afb01e121985d59c4f98c031",
+                "url": "https://api.github.com/repos/splitbrain/php-cli/zipball/813410b23f9790a62620a79a4e87aed4c5c43e37",
+                "reference": "813410b23f9790a62620a79a4e87aed4c5c43e37",
                 "shasum": ""
             },
             "require": {
@@ -117,21 +123,21 @@
             ],
             "support": {
                 "issues": "https://github.com/splitbrain/php-cli/issues",
-                "source": "https://github.com/splitbrain/php-cli/tree/1.2.1"
+                "source": "https://github.com/splitbrain/php-cli/tree/1.3.5"
             },
-            "time": "2022-11-04T11:59:39+00:00"
+            "time": "2025-10-28T16:00:30+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": [],
+    "platform": {},
+    "platform-dev": {},
     "platform-overrides": {
         "php": "7.2"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
