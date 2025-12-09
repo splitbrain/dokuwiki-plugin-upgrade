@@ -19,7 +19,7 @@
 
 // phpcs:disable PSR1.Files.SideEffects.FoundWithSymbols
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/myvendor/autoload.php';
 
 // fake a minimal dokuwiki environment
 define('DOKU_INC', __DIR__ . '/../../../');

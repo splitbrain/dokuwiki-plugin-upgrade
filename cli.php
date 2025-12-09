@@ -4,7 +4,7 @@
 
 use splitbrain\phpcli\Options;
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/myvendor/autoload.php';
 
 /**
  * DokuWiki Plugin upgrade (CLI Component)

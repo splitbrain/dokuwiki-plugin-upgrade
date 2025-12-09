@@ -1,4 +1,4 @@
-vendor/**/tests
-vendor/**/examples
-vendor/**/*.sh
-vendor/**/.*
+myvendor/**/tests
+myvendor/**/examples
+myvendor/**/*.sh
+myvendor/**/.*
