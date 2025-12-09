@@ -6,7 +6,8 @@
     "config": {
         "platform": {
             "php": "7.2"
-        }
+        },
+        "vendor-dir": "myvendor"
     },
     "autoload": {
         "psr-4": {

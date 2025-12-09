@@ -7,7 +7,7 @@
  * @author  Andreas Gohr <andi@splitbrain.org>
  */
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/myvendor/autoload.php';
 
 class admin_plugin_upgrade extends DokuWiki_Admin_Plugin
 {
