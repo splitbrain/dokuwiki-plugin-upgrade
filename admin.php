@@ -9,7 +9,7 @@
 
 require_once __DIR__ . '/myvendor/autoload.php';
 
-class admin_plugin_upgrade extends DokuWiki_Admin_Plugin
+class admin_plugin_upgrade extends \dokuwiki\Extension\AdminPlugin
 {
     protected $haderrors = false;
 
