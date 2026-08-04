@@ -1,0 +1,8 @@
+A wiki frissítése sikeresen befejeződött.
+
+Ha bármilyen problémába ütköznél, akkor ellenőrizd, hogy minden bővítmény naprakész és kompatibilis a wiki új verziójával. A [[https://forum.dokuwiki.org/|felhasználói fórum]] hasznos információt tartalmazhat.
+
+Ha tetszik a DokuWiki és ez a bővítmény, kérjük, fontold meg az [[doku>donate|adományozást]] a fejlesztés támogatása érdekében! Ha szeretnél naprakészen maradni az újdonságokkal kapcsolatban, keresd fel a [[doku>social|közösségi oldalainkat]]!
+
+Használd egészséggel a [[:|DokuWikid új verzióját]]! :-)
+
