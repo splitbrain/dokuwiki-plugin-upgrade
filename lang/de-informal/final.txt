@@ -1,0 +1,3 @@
+Dein Wiki wurde aktualisiert.
+
+Solltest du auf Probleme stoßen, stelle sicher, dass alle deine Plugins auf dem neuesten Stand und mit der neuen Version kompatibel sind. Im [[https://forum.dokuwiki.org/|Benutzerforum]] findest du möglicherweise hilfreiche Hinweise.
