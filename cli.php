@@ -1,7 +1,7 @@
 <?php
 
 // phpcs:disable PSR1.Files.SideEffects.FoundWithSymbols
-
+use dokuwiki\Extension\CLIPlugin;
 use splitbrain\phpcli\Options;
 
 require_once __DIR__ . '/myvendor/autoload.php';
@@ -12,7 +12,7 @@ require_once __DIR__ . '/myvendor/autoload.php';
  * @license GPL 2 http://www.gnu.org/licenses/gpl-2.0.html
  * @author  Andreas Gohr <andi@splitbrain.org>
  */
-class cli_plugin_upgrade extends DokuWiki_CLI_Plugin
+class cli_plugin_upgrade extends CLIPlugin
 {
     protected $logdefault = 'notice';
     protected $helper;
@@ -64,7 +64,7 @@ class cli_plugin_upgrade extends DokuWiki_CLI_Plugin
     }
 
     /** @inheritDoc */
-    public function log($level, $message, array $context = array())
+    public function log($level, $message, array $context = [])
     {
         // Log messages are HTML formatted, we need to clean them for console
         $message = strip_tags($message);
