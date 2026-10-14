@@ -1,0 +1,8 @@
+Dein Wiki wurde aktualisiert.
+
+Du solltest nun die deaktivierten Plugins und Templates aktualisieren bevor du sie wieder aktivierst. Sollten dabei Probleme auftreten, findest du im [[https://forum.dokuwiki.org/|Userforum]] Rat und Hilfe.
+
+Wenn dir DokuWiki und dieses Plugin gefallen, kannst du gerne auch meine Arbeit daran mit einer [[doku>donate|Spende]] unterstützen. Schau doch auch auf unseren diversen [[doku>social|Social Media Kanälen]] vorbei, um immer über den Entwicklungsstand informiert zu bleiben!
+
+
+Und jetzt viel Spaß mit [[:|deinem neuen DokuWiki]]! :-)
